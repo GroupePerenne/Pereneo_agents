@@ -102,15 +102,23 @@ function prospecteurCard(key, nom, avatar, desc) {
 
 // ─── Page HTML de confirmation après clic sur choix niveau/prospecteur ────
 function confirmationPage({ consultantPrenom, niveau, prospecteur }) {
-  const niveauLabel = {
+  const NIVEAU_LABELS = {
     1: 'Niveau 1 — on prospecte pour toi',
     2: 'Niveau 2 — on rédige, tu valides',
     3: 'Niveau 3 — déploiement chez toi',
-  }[niveau] || 'Choix enregistré';
-  const prospecteurLabel = prospecteur === 'both' ? 'Martin & Mila (A/B test)'
-    : prospecteur === 'martin' ? 'Martin'
-    : prospecteur === 'mila' ? 'Mila'
-    : 'À définir';
+  };
+  const PROSPECTEUR_LABELS = {
+    martin: 'Martin',
+    mila: 'Mila',
+    both: 'Martin & Mila (A/B test)',
+  };
+
+  const badges = [];
+  if (niveau && NIVEAU_LABELS[niveau]) badges.push(NIVEAU_LABELS[niveau]);
+  if (prospecteur && PROSPECTEUR_LABELS[prospecteur]) badges.push(PROSPECTEUR_LABELS[prospecteur]);
+  if (badges.length === 0) badges.push('Choix enregistré');
+
+  const badgesHtml = badges.map((b) => `<div class="choice">${b}</div>`).join('\n    ');
 
   return `<!DOCTYPE html>
 <html lang="fr"><head><meta charset="UTF-8">
@@ -131,8 +139,7 @@ p{color:${MUTED};font-weight:300;font-size:14px;line-height:1.6;margin-top:1rem}
   <div class="icon">✓</div>
   <h1>C'est noté, ${consultantPrenom} !</h1>
   <div>
-    <div class="choice">${niveauLabel}</div>
-    <div class="choice">${prospecteurLabel}</div>
+    ${badgesHtml}
   </div>
   <p>David revient vers toi très vite pour la suite.</p>
 </div>
