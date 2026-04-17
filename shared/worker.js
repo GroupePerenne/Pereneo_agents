@@ -17,6 +17,19 @@ const { scheduleRelance } = require('./queue');
 const { nextBusinessDayAt, addBusinessDays } = require('./holidays');
 const pipedrive = require('./pipedrive');
 
+/**
+ * Résout l'adresse Smart BCC Pipedrive d'un consultant à partir de son
+ * email. La liste est petite et connue (MVP pilotes Morgane + Johnny) ;
+ * on étend au fil des nouveaux consultants.
+ */
+function getConsultantBCC(consultantEmail) {
+  if (!consultantEmail) return null;
+  const email = consultantEmail.toLowerCase();
+  if (email.includes('dejessey') || email.includes('morgane')) return process.env.PIPEDRIVE_BCC_MORGANE || null;
+  if (email.includes('serra') || email.includes('johnny')) return process.env.PIPEDRIVE_BCC_JOHNNY || null;
+  return null;
+}
+
 // ─── Chargement des identités ─────────────────────────────────────────────
 function loadIdentity(agent) {
   if (!['martin', 'mila'].includes(agent)) {
@@ -66,10 +79,35 @@ function escapeHtml(s) {
   );
 }
 
-// ─── Bootstrap d'une séquence : génère les 5 messages, envoie J0 (ou le
-//     schedule si hors créneau ouvré), programme J+4/J+10/J+18/J+28 ──────────
-async function bootstrapSequence({ agent, consultant, lead, dealId, personId }) {
+// ─── Bootstrap d'une séquence : check leads existants, génère les 5 messages,
+//     envoie J0 (ou le schedule si hors créneau), programme J+4/J+10/J+18/J+28
+async function bootstrapSequence({ agent, consultant, lead, dealId, personId, orgId }) {
   const identity = loadIdentity(agent);
+
+  // 0. Filtrage leads existants : si le prospect est déjà dans un deal actif
+  // d'un autre pipeline Pipedrive, on skippe.
+  // - Match clair (même person_id) → skip silencieux, pas d'envoi
+  // - Match flou (même org_id mais person_id différent) → skip + flag pour
+  //   escalation ultérieure au consultant owner (Tranche 4 implémente le mail)
+  if (personId || orgId) {
+    try {
+      const existing = await pipedrive.findExistingDealsAcrossAllPipes({ personId, orgId });
+      if (existing.length > 0) {
+        const clearMatch = personId ? existing.find((d) => d.person_id?.value === personId) : null;
+        if (clearMatch) {
+          return { skipped: true, reason: 'existing_deal_clear', matchDealId: clearMatch.id, matchPipeline: clearMatch.pipeline_id };
+        }
+        const fuzzyMatch = orgId ? existing.find((d) => d.org_id?.value === orgId) : null;
+        if (fuzzyMatch) {
+          return { skipped: true, reason: 'existing_deal_fuzzy', matchDealId: fuzzyMatch.id, matchPipeline: fuzzyMatch.pipeline_id, needsEscalation: true };
+        }
+      }
+    } catch (err) {
+      // Si Pipedrive est down, on log mais on ne bloque pas l'envoi.
+      // (l'appelant aura les infos via le log ; on préfère envoyer que de rater)
+      console.warn(`bootstrapSequence: findExistingDeals failed (${err.message}), continuing`);
+    }
+  }
 
   // 1. Génération des 5 messages via Claude
   const adjustedConsultant = {
@@ -92,6 +130,7 @@ async function bootstrapSequence({ agent, consultant, lead, dealId, personId }) 
 
   // 3. J0 : envoi direct si dans le créneau, sinon push en queue
   const j0 = steps[0];
+  const consultantBCC = getConsultantBCC(adjustedConsultant.email);
   if (j0IsImmediate) {
     const html = renderEmailHtml({
       identity, consultant: adjustedConsultant, corps: j0.corps, dealId, personId, day: 'J0',
@@ -99,6 +138,7 @@ async function bootstrapSequence({ agent, consultant, lead, dealId, personId }) 
     await sendMail({
       from: identity.email,
       to: lead.email,
+      bcc: consultantBCC ? [consultantBCC] : [],
       subject: j0.objet,
       html,
       replyTo: process.env.DAVID_EMAIL,
@@ -146,9 +186,11 @@ async function sendScheduledStep(job) {
     identity, consultant, corps, dealId, personId, day: jour,
   });
 
+  const consultantBCC = getConsultantBCC(consultant?.email);
   await sendMail({
     from: identity.email,
     to: lead.email,
+    bcc: consultantBCC ? [consultantBCC] : [],
     subject: objet,
     html,
     replyTo: process.env.DAVID_EMAIL,

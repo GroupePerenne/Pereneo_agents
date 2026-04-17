@@ -59,20 +59,22 @@ async function getToken() {
  * @param {string} opts.html          — corps HTML
  * @param {string} [opts.replyTo]     — override reply-to (utile pour Martin/Mila → consultant)
  */
-async function sendMail({ from, to, cc = [], subject, html, replyTo }) {
+async function sendMail({ from, to, cc = [], bcc = [], subject, html, replyTo }) {
   const token = await getToken();
   const url = `${GRAPH_BASE}/users/${encodeURIComponent(from)}/sendMail`;
 
   const recipients = (Array.isArray(to) ? to : [to]).map((addr) => ({
     emailAddress: { address: addr },
   }));
-  const ccRecipients = cc.map((addr) => ({ emailAddress: { address: addr } }));
+  const ccRecipients = (Array.isArray(cc) ? cc : [cc]).filter(Boolean).map((addr) => ({ emailAddress: { address: addr } }));
+  const bccRecipients = (Array.isArray(bcc) ? bcc : [bcc]).filter(Boolean).map((addr) => ({ emailAddress: { address: addr } }));
 
   const message = {
     subject,
     body: { contentType: 'HTML', content: html },
     toRecipients: recipients,
     ...(ccRecipients.length ? { ccRecipients } : {}),
+    ...(bccRecipients.length ? { bccRecipients } : {}),
     ...(replyTo ? { replyTo: [{ emailAddress: { address: replyTo } }] } : {}),
   };
 

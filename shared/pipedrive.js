@@ -90,17 +90,39 @@ async function createPerson({ name, email, phone, orgId, ownerId }) {
 
 // ─── Deals ──────────────────────────────────────────────────────────────────
 
-async function createDeal({ title, personId, orgId, stageId, agent }) {
-  // Champ personnalisé "agent" (Martin/Mila/les deux) à créer dans Pipedrive
-  // et à référencer ici via sa clé (hash) — à ajuster une fois le custom field créé
-  const custom = agent ? { agent_sender: agent } : {};
+// IDs des options des enum fields Pipedrive (créés via API).
+// Si les fields sont recréés, ces IDs changent → à resynchro via
+// GET /v1/dealFields/<id>.
+const AGENT_SENDER_OPTION_ID = { martin: 378, mila: 379 };
+const LAST_AGENT_ATTEMPTED_OPTION_ID = { martin: 380, mila: 381 };
+
+/**
+ * Crée un deal dans le pipeline Prospérenne (par défaut stage "Nouveau lead"
+ * puis bascule en "En séquence" au boot de la séquence).
+ *
+ * @param {Object} opts
+ * @param {string} opts.title
+ * @param {number} opts.personId
+ * @param {number} [opts.orgId]
+ * @param {number} [opts.stageId] — défaut PIPEDRIVE_STAGE_NEW
+ * @param {"martin"|"mila"} [opts.agent]
+ * @param {number} [opts.ownerId]
+ */
+async function createDeal({ title, personId, orgId, stageId, agent, ownerId }) {
+  const fieldKey = process.env.PIPEDRIVE_FIELD_AGENT_SENDER;
+  const custom = {};
+  if (agent && fieldKey && AGENT_SENDER_OPTION_ID[agent]) {
+    custom[fieldKey] = AGENT_SENDER_OPTION_ID[agent];
+  }
+  const finalStageId = stageId || Number(process.env.PIPEDRIVE_STAGE_NEW);
   return call('/deals', {
     method: 'POST',
     body: {
       title,
       person_id: personId,
       org_id: orgId,
-      stage_id: stageId,
+      stage_id: finalStageId,
+      owner_id: ownerId,
       ...custom,
     },
   });
@@ -111,6 +133,73 @@ async function updateDealStage(dealId, stageId) {
     method: 'PUT',
     body: { stage_id: stageId },
   });
+}
+
+/**
+ * Recherche les deals actifs (status="open") liés à une personne OU une org,
+ * dans TOUS les pipelines SAUF Prospérenne. Utilisé avant le J0 pour éviter
+ * de prospecter un lead déjà travaillé par un autre consultant dans un
+ * autre pipe.
+ *
+ * @param {Object} q
+ * @param {number} [q.personId]
+ * @param {number} [q.orgId]
+ * @returns {Promise<Array>} deals { id, title, stage_id, pipeline_id, person_id, org_id, owner_name }
+ */
+async function findExistingDealsAcrossAllPipes({ personId, orgId }) {
+  if (!personId && !orgId) return [];
+  const ourPipe = Number(process.env.PIPEDRIVE_PIPELINE_ID);
+  const results = [];
+  if (personId) {
+    const data = await call('/deals', { query: { person_id: personId, status: 'open', limit: 100 } });
+    if (Array.isArray(data)) results.push(...data);
+  }
+  if (orgId) {
+    const data = await call('/deals', { query: { org_id: orgId, status: 'open', limit: 100 } });
+    if (Array.isArray(data)) results.push(...data);
+  }
+  // Dédup + filtre : on exclut les deals du pipe Prospérenne
+  const seen = new Set();
+  return results.filter((d) => {
+    if (!d || !d.id || seen.has(d.id)) return false;
+    seen.add(d.id);
+    return d.pipeline_id !== ourPipe;
+  });
+}
+
+/**
+ * Marque un lead comme "silence fin de séquence" : stage "Fermé — silence",
+ * last_agent_attempted = l'agent qui vient de faire la séquence, retry
+ * dispo dans 180 jours avec l'autre agent.
+ */
+async function markLeadForRetry(dealId, failedAgent) {
+  const body = {
+    stage_id: Number(process.env.PIPEDRIVE_STAGE_CLOSED_SILENCE),
+  };
+  const lastAgentKey = process.env.PIPEDRIVE_FIELD_LAST_AGENT_ATTEMPTED;
+  if (lastAgentKey && LAST_AGENT_ATTEMPTED_OPTION_ID[failedAgent]) {
+    body[lastAgentKey] = LAST_AGENT_ATTEMPTED_OPTION_ID[failedAgent];
+  }
+  const retryKey = process.env.PIPEDRIVE_FIELD_RETRY_AVAILABLE_AFTER;
+  if (retryKey) {
+    const retryDate = new Date(Date.now() + 180 * 86_400_000);
+    body[retryKey] = retryDate.toISOString().slice(0, 10);
+  }
+  return call(`/deals/${dealId}`, { method: 'PUT', body });
+}
+
+/**
+ * Marque un lead comme opt-out permanent suite à une réponse négative du
+ * prospect : stage "Fermé — refus" + opt_out_until = "9999-12-31".
+ * Ce lead ne doit plus jamais être prospecté, quel que soit l'agent.
+ */
+async function markLeadPermanentOptOut(dealId) {
+  const body = {
+    stage_id: Number(process.env.PIPEDRIVE_STAGE_CLOSED_REFUSAL),
+  };
+  const optOutKey = process.env.PIPEDRIVE_FIELD_OPT_OUT_UNTIL;
+  if (optOutKey) body[optOutKey] = '9999-12-31';
+  return call(`/deals/${dealId}`, { method: 'PUT', body });
 }
 
 // ─── Activités (= logs d'envoi mail) ────────────────────────────────────────
@@ -158,6 +247,9 @@ module.exports = {
   createPerson,
   createDeal,
   updateDealStage,
+  findExistingDealsAcrossAllPipes,
+  markLeadForRetry,
+  markLeadPermanentOptOut,
   logEmailSent,
   logEmailOpened,
 };
