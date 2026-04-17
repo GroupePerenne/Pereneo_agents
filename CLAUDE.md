@@ -40,6 +40,8 @@ Conséquences pour le développement :
 - Pas d'OSEYS hardcodé dans le code : chaque texte "OSEYS" dans un prompt, template ou règle métier doit venir d'une variable d'env ou d'un fichier de config tenant, jamais d'une constante en dur
 - Pilote avec assignation forcée (1 prospecteur par consultant) recommandé avant d'activer le mode "both" par défaut
 
+**TODO avant pilote Morgane/Johnny** : résoudre les `user_id` Pipedrive des 2 consultants (via `GET /v1/users?term=<email>`) et passer `owner_id` au `pipedrive.createDeal` dans `agents/david/orchestrator.js` → `launchSequenceForConsultant`. Sans ça, tous les deals créés ont David comme owner, ce qui casse le rapport quotidien `dailyReport` qui filtre par `user_id` du consultant. Paul récupère les IDs ou Claude peut le faire automatiquement depuis les env vars `MORGANE_EMAIL` / `JOHNNY_EMAIL`.
+
 ### 1.7 Règles produit validées (session du 17 avril 2026)
 
 **Rythme de la séquence de prospection** : 5 touches sur 28 jours ouvrés → **J0**, **J+4**, **J+10**, **J+18**, **J+28**. Tous les offsets sont comptés en jours ouvrés français (hors samedi, dimanche, jours fériés).
@@ -96,6 +98,21 @@ Certains IDs Pipedrive sont **hardcodés** dans `shared/pipedrive.js` parce qu'i
 1. `GET /v1/pipelines` pour retrouver l'ID du pipe et de ses stages.
 2. `GET /v1/dealFields` et `GET /v1/personFields` pour retrouver les `key` (hash) et les options.
 3. Mettre à jour les env vars Azure + `local.settings.json` + les constantes `AGENT_SENDER_OPTION_ID` / `LAST_AGENT_ATTEMPTED_OPTION_ID` dans `shared/pipedrive.js`.
+
+### 1.9 Architecture scalable à planifier (Tranche 8 — avant commercialisation)
+
+Le projet va évoluer :
+- Groupe Pérenne (ex-OSEYS) va créer PérennIA comme entité/filiale pour exploiter une gamme d'agents IA
+- Prospérenne sera la première offre commerciale (prospection via David/Martin/Mila)
+- Prochaines offres prévues : Responsable Technique (branché PilotagePro), Community Manager, Créateur de sites, Contrôleur de gestion, Assistante de direction
+- Deux versions de David prévues : une "interne Groupe Pérenne" dédiée aux consultants OSEYS, une "Prospérenne" exploitée à grande échelle pour des clients externes
+
+Implications pour l'architecture :
+- Introduire une notion de tenant (`/tenants/<slug>/`) séparée du code template des agents
+- Externaliser les règles métier (ICP, cible, ton, règles) en config JSON par tenant, plus jamais hardcoder dans les prompts
+- Préparer des adapters pour les intégrations externes (CRM, mail, calendar) afin de pouvoir swap Pipedrive ↔ HubSpot, Graph ↔ autre provider, etc.
+
+Cette refacto ne bloque pas le pilote interne mais doit être faite avant commercialisation Prospérenne. À traiter après validation base de leads + pilote Morgane/Johnny.
 
 ### Cœur de cible OSEYS — critère qualitatif #1
 
