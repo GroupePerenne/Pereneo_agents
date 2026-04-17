@@ -22,6 +22,24 @@
 
 **Règle architecturale clé** : seul David parle aux consultants. Martin et Mila ne contactent que les prospects externes. Leur `replyTo` pointe sur `david@oseys.fr`, donc toute réponse de prospect atterrit chez David, qui la lit via le timer `davidInbox` et prévient le consultant concerné.
 
+### 1.5 Positionnement produit — David est manager, pas exécutant
+
+David est le manager commercial de l'équipe. Il ne prospecte jamais lui-même. Son équipe Martin + Mila exécute la prospection ; David coordonne, brief, suit, rapporte. Le consultant utilisateur voit les trois dans son quotidien :
+- David au jour le jour (onboarding, briefs, comptes rendus hebdo)
+- Martin et Mila nommément dans les dashboards, rapports de performance, notifications de réponse prospect
+
+Pitch produit : "une équipe commerciale IA de 3 personnes", pas "un chatbot commercial". La métaphore RH est assumée — c'est ce qui fait la valeur perçue.
+
+### 1.6 Phase actuelle — pilote interne OSEYS
+
+Avant de commercialiser Prospérenne, on valide en interne avec 2 consultants OSEYS : Morgane et Johnny. L'équipe David+Martin+Mila doit être opérationnelle end-to-end (les 3 ensemble, pas séquentiellement — David sans Martin/Mila n'a pas de valeur).
+
+Conséquences pour le développement :
+- Pas de multi-tenancy pour l'instant (un seul Function App, un seul tenant Microsoft 365 OSEYS, une seule instance Pipedrive)
+- Les règles métier OSEYS (cible "vente d'heures", tranches 5-75 salariés, exclusions comptables/avocats) sont la config initiale mais doivent rester externalisables pour le pivot Prospérenne
+- Pas d'OSEYS hardcodé dans le code : chaque texte "OSEYS" dans un prompt, template ou règle métier doit venir d'une variable d'env ou d'un fichier de config tenant, jamais d'une constante en dur
+- Pilote avec assignation forcée (1 prospecteur par consultant) recommandé avant d'activer le mode "both" par défaut
+
 ### Cœur de cible OSEYS — critère qualitatif #1
 
 Les entreprises qui **vendent des heures** : agences, cabinets, ESN, bureaux d'études, services B2B, artisans avec salariés. 5 à 75 salariés, sweet spot 10-40. Problèmes communs : croissance plafonnée par les heures d'équipe, pricing sous-évalué, zéro prospection active. Ce critère pilote le ciblage des leads et la qualification des briefs consultant.
