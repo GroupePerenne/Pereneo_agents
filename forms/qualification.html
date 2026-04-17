@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qualification consultant — OSEYS</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --oseys-orange: #F39561;
+    --oseys-orange-dark: #D47646;
+    --oseys-cream: #F7F5F2;
+    --oseys-ink: #1a1714;
+    --oseys-muted: #7a756f;
+    --oseys-border: #E2DDD8;
+    --oseys-tint: #FFF2EB;
+  }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--oseys-cream);
+    color: var(--oseys-ink);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 2.5rem; }
+  .logo { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 28px; color: var(--oseys-ink); letter-spacing: -0.02em; }
+  .logo span { color: var(--oseys-orange); }
+  h1 { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 600; margin: 1rem 0 0.5rem; line-height: 1.2; }
+  .subtitle { color: var(--oseys-muted); font-size: 15px; max-width: 520px; margin: 0 auto; }
+  .progress-wrap { background: white; border: 1px solid var(--oseys-border); border-radius: 100px; height: 6px; margin: 1.5rem 0; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--oseys-orange); border-radius: 100px; transition: width 0.4s ease; width: 0%; }
+
+  .section {
+    background: white;
+    border: 1px solid var(--oseys-border);
+    border-radius: 16px;
+    padding: 1.75rem 1.75rem;
+    margin-bottom: 1rem;
+  }
+  .section-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 1.5rem; }
+  .section-num {
+    width: 32px; height: 32px; flex-shrink: 0;
+    background: var(--oseys-tint); color: var(--oseys-orange-dark);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 14px;
+  }
+  .section-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 600; color: var(--oseys-ink); }
+  .section-desc { font-size: 13px; color: var(--oseys-muted); margin-top: 2px; }
+
+  .field { margin-bottom: 1.25rem; }
+  .field:last-child { margin-bottom: 0; }
+  label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: var(--oseys-ink); }
+  .hint { font-size: 12px; color: var(--oseys-muted); font-weight: 300; margin-top: 4px; }
+  input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--oseys-ink);
+    background: var(--oseys-cream);
+    border: 1px solid var(--oseys-border);
+    border-radius: 8px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--oseys-orange);
+    background: white;
+  }
+  input.prefilled, select.prefilled, textarea.prefilled {
+    background: var(--oseys-tint);
+    border-color: var(--oseys-orange);
+  }
+  .prefill-badge {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: var(--oseys-tint);
+    color: var(--oseys-orange-dark);
+    vertical-align: middle;
+  }
+  textarea { resize: vertical; min-height: 80px; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 560px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .choice-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  @media (max-width: 560px) { .choice-grid { grid-template-columns: 1fr; } }
+  .choice {
+    background: var(--oseys-cream);
+    border: 1.5px solid var(--oseys-border);
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .choice:hover { border-color: var(--oseys-orange); }
+  .choice.selected { background: var(--oseys-tint); border-color: var(--oseys-orange); }
+  .choice-emoji { font-size: 28px; margin-bottom: 6px; }
+  .choice-name { font-weight: 600; font-size: 15px; }
+  .choice-desc { font-size: 11px; color: var(--oseys-muted); margin-top: 4px; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 12px;
+    border: 1px solid var(--oseys-border);
+    background: white;
+    border-radius: 100px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s;
+  }
+  .tag:hover { border-color: var(--oseys-orange); }
+  .tag.selected { background: var(--oseys-orange); color: white; border-color: var(--oseys-orange); }
+  .tag-group-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--oseys-muted); font-weight: 500; margin: 1rem 0 0.5rem; }
+  .tag-group-label:first-of-type { margin-top: 0; }
+
+  .callout {
+    background: var(--oseys-tint);
+    border-left: 3px solid var(--oseys-orange);
+    padding: 14px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--oseys-ink);
+    margin-bottom: 1.5rem;
+    line-height: 1.55;
+  }
+
+  .submit-row { margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 10px; }
+  button {
+    font-family: inherit; font-weight: 500; font-size: 14px;
+    padding: 12px 24px; border-radius: 10px; border: none;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .btn-primary {
+    background: var(--oseys-orange); color: white;
+  }
+  .btn-primary:hover { background: var(--oseys-orange-dark); }
+  .btn-primary:disabled { background: var(--oseys-border); cursor: not-allowed; }
+  .btn-secondary {
+    background: white; color: var(--oseys-ink); border: 1px solid var(--oseys-border);
+  }
+  .success {
+    background: #F0F9F1; border: 1px solid #C6E3C9;
+    padding: 20px; border-radius: 12px;
+    text-align: center; color: #2a6b33;
+    display: none;
+  }
+  .success.show { display: block; }
+  footer { text-align: center; font-size: 12px; color: var(--oseys-muted); margin-top: 2rem; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">OS<span>E</span>YS</div>
+    <h1>On apprend à te connaître</h1>
+    <p class="subtitle">5 minutes pour que David, Martin et Mila puissent prospecter correctement à ta place.</p>
+  </header>
+
+  <div class="progress-wrap"><div class="progress-bar" id="progress"></div></div>
+
+  <form id="form">
+
+    <!-- ─── Section 1 : Identité (pré-remplie via URL) ─── -->
+    <div class="section" data-section>
+      <div class="section-head">
+        <div class="section-num">1</div>
+        <div>
+          <div class="section-title">Qui es-tu ?</div>
+          <div class="section-desc">Ces informations sont pré-remplies si tu arrives depuis le mail de David.</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="f_nom">Nom complet</label>
+          <input type="text" id="f_nom" name="nom" required placeholder="Prénom Nom">
+        </div>
+        <div class="field">
+          <label for="f_email">Email</label>
+          <input type="email" id="f_email" name="email" required placeholder="toi@cabinet.fr">
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="f_entreprise">Cabinet / structure</label>
+          <input type="text" id="f_entreprise" name="entreprise" placeholder="Nom de ton cabinet">
+        </div>
+        <div class="field">
+          <label for="f_telephone">Téléphone</label>
+          <input type="tel" id="f_telephone" name="telephone" placeholder="+33 6 ..">
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="f_ville">Ville / zone principale</label>
+          <input type="text" id="f_ville" name="ville" placeholder="Paris, Lyon, PACA...">
+        </div>
+        <div class="field">
+          <label for="f_linkedin">LinkedIn</label>
+          <input type="text" id="f_linkedin" name="linkedin" placeholder="linkedin.com/in/...">
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Section 2 : Choix de l'équipe ─── -->
+    <div class="section" data-section>
+      <div class="section-head">
+        <div class="section-num">2</div>
+        <div>
+          <div class="section-title">Qui prospecte pour toi ?</div>
+          <div class="section-desc">Martin et Mila font exactement la même chose. Leur différence : l'un est un homme, l'autre une femme. Utile pour tester ce qui résonne le mieux sur tes cibles.</div>
+        </div>
+      </div>
+
+      <div class="choice-grid">
+        <div class="choice" data-choice="martin">
+          <div class="choice-emoji">👨</div>
+          <div class="choice-name">Martin</div>
+          <div class="choice-desc">Profil masculin, ton direct</div>
+        </div>
+        <div class="choice" data-choice="mila">
+          <div class="choice-emoji">👩</div>
+          <div class="choice-name">Mila</div>
+          <div class="choice-desc">Profil féminin, ton chaleureux</div>
+        </div>
+        <div class="choice selected" data-choice="both">
+          <div class="choice-emoji">👥</div>
+          <div class="choice-name">Les deux</div>
+          <div class="choice-desc">A/B test par secteur — recommandé</div>
+        </div>
+      </div>
+      <input type="hidden" id="f_prospecteur" name="prospecteur" value="both">
+    </div>
+
+    <!-- ─── Section 3 : Offre ─── -->
+    <div class="section" data-section>
+      <div class="section-head">
+        <div class="section-num">3</div>
+        <div>
+          <div class="section-title">Ton offre en une phrase</div>
+          <div class="section-desc">Ce que tu proposes concrètement, comme si tu le disais à un dirigeant en 20 secondes.</div>
+        </div>
+      </div>
+      <div class="field">
+        <textarea id="f_offre" name="offre" required placeholder="Ex : j'accompagne les dirigeants d'entreprises de service à structurer leur démarche commerciale pour sortir du bouche-à-oreille et retrouver de la marge."></textarea>
+      </div>
+    </div>
+
+    <!-- ─── Section 4 : Cibles ─── -->
+    <div class="section" data-section>
+      <div class="section-head">
+        <div class="section-num">4</div>
+        <div>
+          <div class="section-title">Tes cibles</div>
+          <div class="section-desc">Les secteurs et tailles d'entreprise sur lesquels tu veux qu'on se concentre.</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        OSEYS cible les entreprises qui <strong>vendent des heures</strong> : agences, cabinets, ESN, bureaux d'études, services B2B, artisans avec salariés. Leur croissance est plafonnée par le temps disponible dans l'équipe.
+      </div>
+
+      <div class="tag-group-label">Priorité 1 — cœur de cible</div>
+      <div class="tags" data-tags="secteurs">
+        <span class="tag" data-value="agence_communication">Agence de com</span>
+        <span class="tag" data-value="conseil">Cabinet de conseil</span>
+        <span class="tag" data-value="esn">ESN / IT services</span>
+        <span class="tag" data-value="recrutement">Cabinet de recrutement</span>
+        <span class="tag" data-value="bureau_etudes">Bureau d'études</span>
+        <span class="tag" data-value="architecture">Architecture</span>
+        <span class="tag" data-value="design">Studio de design</span>
+        <span class="tag" data-value="formation">Organisme de formation</span>
+      </div>
+
+      <div class="tag-group-label">Priorité 2 — services B2B</div>
+      <div class="tags" data-tags="secteurs">
+        <span class="tag" data-value="maintenance">Maintenance</span>
+        <span class="tag" data-value="nettoyage">Nettoyage</span>
+        <span class="tag" data-value="securite">Sécurité / gardiennage</span>
+        <span class="tag" data-value="interim">Agence d'intérim</span>
+        <span class="tag" data-value="immobilier">Agence immobilière</span>
+        <span class="tag" data-value="services_particuliers">Services aux particuliers</span>
+      </div>
+
+      <div class="tag-group-label">Priorité 3 — artisans avec salariés</div>
+      <div class="tags" data-tags="secteurs">
+        <span class="tag" data-value="plomberie">Plomberie / chauffage</span>
+        <span class="tag" data-value="electricite">Électricité</span>
+        <span class="tag" data-value="paysagisme">Paysagisme</span>
+        <span class="tag" data-value="domotique">Domotique</span>
+        <span class="tag" data-value="menuiserie">Menuiserie / agencement</span>
+      </div>
+      <input type="hidden" id="f_secteurs" name="secteurs" value="">
+
+      <div class="grid-2" style="margin-top: 1.5rem;">
+        <div class="field">
+          <label for="f_effectif">Tranche d'effectif préférée</label>
+          <select id="f_effectif" name="effectif">
+            <option value="5-10">5 à 10 salariés</option>
+            <option value="10-20">10 à 20 salariés</option>
+            <option value="20-40" selected>20 à 40 salariés — sweet spot</option>
+            <option value="40-75">40 à 75 salariés</option>
+            <option value="any">Toutes tailles</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f_zone">Zone géographique</label>
+          <input type="text" id="f_zone" name="zone" placeholder="France entière, PACA, Île-de-France...">
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Section 5 : Ton et voix ─── -->
+    <div class="section" data-section>
+      <div class="section-head">
+        <div class="section-num">5</div>
+        <div>
+          <div class="section-title">Ton registre</div>
+          <div class="section-desc">Comment tu t'adresses à un dirigeant. Martin/Mila vont caler leur ton sur le tien.</div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Registre</label>
+        <div class="tags" data-tags="registre" data-single="true">
+          <span class="tag selected" data-value="direct_cordial">Direct et cordial</span>
+          <span class="tag" data-value="chaleureux">Chaleureux et conversationnel</span>
+          <span class="tag" data-value="executif">Exécutif et concis</span>
+          <span class="tag" data-value="expert">Expert et pédagogue</span>
+        </div>
+        <input type="hidden" id="f_registre" name="registre" value="direct_cordial">
+      </div>
+      <div class="field">
+        <label>Tutoiement / vouvoiement</label>
+        <div class="tags" data-tags="vouv" data-single="true">
+          <span class="tag" data-value="tu">Tutoiement</span>
+          <span class="tag selected" data-value="vous">Vouvoiement</span>
+        </div>
+        <input type="hidden" id="f_vouv" name="vouvoiement" value="vous">
+      </div>
+    </div>
+
+    <!-- ─── Section 6 : Référence ─── -->
+    <div class="section" data-section>
+      <div class="section-head">
+        <div class="section-num">6</div>
+        <div>
+          <div class="section-title">Un exemple de client idéal</div>
+          <div class="section-desc">Un cas concret que tu as accompagné et que tu voudrais dupliquer. Ça aide à calibrer le ciblage.</div>
+        </div>
+      </div>
+      <div class="field">
+        <textarea id="f_exemple" name="exemple_client" placeholder="Nom, secteur, ce que tu as fait pour lui, le résultat obtenu."></textarea>
+      </div>
+    </div>
+
+    <div class="success" id="success">
+      <strong>C'est noté.</strong><br>
+      David va relire ton brief et te recontacter sous 24h avec un premier batch de leads proposés.
+    </div>
+
+    <div class="submit-row">
+      <button type="button" class="btn-secondary" onclick="saveDraft()">Sauvegarder et reprendre plus tard</button>
+      <button type="submit" class="btn-primary" id="submit-btn">Envoyer à David</button>
+    </div>
+  </form>
+
+  <footer>
+    <p>Les données de ce formulaire servent uniquement à piloter ta prospection. Rien n'est partagé en dehors d'OSEYS.</p>
+  </footer>
+
+</div>
+
+<script>
+  // ─── Configuration ────────────────────────────────────────────────────────
+  const SUBMIT_ENDPOINT = 'https://oseys-mail-sender-c8cveseah3g8a9gs.francecentral-01.azurewebsites.net/api/onQualification';
+  const STORAGE_KEY = 'oseys_qualification_draft';
+
+  // ─── Pré-remplissage via paramètres URL ───────────────────────────────────
+  // Paramètres supportés :
+  //   ?nom=Jean+Dupont
+  //   &email=jean@cabinet.fr
+  //   &entreprise=Acme
+  //   &telephone=+33600000000
+  //   &ville=Paris
+  //   &linkedin=https://linkedin.com/in/jeandupont
+  //   &prospecteur=both|martin|mila
+  //   &registre=direct_cordial|chaleureux|executif|expert
+  //   &vouv=tu|vous
+  //   &zone=France
+  //   &effectif=20-40
+  //   &secteurs=agence_communication,conseil
+  function applyUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+
+    // Champs texte simples
+    const textFields = {
+      nom: 'f_nom', email: 'f_email', entreprise: 'f_entreprise',
+      telephone: 'f_telephone', ville: 'f_ville', linkedin: 'f_linkedin',
+      zone: 'f_zone'
+    };
+    for (const [param, inputId] of Object.entries(textFields)) {
+      const val = params.get(param);
+      if (val) {
+        const el = document.getElementById(inputId);
+        if (el) { el.value = val; el.classList.add('prefilled'); markPrefilledLabel(el); }
+      }
+    }
+
+    // Select : effectif
+    const effectif = params.get('effectif');
+    if (effectif) {
+      const el = document.getElementById('f_effectif');
+      if (el && Array.from(el.options).some(o => o.value === effectif)) {
+        el.value = effectif; el.classList.add('prefilled');
+      }
+    }
+
+    // Prospecteur (martin / mila / both)
+    const prosp = params.get('prospecteur');
+    if (prosp && ['martin', 'mila', 'both'].includes(prosp)) {
+      document.querySelectorAll('[data-choice]').forEach(c => c.classList.remove('selected'));
+      const target = document.querySelector(`[data-choice="${prosp}"]`);
+      if (target) { target.classList.add('selected'); document.getElementById('f_prospecteur').value = prosp; }
+    }
+
+    // Registre / vouvoiement (single-select tags)
+    applyTagParam(params.get('registre'), 'registre', 'f_registre');
+    applyTagParam(params.get('vouv'), 'vouv', 'f_vouv');
+
+    // Secteurs (multi-select, liste séparée par virgules)
+    const secteurs = params.get('secteurs');
+    if (secteurs) {
+      const values = secteurs.split(',').map(s => s.trim()).filter(Boolean);
+      values.forEach(v => {
+        document.querySelectorAll(`[data-tags="secteurs"] .tag[data-value="${v}"]`).forEach(t => t.classList.add('selected'));
+      });
+      syncSecteurs();
+    }
+  }
+
+  function applyTagParam(val, group, inputId) {
+    if (!val) return;
+    const tag = document.querySelector(`[data-tags="${group}"] .tag[data-value="${val}"]`);
+    if (!tag) return;
+    document.querySelectorAll(`[data-tags="${group}"] .tag`).forEach(t => t.classList.remove('selected'));
+    tag.classList.add('selected');
+    document.getElementById(inputId).value = val;
+  }
+
+  function markPrefilledLabel(input) {
+    const label = input.closest('.field')?.querySelector('label');
+    if (!label || label.querySelector('.prefill-badge')) return;
+    const badge = document.createElement('span');
+    badge.className = 'prefill-badge';
+    badge.textContent = 'pré-rempli';
+    label.appendChild(badge);
+  }
+
+  // ─── Tags multi-select (secteurs) ────────────────────────────────────────
+  function syncSecteurs() {
+    const selected = [...document.querySelectorAll('[data-tags="secteurs"] .tag.selected')].map(t => t.dataset.value);
+    document.getElementById('f_secteurs').value = selected.join(',');
+  }
+
+  // ─── Choice cards (martin/mila/both) ─────────────────────────────────────
+  document.querySelectorAll('[data-choice]').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('[data-choice]').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      document.getElementById('f_prospecteur').value = card.dataset.choice;
+    });
+  });
+
+  // ─── Tag groups ──────────────────────────────────────────────────────────
+  document.querySelectorAll('[data-tags]').forEach(group => {
+    const isSingle = group.dataset.single === 'true';
+    group.querySelectorAll('.tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        if (isSingle) {
+          group.querySelectorAll('.tag').forEach(t => t.classList.remove('selected'));
+          tag.classList.add('selected');
+          // sync vers hidden input
+          const inputId = group.dataset.tags === 'registre' ? 'f_registre'
+                       : group.dataset.tags === 'vouv' ? 'f_vouv' : null;
+          if (inputId) document.getElementById(inputId).value = tag.dataset.value;
+        } else {
+          tag.classList.toggle('selected');
+          if (group.dataset.tags === 'secteurs') syncSecteurs();
+        }
+        updateProgress();
+      });
+    });
+  });
+
+  // ─── Progress bar ────────────────────────────────────────────────────────
+  function updateProgress() {
+    const sections = document.querySelectorAll('[data-section]');
+    let filled = 0;
+    sections.forEach(s => {
+      const inputs = s.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea, select');
+      const hasFilled = [...inputs].some(i => i.value.trim().length > 0);
+      const hasSelectedTag = s.querySelector('.tag.selected, .choice.selected');
+      if (hasFilled || hasSelectedTag) filled++;
+    });
+    const pct = Math.round((filled / sections.length) * 100);
+    document.getElementById('progress').style.width = pct + '%';
+  }
+  document.querySelectorAll('input, textarea, select').forEach(el => el.addEventListener('input', updateProgress));
+
+  // ─── Draft local (sauvegarde sans perdre) ────────────────────────────────
+  function saveDraft() {
+    const data = collectFormData();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    alert('Brouillon sauvegardé. Tu peux fermer cette page et revenir plus tard.');
+  }
+  function loadDraft() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    try {
+      const data = JSON.parse(raw);
+      for (const [key, val] of Object.entries(data)) {
+        const el = document.querySelector(`[name="${key}"]`);
+        if (el && el.type !== 'hidden') el.value = val;
+      }
+      if (data.secteurs) {
+        data.secteurs.split(',').forEach(v => {
+          document.querySelector(`[data-tags="secteurs"] .tag[data-value="${v}"]`)?.classList.add('selected');
+        });
+        syncSecteurs();
+      }
+      updateProgress();
+    } catch (e) { console.warn('Draft load failed', e); }
+  }
+
+  function collectFormData() {
+    const form = document.getElementById('form');
+    const fd = new FormData(form);
+    const obj = {};
+    for (const [k, v] of fd.entries()) obj[k] = v;
+    return obj;
+  }
+
+  // ─── Submit ──────────────────────────────────────────────────────────────
+  document.getElementById('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true; btn.textContent = 'Envoi en cours...';
+
+    const payload = collectFormData();
+    payload.submitted_at = new Date().toISOString();
+    payload.user_agent = navigator.userAgent;
+
+    try {
+      const res = await fetch(SUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      localStorage.removeItem(STORAGE_KEY);
+      document.getElementById('success').classList.add('show');
+      btn.textContent = 'Envoyé';
+      document.getElementById('success').scrollIntoView({ behavior: 'smooth' });
+    } catch (err) {
+      btn.disabled = false; btn.textContent = 'Envoyer à David';
+      alert('Erreur d\'envoi : ' + err.message + '\nTon brouillon est sauvegardé localement.');
+      saveDraft();
+    }
+  });
+
+  // ─── Init ────────────────────────────────────────────────────────────────
+  loadDraft();        // d'abord le brouillon local
+  applyUrlParams();   // puis les params URL (qui prennent le dessus)
+  updateProgress();
+</script>
+</body>
+</html>
