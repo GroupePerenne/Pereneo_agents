@@ -3,14 +3,15 @@
  *
  * Endpoint appelé directement par le formulaire HTML quand le consultant clique
  * "Envoyer à David". On :
- *   1. Crée ou met à jour la personne dans Pipedrive (le consultant)
- *   2. Notifie David par mail avec un récap structuré
+ *   1. Notifie David par mail avec un récap structuré
+ *   2. Envoie un accusé au consultant
  *   3. Retourne 200 + { ok: true, brief_id } au formulaire
  *
  * Auth anonyme côté Azure (le formulaire est public), mais on pourrait
  * ajouter un hCaptcha ou un throttle IP en V2 si du spam apparaît.
  */
 
+const { app } = require('@azure/functions');
 const { sendMail } = require('../../shared/graph-mail');
 
 const CORS_HEADERS = {
@@ -19,60 +20,60 @@ const CORS_HEADERS = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
-module.exports = async function (context, req) {
-  if (req.method === 'OPTIONS') {
-    context.res = { status: 204, headers: CORS_HEADERS };
-    return;
-  }
-
-  try {
-    const brief = req.body || {};
-    const required = ['nom', 'email', 'offre'];
-    const missing = required.filter((f) => !brief[f]);
-    if (missing.length) {
-      context.res = {
-        status: 400,
-        headers: CORS_HEADERS,
-        body: { error: `Champs manquants : ${missing.join(', ')}` },
-      };
-      return;
+app.http('onQualification', {
+  methods: ['POST', 'OPTIONS'],
+  authLevel: 'anonymous',
+  handler: async (request, context) => {
+    if (request.method === 'OPTIONS') {
+      return { status: 204, headers: CORS_HEADERS };
     }
 
-    const briefId = `brief_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    try {
+      const brief = await request.json().catch(() => ({}));
+      const required = ['nom', 'email', 'offre'];
+      const missing = required.filter((f) => !brief[f]);
+      if (missing.length) {
+        return {
+          status: 400,
+          headers: CORS_HEADERS,
+          jsonBody: { error: `Champs manquants : ${missing.join(', ')}` },
+        };
+      }
 
-    // Notifier David — il lira le récap dans sa boîte david@oseys.fr
-    await sendMail({
-      from: process.env.DAVID_EMAIL,
-      to: process.env.DAVID_EMAIL,
-      subject: `[Qualification] ${brief.nom} — ${brief.entreprise || 'cabinet non précisé'}`,
-      html: renderBriefEmail(brief, briefId),
-    });
+      const briefId = `brief_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
-    // Accusé au consultant
-    await sendMail({
-      from: process.env.DAVID_EMAIL,
-      to: brief.email,
-      subject: 'Brief bien reçu — je reviens vers toi sous 24h',
-      html: `<p>Salut ${brief.nom.split(/\s+/)[0]},</p>
+      await sendMail({
+        from: process.env.DAVID_EMAIL,
+        to: process.env.DAVID_EMAIL,
+        subject: `[Qualification] ${brief.nom} — ${brief.entreprise || 'cabinet non précisé'}`,
+        html: renderBriefEmail(brief, briefId),
+      });
+
+      await sendMail({
+        from: process.env.DAVID_EMAIL,
+        to: brief.email,
+        subject: 'Brief bien reçu — je reviens vers toi sous 24h',
+        html: `<p>Salut ${brief.nom.split(/\s+/)[0]},</p>
 <p>J'ai bien reçu ton brief. Je relis tout ça et je te reviens sous 24h avec un premier retour et un batch de leads à te proposer.</p>
 <p>Si tu veux ajuster quelque chose avant, réponds simplement à ce mail.</p>
 <p>David</p>`,
-    });
+      });
 
-    context.res = {
-      status: 200,
-      headers: CORS_HEADERS,
-      body: { ok: true, brief_id: briefId },
-    };
-  } catch (err) {
-    context.log.error('onQualification error:', err);
-    context.res = {
-      status: 500,
-      headers: CORS_HEADERS,
-      body: { error: err.message },
-    };
-  }
-};
+      return {
+        status: 200,
+        headers: CORS_HEADERS,
+        jsonBody: { ok: true, brief_id: briefId },
+      };
+    } catch (err) {
+      context.error('onQualification error:', err);
+      return {
+        status: 500,
+        headers: CORS_HEADERS,
+        jsonBody: { error: err.message },
+      };
+    }
+  },
+});
 
 function renderBriefEmail(brief, briefId) {
   const row = (k, v) => v

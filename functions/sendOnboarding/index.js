@@ -6,26 +6,28 @@
  * Body : { "prenom": "Jean", "nom": "Dupont", "email": "jean@cabinet.fr" }
  */
 
+const { app } = require('@azure/functions');
 const { sendOnboardingEmail } = require('../../agents/david/onboarding');
 
-module.exports = async function (context, req) {
-  try {
-    const { prenom, nom, email } = req.body || {};
-    if (!prenom || !email) {
-      context.res = {
-        status: 400,
-        body: { error: 'prenom et email requis' },
-      };
-      return;
+app.http('sendOnboarding', {
+  methods: ['POST'],
+  authLevel: 'function',
+  handler: async (request, context) => {
+    try {
+      const body = await request.json().catch(() => ({}));
+      const { prenom, nom, email } = body;
+      if (!prenom || !email) {
+        return { status: 400, jsonBody: { error: 'prenom et email requis' } };
+      }
+
+      const result = await sendOnboardingEmail({
+        consultant: { prenom, nom: nom || '', email },
+      });
+
+      return { status: 200, jsonBody: { ok: true, ...result } };
+    } catch (err) {
+      context.error('sendOnboarding error:', err);
+      return { status: 500, jsonBody: { error: err.message } };
     }
-
-    const result = await sendOnboardingEmail({
-      consultant: { prenom, nom: nom || '', email },
-    });
-
-    context.res = { status: 200, body: { ok: true, ...result } };
-  } catch (err) {
-    context.log.error('sendOnboarding error:', err);
-    context.res = { status: 500, body: { error: err.message } };
-  }
-};
+  },
+});

@@ -12,29 +12,28 @@
  * }
  */
 
+const { app } = require('@azure/functions');
 const { launchSequenceForConsultant } = require('../../agents/david/orchestrator');
 
-module.exports = async function (context, req) {
-  try {
-    const { consultant, brief, leads } = req.body || {};
-    if (!consultant || !brief || !Array.isArray(leads) || leads.length === 0) {
-      context.res = {
-        status: 400,
-        body: { error: 'consultant, brief et leads[] requis' },
-      };
-      return;
+app.http('runSequence', {
+  methods: ['POST'],
+  authLevel: 'function',
+  handler: async (request, context) => {
+    try {
+      const body = await request.json().catch(() => ({}));
+      const { consultant, brief, leads } = body;
+      if (!consultant || !brief || !Array.isArray(leads) || leads.length === 0) {
+        return { status: 400, jsonBody: { error: 'consultant, brief et leads[] requis' } };
+      }
+
+      const results = await launchSequenceForConsultant({ consultant, brief, leads });
+      const ok = results.filter((r) => !r.error).length;
+      const ko = results.length - ok;
+
+      return { status: 200, jsonBody: { ok_count: ok, error_count: ko, results } };
+    } catch (err) {
+      context.error('runSequence error:', err);
+      return { status: 500, jsonBody: { error: err.message } };
     }
-
-    const results = await launchSequenceForConsultant({ consultant, brief, leads });
-    const ok = results.filter((r) => !r.error).length;
-    const ko = results.length - ok;
-
-    context.res = {
-      status: 200,
-      body: { ok_count: ok, error_count: ko, results },
-    };
-  } catch (err) {
-    context.log.error('runSequence error:', err);
-    context.res = { status: 500, body: { error: err.message } };
-  }
-};
+  },
+});

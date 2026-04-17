@@ -12,45 +12,47 @@
  * cohérence du discours garantie sur la séquence complète.
  */
 
+const { app } = require('@azure/functions');
 const { receiveDueRelances, deleteRelance } = require('../../shared/queue');
 const martin = require('../../agents/martin/worker');
 const mila = require('../../agents/mila/worker');
 
 const AGENTS = { martin, mila };
 
-module.exports = async function (context, myTimer) {
-  const startedAt = new Date().toISOString();
-  context.log(`scheduler tick @ ${startedAt}`);
+app.timer('scheduler', {
+  schedule: '0 */15 * * * *',
+  handler: async (myTimer, context) => {
+    const startedAt = new Date().toISOString();
+    context.log(`scheduler tick @ ${startedAt}`);
 
-  try {
-    const dueJobs = await receiveDueRelances(16);
-    if (dueJobs.length === 0) {
-      context.log('rien à envoyer');
-      return;
-    }
-
-    context.log(`${dueJobs.length} relance(s) à traiter`);
-    const results = [];
-
-    for (const job of dueJobs) {
-      const { body, messageId, popReceipt } = job;
-      try {
-        const agent = AGENTS[body.agent];
-        if (!agent) throw new Error(`Agent inconnu : ${body.agent}`);
-
-        const res = await agent.sendStep(body);
-        await deleteRelance({ messageId, popReceipt });
-        results.push({ agent: body.agent, day: body.day, lead: body.lead?.email, ...res });
-      } catch (err) {
-        // On ne supprime PAS le message → il reviendra dans la queue
-        // après le visibilityTimeout (2 min) et sera retenté au prochain tick.
-        context.log.error(`échec ${body.agent}/${body.day}/${body.lead?.email}: ${err.message}`);
-        results.push({ agent: body.agent, day: body.day, lead: body.lead?.email, error: err.message });
+    try {
+      const dueJobs = await receiveDueRelances(16);
+      if (dueJobs.length === 0) {
+        context.log('rien à envoyer');
+        return;
       }
-    }
 
-    context.log('résultats:', JSON.stringify(results));
-  } catch (err) {
-    context.log.error('scheduler global error:', err);
-  }
-};
+      context.log(`${dueJobs.length} relance(s) à traiter`);
+      const results = [];
+
+      for (const job of dueJobs) {
+        const { body, messageId, popReceipt } = job;
+        try {
+          const agent = AGENTS[body.agent];
+          if (!agent) throw new Error(`Agent inconnu : ${body.agent}`);
+
+          const res = await agent.sendStep(body);
+          await deleteRelance({ messageId, popReceipt });
+          results.push({ agent: body.agent, day: body.day, lead: body.lead?.email, ...res });
+        } catch (err) {
+          context.error(`échec ${body.agent}/${body.day}/${body.lead?.email}: ${err.message}`);
+          results.push({ agent: body.agent, day: body.day, lead: body.lead?.email, error: err.message });
+        }
+      }
+
+      context.log('résultats:', JSON.stringify(results));
+    } catch (err) {
+      context.error('scheduler global error:', err);
+    }
+  },
+});
