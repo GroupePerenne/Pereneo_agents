@@ -11,7 +11,7 @@
  */
 
 const ANTHROPIC_URL = 'https://api.anthropic.com/v1/messages';
-const MODEL = 'claude-sonnet-4-20250514';
+const MODEL = 'claude-sonnet-4-6';
 
 /** Calendrier canonique de la séquence (5 touches sur 28 jours ouvrés) */
 const SCHEDULE = [

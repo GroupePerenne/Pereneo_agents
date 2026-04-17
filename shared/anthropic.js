@@ -8,7 +8,7 @@
  */
 
 const API_URL = 'https://api.anthropic.com/v1/messages';
-const MODEL_DEFAULT = 'claude-sonnet-4-20250514';
+const MODEL_DEFAULT = 'claude-sonnet-4-6';
 
 async function callClaude({ system, messages, model = MODEL_DEFAULT, maxTokens = 2000, temperature = 0.7 }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
