@@ -40,6 +40,39 @@ Conséquences pour le développement :
 - Pas d'OSEYS hardcodé dans le code : chaque texte "OSEYS" dans un prompt, template ou règle métier doit venir d'une variable d'env ou d'un fichier de config tenant, jamais d'une constante en dur
 - Pilote avec assignation forcée (1 prospecteur par consultant) recommandé avant d'activer le mode "both" par défaut
 
+### 1.7 Règles produit validées (session du 17 avril 2026)
+
+**Rythme de la séquence de prospection** : 5 touches sur 28 jours ouvrés → **J0**, **J+4**, **J+10**, **J+18**, **J+28**. Tous les offsets sont comptés en jours ouvrés français (hors samedi, dimanche, jours fériés).
+
+**Jours ouvrés uniquement** : aucun envoi prospect un samedi, dimanche ou jour férié français. Si un job (immédiat ou différé) tombe hors jour ouvré ou hors plage 9h-11h Paris, il est reporté au prochain créneau ouvré.
+
+**Créneau d'envoi** : 9h-11h Paris pour tous les envois prospects (ouverture + relances). Heure locale Paris garantie par l'app setting `WEBSITE_TIME_ZONE=Romance Standard Time` sur le Function App.
+
+**Rapport quotidien David** : 8h Paris du lundi au vendredi. Un mail par consultant actif contenant activité de la veille (envois, ouvertures, réponses, RDV), analyse comparative Martin/Mila si pertinent, propositions d'actions pour la journée.
+
+**A/B testing Martin/Mila permanent** : les deux agents coexistent toujours, on optimise lead-par-lead. Aucun "choix d'un gagnant" qui supprimerait un agent.
+
+**Bascule d'agent sur silence** : si un lead termine ses 28 jours ouvrés sans réponse, il est flagué `retry_available_after = today + 180j` avec `last_agent_attempted = <agent_courant>`. Future campagne → l'autre agent prend le relais.
+
+**Opt-out permanent sur réponse négative** : un prospect qui répond négativement est retiré de toute future campagne, tous agents confondus (`opt_out_until = 9999-12-31`).
+
+**Classification des réponses prospects (6 classes)** : `positive` / `question` / `neutre` / `negative` / `out_of_office` / `bounce`. Si la confidence LLM est < 0.7 → escalation humaine obligatoire via la règle d'honneur.
+
+**Règle d'honneur David** (non négociable, s'applique aussi à Martin et Mila dans la génération de leurs messages) :
+1. **Pas d'improvisation** sur les cas ambigus. En cas de doute → mail à `direction@oseys.fr` (env var `ESCALATION_EMAIL`) avec contexte, 2-3 propositions, reco personnelle. Attendre validation humaine avant d'agir.
+2. **Pas d'invention** : aucun chiffre, benchmark, cas client, référence ou nom non sourçable.
+3. **Pas de promesse** : pas de garantie de résultat, délai, taux. Formulations qualitatives uniquement.
+
+**URL canonique dans les signatures** : `https://oseys.fr/dirigeant` (et non plus `https://oseys.fr` nu).
+
+**Filtrage des leads existants** : avant le J0, David vérifie via Pipedrive si le prospect est déjà dans un deal actif d'un autre pipeline. Match clair (même email ou même `person_id`) → skip silencieux. Match flou (même nom d'entreprise, prénoms différents) → escalation au consultant owner du deal existant, pas d'envoi tant que pas de réponse.
+
+**Prise de RDV via Microsoft Bookings** : chaque consultant a sa page Bookings personnelle, URL stockée dans son brief et injectée par David dans les réponses positives aux prospects.
+
+**Pipedrive Smart BCC hybride** : envoi principal via Graph API (pour contrôle du template) + BCC vers l'adresse Smart Email Pipedrive unique du consultant (pour tracking natif + timeline deal). Env var `PIPEDRIVE_BCC_<CONSULTANT>` par consultant.
+
+**Cutoff déploiement prod** : aucun `func azure functionapp publish` tant que Paul n'a pas validé la base de leads livrée par Constantin avec Claude lors d'une session dédiée. Le code reste prêt sur `main` en attendant.
+
 ### Cœur de cible OSEYS — critère qualitatif #1
 
 Les entreprises qui **vendent des heures** : agences, cabinets, ESN, bureaux d'études, services B2B, artisans avec salariés. 5 à 75 salariés, sweet spot 10-20. Problèmes communs : croissance plafonnée par les heures d'équipe, pricing sous-évalué, zéro prospection active. Ce critère pilote le ciblage des leads et la qualification des briefs consultant.
