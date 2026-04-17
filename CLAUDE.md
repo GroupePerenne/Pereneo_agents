@@ -73,6 +73,30 @@ Conséquences pour le développement :
 
 **Cutoff déploiement prod** : aucun `func azure functionapp publish` tant que Paul n'a pas validé la base de leads livrée par Constantin avec Claude lors d'une session dédiée. Le code reste prêt sur `main` en attendant.
 
+### 1.8 Dépendances externes à ne pas casser
+
+Certains IDs Pipedrive sont **hardcodés** dans `shared/pipedrive.js` parce qu'ils sont stables tant que les ressources correspondantes ne sont pas recréées. Si tu supprimes et recrées un des éléments ci-dessous, il faut resynchroniser.
+
+**IDs d'options des enum fields** (dans `shared/pipedrive.js`) :
+- `AGENT_SENDER_OPTION_ID` : `martin = 378`, `mila = 379`
+- `LAST_AGENT_ATTEMPTED_OPTION_ID` : `martin = 380`, `mila = 381`
+
+**Keys de custom fields Pipedrive** (en env var, mais recréer = régénérer le hash) :
+- `PIPEDRIVE_FIELD_AGENT_SENDER` (deal)
+- `PIPEDRIVE_FIELD_LAST_AGENT_ATTEMPTED` (deal)
+- `PIPEDRIVE_FIELD_OPT_OUT_UNTIL` (deal)
+- `PIPEDRIVE_FIELD_RETRY_AVAILABLE_AFTER` (deal)
+- `PIPEDRIVE_PERSON_FIELD_EMAIL_BOUNCED_AT` (person)
+
+**IDs de stages** (en env var) :
+- `PIPEDRIVE_PIPELINE_ID=28` — pipe "Prospérenne — Prospection automatisée"
+- `PIPEDRIVE_STAGE_NEW=251` à `PIPEDRIVE_STAGE_CLOSED_SILENCE=258`
+
+**Procédure de resynchro** si recréation :
+1. `GET /v1/pipelines` pour retrouver l'ID du pipe et de ses stages.
+2. `GET /v1/dealFields` et `GET /v1/personFields` pour retrouver les `key` (hash) et les options.
+3. Mettre à jour les env vars Azure + `local.settings.json` + les constantes `AGENT_SENDER_OPTION_ID` / `LAST_AGENT_ATTEMPTED_OPTION_ID` dans `shared/pipedrive.js`.
+
 ### Cœur de cible OSEYS — critère qualitatif #1
 
 Les entreprises qui **vendent des heures** : agences, cabinets, ESN, bureaux d'études, services B2B, artisans avec salariés. 5 à 75 salariés, sweet spot 10-20. Problèmes communs : croissance plafonnée par les heures d'équipe, pricing sous-évalué, zéro prospection active. Ce critère pilote le ciblage des leads et la qualification des briefs consultant.

@@ -8,6 +8,13 @@
  *   process.env.PIPEDRIVE_TOKEN
  *   process.env.PIPEDRIVE_COMPANY_DOMAIN  (ex: "oseys")
  *
+ * DÉPENDANCE EXTERNE CRITIQUE :
+ * Les IDs d'options des enum fields (AGENT_SENDER_OPTION_ID, LAST_AGENT_
+ * ATTEMPTED_OPTION_ID, stages) sont stables côté Pipedrive tant que les
+ * custom fields et le pipeline ne sont pas recréés. Si tu recrées un field
+ * ou un stage, les IDs changent — il faut resynchroniser ici.
+ * Voir CLAUDE.md section "Dépendances externes à ne pas casser".
+ *
  * Doc API : https://developers.pipedrive.com/docs/api/v1
  */
 
@@ -86,6 +93,34 @@ async function createPerson({ name, email, phone, orgId, ownerId }) {
       owner_id: ownerId,
     },
   });
+}
+
+/** Met à jour un champ custom sur une personne (ex: email_bounced_at) */
+async function updatePersonField(personId, fieldKey, value) {
+  if (!personId || !fieldKey) return null;
+  return call(`/persons/${personId}`, {
+    method: 'PUT',
+    body: { [fieldKey]: value },
+  });
+}
+
+/** Liste les deals actifs d'une personne dans le pipeline Prospérenne */
+async function findOpenDealsForPersonInOurPipe(personId) {
+  if (!personId) return [];
+  const ourPipe = Number(process.env.PIPEDRIVE_PIPELINE_ID);
+  const data = await call('/deals', { query: { person_id: personId, status: 'open', limit: 100 } });
+  return Array.isArray(data) ? data.filter((d) => d.pipeline_id === ourPipe) : [];
+}
+
+/** Récupère l'email d'un utilisateur Pipedrive par son user_id (= owner d'un deal) */
+async function getUserEmail(userId) {
+  if (!userId) return null;
+  try {
+    const data = await call(`/users/${userId}`);
+    return data?.email || null;
+  } catch {
+    return null;
+  }
 }
 
 // ─── Deals ──────────────────────────────────────────────────────────────────
@@ -245,9 +280,12 @@ module.exports = {
   createOrganization,
   searchPerson,
   createPerson,
+  updatePersonField,
   createDeal,
   updateDealStage,
   findExistingDealsAcrossAllPipes,
+  findOpenDealsForPersonInOurPipe,
+  getUserEmail,
   markLeadForRetry,
   markLeadPermanentOptOut,
   logEmailSent,
