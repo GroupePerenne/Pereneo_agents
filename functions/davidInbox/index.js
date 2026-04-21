@@ -13,7 +13,7 @@ app.timer('davidInbox', {
   schedule: '0 */5 * * * *',
   handler: async (myTimer, context) => {
     try {
-      const results = await handleInboxPoll();
+      const results = await handleInboxPoll({ context });
       if (results.length === 0) {
         context.log('boîte David : rien de nouveau');
         return;

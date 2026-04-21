@@ -12,7 +12,8 @@
  */
 
 const { app } = require('@azure/functions');
-const { sendMail } = require('../../shared/graph-mail');
+const { sendMail: defaultSendMail } = require('../../shared/graph-mail');
+const { getMem0: defaultGetMem0 } = require('../../shared/adapters/memory/mem0');
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -20,36 +21,76 @@ const CORS_HEADERS = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
-app.http('onQualification', {
-  methods: ['POST', 'OPTIONS'],
-  authLevel: 'anonymous',
-  handler: async (request, context) => {
-    if (request.method === 'OPTIONS') {
-      return { status: 204, headers: CORS_HEADERS };
+/**
+ * Construit le schéma de mémoire consultant à partir du brief reçu du
+ * formulaire public. Mapping conforme ARCHITECTURE §3.1 type 2.
+ */
+function buildConsultantMemory(brief) {
+  return {
+    display_name: brief.nom,
+    preferred_tone: brief.registre,
+    tutoiement: brief.vouvoiement === 'tu',
+    favorite_sectors: brief.secteurs
+      ? brief.secteurs.split(/[,;]/).map((s) => s.trim()).filter(Boolean)
+      : [],
+    commercial_strategy: brief.offre,
+    usable_anecdotes: brief.exemple_client ? [brief.exemple_client] : [],
+  };
+}
+
+/**
+ * Handler extractible pour les tests. Les deux dépendances externes
+ * (sendMail, getMem0) sont injectables via `deps` — en prod on utilise
+ * les implémentations par défaut.
+ */
+async function handleQualification(request, context, deps = {}) {
+  const sendMail = deps.sendMail || defaultSendMail;
+  const getMem0 = deps.getMem0 || defaultGetMem0;
+
+  if (request.method === 'OPTIONS') {
+    return { status: 204, headers: CORS_HEADERS };
+  }
+
+  try {
+    const brief = await request.json().catch(() => ({}));
+    const required = ['nom', 'email', 'offre'];
+    const missing = required.filter((f) => !brief[f]);
+    if (missing.length) {
+      return {
+        status: 400,
+        headers: CORS_HEADERS,
+        jsonBody: { error: `Champs manquants : ${missing.join(', ')}` },
+      };
     }
 
-    try {
-      const brief = await request.json().catch(() => ({}));
-      const required = ['nom', 'email', 'offre'];
-      const missing = required.filter((f) => !brief[f]);
-      if (missing.length) {
-        return {
-          status: 400,
-          headers: CORS_HEADERS,
-          jsonBody: { error: `Champs manquants : ${missing.join(', ')}` },
-        };
-      }
+    const briefId = `brief_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
-      const briefId = `brief_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    // TODO(Tranche 8): remplacer par slug interne stable (ex: oseys-morgane-dupont).
+    // Voir ARCHITECTURE §3.1 type 2.
+    const consultantId = brief.email.toLowerCase();
+    const consultantMemory = buildConsultantMemory(brief);
+    const mem0 = getMem0(context);
 
-      await sendMail({
+    // Parallélisation : les 2 mails + le store Mem0 en best effort. Toute
+    // erreur Mem0 non déjà dégradée par l'adapter est swallowée ici — pas
+    // question qu'un hoquet Mem0 fasse 500 sur le brief consultant.
+    const mem0Task = mem0
+      ? mem0.storeConsultant(consultantId, consultantMemory).catch((err) => {
+          if (context && typeof context.warn === 'function') {
+            context.warn(`[mem0] storeConsultant failed: ${err.message}`);
+          }
+          return null;
+        })
+      : Promise.resolve(null);
+
+    await Promise.all([
+      sendMail({
         from: process.env.DAVID_EMAIL,
         to: process.env.DAVID_EMAIL,
         subject: `[Qualification] ${brief.nom} — ${brief.entreprise || 'cabinet non précisé'}`,
         html: renderBriefEmail(brief, briefId),
-      });
-
-      await sendMail({
+      }),
+      sendMail({
         from: process.env.DAVID_EMAIL,
         to: brief.email,
         subject: 'Brief bien reçu — je reviens vers toi sous 24h',
@@ -57,23 +98,34 @@ app.http('onQualification', {
 <p>J'ai bien reçu ton brief. Je relis tout ça et je te reviens sous 24h avec un premier retour et un batch de leads à te proposer.</p>
 <p>Si tu veux ajuster quelque chose avant, réponds simplement à ce mail.</p>
 <p>David</p>`,
-      });
+      }),
+      mem0Task,
+    ]);
 
-      return {
-        status: 200,
-        headers: CORS_HEADERS,
-        jsonBody: { ok: true, brief_id: briefId },
-      };
-    } catch (err) {
+    return {
+      status: 200,
+      headers: CORS_HEADERS,
+      jsonBody: { ok: true, brief_id: briefId },
+    };
+  } catch (err) {
+    if (context && typeof context.error === 'function') {
       context.error('onQualification error:', err);
-      return {
-        status: 500,
-        headers: CORS_HEADERS,
-        jsonBody: { error: err.message },
-      };
     }
-  },
+    return {
+      status: 500,
+      headers: CORS_HEADERS,
+      jsonBody: { error: err.message },
+    };
+  }
+}
+
+app.http('onQualification', {
+  methods: ['POST', 'OPTIONS'],
+  authLevel: 'anonymous',
+  handler: (request, context) => handleQualification(request, context),
 });
+
+module.exports = { handleQualification, buildConsultantMemory };
 
 function renderBriefEmail(brief, briefId) {
   const row = (k, v) => v
