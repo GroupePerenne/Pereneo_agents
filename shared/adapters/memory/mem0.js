@@ -288,10 +288,40 @@ function withTimeout(promise, ms) {
   return Promise.race([Promise.resolve(promise), timer]).finally(() => clearTimeout(handle));
 }
 
+// ───────────────────────── singleton par warm container ─────────────────────
+//
+// Un seul MemoryClient SDK par instance Azure Functions : le constructor ping
+// l'API à l'init (cf. mem0ai dist/index.js _initializeClient), autant
+// mutualiser. Le logger est rebind à chaque invocation parce que context.log
+// change par appel Azure.
+//
+// Retourne null si MEM0_API_KEY n'est pas configurée → le caller bascule
+// proprement en "Mem0 off" (pas d'enrichissement, pas de store). Aucun throw.
+
+let _cachedAdapter = null;
+
+function getMem0(context) {
+  if (!process.env.MEM0_API_KEY) return null;
+  const logger = context && context.log ? context.log : undefined;
+  if (!_cachedAdapter) {
+    _cachedAdapter = new Mem0Adapter({ logger });
+  } else if (logger) {
+    _cachedAdapter.logger = normaliseLogger(logger);
+  }
+  return _cachedAdapter;
+}
+
+// Exposé pour les tests : permet de réinitialiser le singleton entre cas.
+function _resetMem0Singleton() {
+  _cachedAdapter = null;
+}
+
 module.exports = {
   Mem0Adapter,
   NS_PROSPECT,
   NS_CONSULTANT,
-  NS_PATTERN
+  NS_PATTERN,
+  getMem0,
+  _resetMem0Singleton
 };
 module.exports.default = Mem0Adapter;

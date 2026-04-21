@@ -18,7 +18,9 @@ const {
   Mem0Adapter,
   NS_PROSPECT,
   NS_CONSULTANT,
-  NS_PATTERN
+  NS_PATTERN,
+  getMem0,
+  _resetMem0Singleton
 } = require('../../../../shared/adapters/memory/mem0');
 
 // ──────────────────── helpers ────────────────────
@@ -395,5 +397,33 @@ test('constructor — sans apiKey ni client ni MEM0_API_KEY → throw', () => {
     assert.throws(() => new Mem0Adapter({}), /MEM0_API_KEY/);
   } finally {
     if (prev !== undefined) process.env.MEM0_API_KEY = prev;
+  }
+});
+
+// ──────────────────── getMem0 singleton ────────────────────
+
+test('getMem0 — retourne null si MEM0_API_KEY absente (graceful off)', () => {
+  const prev = process.env.MEM0_API_KEY;
+  delete process.env.MEM0_API_KEY;
+  _resetMem0Singleton();
+  try {
+    const ctx = { log: () => {} };
+    assert.equal(getMem0(ctx), null);
+  } finally {
+    if (prev !== undefined) process.env.MEM0_API_KEY = prev;
+    _resetMem0Singleton();
+  }
+});
+
+test('getMem0 — accepte un appel sans context et renvoie null sans key', () => {
+  const prev = process.env.MEM0_API_KEY;
+  delete process.env.MEM0_API_KEY;
+  _resetMem0Singleton();
+  try {
+    assert.equal(getMem0(), null);
+    assert.equal(getMem0(undefined), null);
+  } finally {
+    if (prev !== undefined) process.env.MEM0_API_KEY = prev;
+    _resetMem0Singleton();
   }
 });
