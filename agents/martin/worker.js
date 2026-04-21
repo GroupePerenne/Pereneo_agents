@@ -9,13 +9,14 @@ const worker = require('../../shared/worker');
 
 const AGENT = 'martin';
 
-async function bootstrapSequence({ consultant, lead, dealId, personId }) {
+async function bootstrapSequence({ consultant, lead, dealId, personId, context }) {
   return worker.bootstrapSequence({
     agent: AGENT,
     consultant,
     lead,
     dealId,
     personId,
+    context,
   });
 }
 

@@ -400,7 +400,7 @@ function escapeHtml(s) {
  * @param {Object} consultant — { nom, email, offre, ton, tutoiement }
  * @param {Array} leads — [{ prenom, nom, entreprise, email, secteur, ville, contexte }, ...]
  */
-async function launchSequenceForConsultant({ consultant, brief, leads }) {
+async function launchSequenceForConsultant({ consultant, brief, leads, context }) {
   const assign = (i) => {
     if (brief.prospecteur === 'martin') return 'martin';
     if (brief.prospecteur === 'mila') return 'mila';
@@ -429,6 +429,7 @@ async function launchSequenceForConsultant({ consultant, brief, leads }) {
         dealId: deal.id,
         personId: person.id,
         orgId: org.id,
+        context,
       });
       results.push({ lead: lead.email, agent: agentKey, dealId: deal.id, ...result });
     } catch (err) {

@@ -16,6 +16,7 @@ const { generateSequence, SCHEDULE } = require('./sequence');
 const { scheduleRelance } = require('./queue');
 const { nextBusinessDayAt, addBusinessDays } = require('./holidays');
 const pipedrive = require('./pipedrive');
+const { getMem0 } = require('./adapters/memory/mem0');
 
 /**
  * Résout l'adresse Smart BCC Pipedrive d'un consultant à partir de son
@@ -79,9 +80,35 @@ function escapeHtml(s) {
   );
 }
 
+// ─── Mem0 enrichments (pur, testable en isolation) ─────────────────────────
+// Skip prospect si lead.siren absent (pas d'email-as-fallback — cf. CLAUDE.md
+// et arbitrage produit session 21 avril 2026). Patterns retrievés quoi qu'il
+// arrive. Les deux retrieves s'exécutent en parallèle.
+async function resolveMem0Enrichments({ mem0, lead, context }) {
+  if (!mem0) return { prospectMemories: [], patternMemories: [] };
+
+  const tasks = [];
+  if (lead && lead.siren) {
+    tasks.push(mem0.retrieveProspect(lead.siren));
+  } else {
+    warnLog(context, `[mem0] prospect retrieve skipped: no SIREN for lead ${(lead && lead.email) || '(no email)'}`);
+    tasks.push(Promise.resolve([]));
+  }
+  tasks.push(mem0.retrievePatterns({ sector: lead && lead.secteur }));
+
+  const [prospectMemories, patternMemories] = await Promise.all(tasks);
+  return { prospectMemories, patternMemories };
+}
+
+function warnLog(context, message) {
+  if (!context) return;
+  if (typeof context.warn === 'function') context.warn(message);
+  else if (typeof context.log === 'function') context.log(message);
+}
+
 // ─── Bootstrap d'une séquence : check leads existants, génère les 5 messages,
 //     envoie J0 (ou le schedule si hors créneau), programme J+4/J+10/J+18/J+28
-async function bootstrapSequence({ agent, consultant, lead, dealId, personId, orgId }) {
+async function bootstrapSequence({ agent, consultant, lead, dealId, personId, orgId, context, mem0: mem0Override }) {
   const identity = loadIdentity(agent);
 
   // 0. Filtrage leads existants : si le prospect est déjà dans un deal actif
@@ -109,15 +136,20 @@ async function bootstrapSequence({ agent, consultant, lead, dealId, personId, or
     }
   }
 
-  // 1. Génération des 5 messages via Claude
+  // 1. Génération des 5 messages via Claude, enrichie par Mem0 si disponible
   const adjustedConsultant = {
     ...consultant,
     ton: consultant.ton || identity.ton_ajustements.registre_par_defaut,
   };
+
+  const mem0 = mem0Override !== undefined ? mem0Override : getMem0(context);
+  const enrichments = await resolveMem0Enrichments({ mem0, lead, context });
+
   const steps = await generateSequence({
     consultant: adjustedConsultant,
     agent: { prenom: identity.prenom, mail: identity.email, signature: identity.signature_html },
     lead,
+    enrichments,
   });
 
   // 2. Détermine le slot J0 (maintenant si on est dans le créneau ouvré
@@ -213,4 +245,5 @@ module.exports = {
   loadIdentity,
   bootstrapSequence,
   sendScheduledStep,
+  resolveMem0Enrichments,
 };

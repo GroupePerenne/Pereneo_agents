@@ -26,7 +26,7 @@ app.http('runSequence', {
         return { status: 400, jsonBody: { error: 'consultant, brief et leads[] requis' } };
       }
 
-      const results = await launchSequenceForConsultant({ consultant, brief, leads });
+      const results = await launchSequenceForConsultant({ consultant, brief, leads, context });
       const ok = results.filter((r) => !r.error).length;
       const ko = results.length - ok;
 
