@@ -175,9 +175,17 @@
   .zone-radios input[type="radio"] { accent-color: var(--oseys-orange); cursor: pointer; }
   #f_zone_custom { margin-top: 10px; }
 
-  /* Niveau d'autonomie : cards single-select plus expressives que les tags pills */
+  /* Niveau d'autonomie : cards single-select, 3 colonnes de taille uniforme */
+  .tags[data-tags="niveau"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
   .level-option {
-    display: block;
+    flex: 1 1 180px;
+    min-height: 132px;
+    display: flex;
+    flex-direction: column;
     padding: 14px 16px;
     font-size: 14px;
     border: 1.5px solid var(--oseys-border);
@@ -186,12 +194,11 @@
     cursor: pointer;
     user-select: none;
     transition: all 0.15s;
-    margin-bottom: 8px;
   }
   .level-option:hover { border-color: var(--oseys-orange); }
   .level-option.selected { background: var(--oseys-tint); border-color: var(--oseys-orange); }
   .level-option .level-name { font-weight: 600; font-size: 14px; color: var(--oseys-ink); margin-bottom: 4px; }
-  .level-option .level-desc { font-size: 12px; color: var(--oseys-muted); line-height: 1.5; font-weight: 300; }
+  .level-option .level-desc { font-size: 12px; color: var(--oseys-muted); line-height: 1.5; font-weight: 300; flex: 1; }
 </style>
 </head>
 <body>
@@ -331,7 +338,8 @@
       </div>
 
       <div class="callout">
-        OSEYS cible les entreprises qui <strong>vendent des heures</strong> : agences, cabinets, ESN, bureaux d'études, services B2B, artisans avec salariés. Leur croissance est plafonnée par le temps disponible dans l'équipe.
+        <p style="margin:0 0 8px"><strong>Cœur de cible OSEYS :</strong> toutes les entreprises qui fonctionnent <strong>sur devis</strong>. Elles profitent pleinement du module de chiffrage de PilotagePro en continu.</p>
+        <p style="margin:0">Plus largement, on cible les entreprises qui <strong>vendent des heures</strong> : agences, cabinets, ESN, bureaux d'études, services B2B, artisans avec salariés. Leur croissance est plafonnée par le temps disponible dans l'équipe.</p>
       </div>
 
       <div class="tag-group-label">Priorité 1 — cœur de cible</div>
@@ -366,16 +374,24 @@
       </div>
       <input type="hidden" id="f_secteurs" name="secteurs" value="">
 
+      <div class="field" style="margin-top: 1.25rem">
+        <label for="f_secteurs_autres">Autres secteurs ou codes NAF</label>
+        <input type="text" id="f_secteurs_autres" name="secteurs_autres" placeholder="Ex : boulangerie artisanale, 43.21Z, ateliers de réparation...">
+        <p class="hint">Tout ce qui n'est pas dans les tags ci-dessus. Sépare par des virgules.</p>
+      </div>
+
       <div class="grid-2" style="margin-top: 1.5rem;">
         <div class="field">
-          <label for="f_effectif">Tranche d'effectif préférée</label>
-          <select id="f_effectif" name="effectif">
-            <option value="5-10">5 à 10 salariés</option>
-            <option value="10-20" selected>10 à 20 salariés — sweet spot</option>
-            <option value="20-40">20 à 40 salariés</option>
-            <option value="40-75">40 à 75 salariés</option>
-            <option value="any">Toutes tailles</option>
-          </select>
+          <label>Tranches d'effectif préférées</label>
+          <div class="tags" data-tags="effectif">
+            <span class="tag" data-value="5-10">5 à 10 salariés</span>
+            <span class="tag selected" data-value="10-20">10 à 20 salariés — sweet spot</span>
+            <span class="tag" data-value="20-40">20 à 40 salariés</span>
+            <span class="tag" data-value="40-75">40 à 75 salariés</span>
+            <span class="tag" data-value="any">Toutes tailles</span>
+          </div>
+          <input type="hidden" id="f_effectif" name="effectif" value="10-20">
+          <p class="hint">Tu peux en sélectionner plusieurs.</p>
         </div>
         <div class="field">
           <label>Zone géographique de prospection</label>
@@ -492,13 +508,15 @@
       }
     }
 
-    // Select : effectif
+    // Effectif : multi-select tags, valeurs séparées par virgules dans le param URL
     const effectif = params.get('effectif');
     if (effectif) {
-      const el = document.getElementById('f_effectif');
-      if (el && Array.from(el.options).some(o => o.value === effectif)) {
-        el.value = effectif; el.classList.add('prefilled');
-      }
+      const values = effectif.split(',').map(s => s.trim()).filter(Boolean);
+      document.querySelectorAll('[data-tags="effectif"] .tag').forEach(t => t.classList.remove('selected'));
+      values.forEach(v => {
+        document.querySelectorAll(`[data-tags="effectif"] .tag[data-value="${v}"]`).forEach(t => t.classList.add('selected'));
+      });
+      syncEffectif();
     }
 
     // Prospecteur (martin / mila / both)
@@ -571,6 +589,11 @@
     document.getElementById('f_secteurs').value = selected.join(',');
   }
 
+  function syncEffectif() {
+    const selected = [...document.querySelectorAll('[data-tags="effectif"] .tag.selected')].map(t => t.dataset.value);
+    document.getElementById('f_effectif').value = selected.join(',');
+  }
+
   // ─── Choice cards (martin/mila/both) ─────────────────────────────────────
   document.querySelectorAll('[data-choice]').forEach(card => {
     card.addEventListener('click', () => {
@@ -632,6 +655,7 @@
         } else {
           tag.classList.toggle('selected');
           if (group.dataset.tags === 'secteurs') syncSecteurs();
+          else if (group.dataset.tags === 'effectif') syncEffectif();
         }
         updateProgress();
       });

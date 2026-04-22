@@ -147,6 +147,7 @@ function renderBriefEmail(brief, briefId) {
   ${row('Niveau d\'autonomie', brief.niveau_autonomie)}
   ${row('Offre', brief.offre)}
   ${row('Secteurs cibles', brief.secteurs)}
+  ${row('Secteurs libres', brief.secteurs_autres)}
   ${row('Tranche effectif', brief.effectif)}
   ${row('Zone géo', brief.zone)}
   ${row('Registre', brief.registre)}
