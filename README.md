@@ -1,4 +1,4 @@
-> Nom commercial : **Prospérenne**. Nom technique interne : `Prosperenne_agent`.
+> Nom commercial : **Prospérenne**. Nom technique interne : `Pereneo_agents`.
 
 # OSEYS — Équipe commerciale IA
 
@@ -47,7 +47,7 @@ Même rôle que Martin, profil féminin. Ton chaleureux et conversationnel. Test
 ## Arborescence
 
 ```
-Prosperenne_agent/
+Pereneo_agents/
 ├── README.md                        Ce fichier
 ├── ARCHITECTURE.md                  Détail de l'orchestration
 ├── DEPLOY.md                        Procédure de déploiement Azure
