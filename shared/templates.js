@@ -56,7 +56,13 @@ function onboardingEmailHtml({ consultantPrenom, formUrl, choixNiveauBase }) {
 
   <tr><td style="font-size:15px;line-height:1.6">
     <p>Salut ${consultantPrenom},</p>
-    <p>Je suis David, responsable commercial OSEYS. Je manage une petite équipe de deux prospecteurs — <strong>Martin</strong> et <strong>Mila</strong> — qui peuvent aller chercher des rendez-vous à ta place auprès des entreprises qui correspondent à ta cible.</p>
+    <p>Je suis David, responsable commercial OSEYS. Je bosse au quotidien avec <strong>Martin</strong> et <strong>Mila</strong>, mes deux chargés d'affaires : ce sont eux qui iront chercher des RDV qualifiés pour toi auprès des entreprises qui correspondent à ce que tu cibles. Ils s'appuient sur le brief que tu vas nous remplir pour écrire juste, sans agressivité et sans jamais improviser. Et comme ils apprennent à chaque échange et à chaque feedback que tu nous donnes, leur radar s'affine au fil du temps.</p>
+    <p style="margin:18px 0 8px">Trois choses sur lesquelles tu peux compter :</p>
+    <ul style="padding-left:18px;margin:0 0 18px;line-height:1.6">
+      <li style="margin-bottom:8px"><strong>Le ciblage vient de toi.</strong> La base de prospects qu'on va contacter est construite à partir de ton formulaire — pas de liste générique balancée sans filtre.</li>
+      <li style="margin-bottom:8px"><strong>On ne marche pas sur tes plates-bandes.</strong> Avant chaque contact, on vérifie que le prospect n'est pas déjà dans ton Pipedrive. On ne touche jamais à un compte que tu travailles déjà.</li>
+      <li style="margin-bottom:8px"><strong>Tout atterrit là où tu travailles.</strong> Les leads qualifiés et les réponses arrivent dans ton Pipedrive, les RDV calés directement dans ton agenda. Pas de nouvel outil à apprendre.</li>
+    </ul>
     <p>Avant qu'on s'y mette, deux choses à me dire :</p>
   </td></tr>
 
