@@ -63,24 +63,14 @@ function onboardingEmailHtml({ consultantPrenom, formUrl, choixNiveauBase }) {
       <li style="margin-bottom:8px"><strong>On ne marche pas sur tes plates-bandes.</strong> Avant chaque contact, on vérifie que le prospect n'est pas déjà dans ton Pipedrive. On ne touche jamais à un compte que tu travailles déjà.</li>
       <li style="margin-bottom:8px"><strong>Tout atterrit là où tu travailles.</strong> Les leads qualifiés et les réponses arrivent dans ton Pipedrive, les RDV calés directement dans ton agenda. Pas de nouvel outil à apprendre.</li>
     </ul>
-    <p>Avant qu'on s'y mette, deux choses à me dire :</p>
   </td></tr>
 
-  <tr><td style="padding-top:24px">
-    <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:${MUTED};margin-bottom:12px">1. Ton niveau d'autonomie</div>
-    <table cellpadding="0" cellspacing="0" border="0" width="100%">
-      ${niveauButton(1, 'Mode fantôme', 'Je prospecte en ton nom, invisible. Tu reçois les retours quand ça matche.', choixNiveauBase)}
-      ${niveauButton(2, 'Mode duo', 'Je suis ton assistante, tu es en copie. On construit ensemble, tu valides.', choixNiveauBase)}
-      ${niveauButton(3, 'Mode autonome', 'Je prospecte et je fixe les RDV directement dans ton agenda.', choixNiveauBase)}
-    </table>
-  </td></tr>
-
-  <tr><td style="padding-top:28px">
-    <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:${MUTED};margin-bottom:12px">2. Qui prospecte ?</div>
+  <tr><td style="padding-top:12px">
+    <div style="font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:${MUTED};margin-bottom:12px">Ton équipe</div>
     <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
-      ${prospecteurCard('martin', 'Martin', photoAvatar(avatarUrl('martin'), 'Martin'), 'Ton direct et chaleureux')}
-      ${prospecteurCard('mila', 'Mila', photoAvatar(avatarUrl('mila'), 'Mila'), 'Ton ouvert et conversationnel')}
-      ${prospecteurCard('both', 'Les deux', duoAvatar(), 'A/B test par secteur — recommandé')}
+      ${membreCard('David', photoAvatar(avatarUrl('david'), 'David'), 'Responsable commercial')}
+      ${membreCard('Martin', photoAvatar(avatarUrl('martin'), 'Martin'), 'Chargé d\'affaires')}
+      ${membreCard('Mila', photoAvatar(avatarUrl('mila'), 'Mila'), 'Chargée d\'affaires')}
     </tr></table>
   </td></tr>
 
@@ -141,6 +131,24 @@ function prospecteurCard(key, nom, avatarHtml, desc) {
       </tr>
       <tr>
         <td height="36" align="center" valign="top" style="padding:4px 8px 20px;font-size:12px;color:${MUTED};line-height:1.4">${desc}</td>
+      </tr>
+    </table>
+  </td>`;
+}
+
+// ─── Carte membre d'équipe (David / Martin / Mila) dans le mail onboarding ─
+// Format identique à prospecteurCard mais sans la notion de key cliquable.
+function membreCard(nom, avatarHtml, role) {
+  return `<td width="33%" valign="top" style="padding:4px">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1.5px solid #E2DDD8;border-radius:10px;background:${CREAM}">
+      <tr>
+        <td height="80" align="center" valign="middle" style="padding:20px 8px 0">${avatarHtml}</td>
+      </tr>
+      <tr>
+        <td height="22" align="center" valign="middle" style="padding:10px 8px 0;font-size:15px;font-weight:600;color:${INK}">${nom}</td>
+      </tr>
+      <tr>
+        <td height="36" align="center" valign="top" style="padding:4px 8px 20px;font-size:12px;color:${MUTED};line-height:1.4">${role}</td>
       </tr>
     </table>
   </td>`;

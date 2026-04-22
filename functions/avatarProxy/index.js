@@ -32,6 +32,15 @@ const LOCAL_VARIANTS = {
   'david:waving': path.join(__dirname, '..', '..', 'agents', 'david', 'avatar_waving.jpeg'),
 };
 
+// Avatars standards servis depuis le repo (fallback garanti si Graph M365 vide
+// ou down). Ordre de priorité dans le handler : variant local > avatar local
+// standard > Graph M365 > SVG placeholder.
+const LOCAL_STANDARD = {
+  david: path.join(__dirname, '..', '..', 'agents', 'david', 'avatar.jpeg'),
+  martin: path.join(__dirname, '..', '..', 'agents', 'martin', 'avatar.jpeg'),
+  mila: path.join(__dirname, '..', '..', 'agents', 'mila', 'avatar.jpeg'),
+};
+
 const CACHE_HEADERS = { 'Cache-Control': 'public, max-age=3600' };
 
 function placeholderSvg(initial) {
@@ -72,6 +81,21 @@ app.http('avatarProxy', {
           context.warn(`avatarProxy: local variant ${user}:${variant} missing (${err.message}), falling back to M365 photo`);
           // fallthrough : on tentera la photo M365 standard
         }
+      }
+    }
+
+    // Priorité : avatar standard local (garantit l'affichage offline/Graph down)
+    const localStandardPath = LOCAL_STANDARD[user];
+    if (localStandardPath) {
+      try {
+        const buf = fs.readFileSync(localStandardPath);
+        return {
+          status: 200,
+          headers: { ...CACHE_HEADERS, 'Content-Type': 'image/jpeg' },
+          body: buf,
+        };
+      } catch (err) {
+        context.warn(`avatarProxy: local standard ${user} missing (${err.message}), falling back to M365`);
       }
     }
 

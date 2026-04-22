@@ -174,6 +174,24 @@
   }
   .zone-radios input[type="radio"] { accent-color: var(--oseys-orange); cursor: pointer; }
   #f_zone_custom { margin-top: 10px; }
+
+  /* Niveau d'autonomie : cards single-select plus expressives que les tags pills */
+  .level-option {
+    display: block;
+    padding: 14px 16px;
+    font-size: 14px;
+    border: 1.5px solid var(--oseys-border);
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s;
+    margin-bottom: 8px;
+  }
+  .level-option:hover { border-color: var(--oseys-orange); }
+  .level-option.selected { background: var(--oseys-tint); border-color: var(--oseys-orange); }
+  .level-option .level-name { font-weight: 600; font-size: 14px; color: var(--oseys-ink); margin-bottom: 4px; }
+  .level-option .level-desc { font-size: 12px; color: var(--oseys-muted); line-height: 1.5; font-weight: 300; }
 </style>
 </head>
 <body>
@@ -261,10 +279,37 @@
       <input type="hidden" id="f_prospecteur" name="prospecteur" value="both">
     </div>
 
-    <!-- ─── Section 3 : Offre ─── -->
+    <!-- ─── Section 3 : Niveau d'autonomie ─── -->
     <div class="section" data-section>
       <div class="section-head">
         <div class="section-num">3</div>
+        <div>
+          <div class="section-title">Mon niveau d'autonomie</div>
+          <div class="section-desc">Quelle place tu nous laisses pour prospecter en ton nom.</div>
+        </div>
+      </div>
+
+      <div class="tags" data-tags="niveau" data-single="true">
+        <span class="tag level-option" data-value="fantome">
+          <div class="level-name">Mode fantôme</div>
+          <div class="level-desc">Martin et Mila prospectent en mon nom, je ne reçois que les retours qui matchent.</div>
+        </span>
+        <span class="tag level-option" data-value="duo">
+          <div class="level-name">Mode duo</div>
+          <div class="level-desc">Ils m'assistent, je suis en copie de chaque envoi. On construit ensemble, je valide.</div>
+        </span>
+        <span class="tag level-option selected" data-value="autonome">
+          <div class="level-name">Mode autonome</div>
+          <div class="level-desc">Ils prospectent et calent les RDV directement dans mon agenda.</div>
+        </span>
+      </div>
+      <input type="hidden" id="f_niveau" name="niveau_autonomie" value="autonome">
+    </div>
+
+    <!-- ─── Section 4 : Offre ─── -->
+    <div class="section" data-section>
+      <div class="section-head">
+        <div class="section-num">4</div>
         <div>
           <div class="section-title">Ton offre en une phrase</div>
           <div class="section-desc">Ce que tu proposes concrètement, comme si tu le disais à un dirigeant en 20 secondes.</div>
@@ -275,10 +320,10 @@
       </div>
     </div>
 
-    <!-- ─── Section 4 : Cibles ─── -->
+    <!-- ─── Section 5 : Cibles ─── -->
     <div class="section" data-section>
       <div class="section-head">
-        <div class="section-num">4</div>
+        <div class="section-num">5</div>
         <div>
           <div class="section-title">Tes cibles</div>
           <div class="section-desc">Les secteurs et tailles d'entreprise sur lesquels tu veux qu'on se concentre.</div>
@@ -352,10 +397,10 @@
       </div>
     </div>
 
-    <!-- ─── Section 5 : Ton et voix ─── -->
+    <!-- ─── Section 6 : Ton et voix ─── -->
     <div class="section" data-section>
       <div class="section-head">
-        <div class="section-num">5</div>
+        <div class="section-num">6</div>
         <div>
           <div class="section-title">Ton registre</div>
           <div class="section-desc">Comment tu t'adresses à un dirigeant. Martin/Mila vont caler leur ton sur le tien.</div>
@@ -381,10 +426,10 @@
       </div>
     </div>
 
-    <!-- ─── Section 6 : Référence ─── -->
+    <!-- ─── Section 7 : Référence ─── -->
     <div class="section" data-section>
       <div class="section-head">
-        <div class="section-num">6</div>
+        <div class="section-num">7</div>
         <div>
           <div class="section-title">Un exemple de client idéal</div>
           <div class="section-desc">Un cas concret que tu as accompagné et que tu voudrais dupliquer. Ça aide à calibrer le ciblage.</div>
@@ -464,9 +509,10 @@
       if (target) { target.classList.add('selected'); document.getElementById('f_prospecteur').value = prosp; }
     }
 
-    // Registre / vouvoiement (single-select tags)
+    // Registre / vouvoiement / niveau d'autonomie (single-select tags)
     applyTagParam(params.get('registre'), 'registre', 'f_registre');
     applyTagParam(params.get('vouv'), 'vouv', 'f_vouv');
+    applyTagParam(params.get('niveau'), 'niveau', 'f_niveau');
 
     // Secteurs (multi-select, liste séparée par virgules)
     const secteurs = params.get('secteurs');
@@ -580,7 +626,8 @@
           tag.classList.add('selected');
           // sync vers hidden input
           const inputId = group.dataset.tags === 'registre' ? 'f_registre'
-                       : group.dataset.tags === 'vouv' ? 'f_vouv' : null;
+                       : group.dataset.tags === 'vouv' ? 'f_vouv'
+                       : group.dataset.tags === 'niveau' ? 'f_niveau' : null;
           if (inputId) document.getElementById(inputId).value = tag.dataset.value;
         } else {
           tag.classList.toggle('selected');
@@ -596,7 +643,7 @@
   // + cachés synchronisés par les tags/choice (prospecteur, secteurs, registre, vouv).
   const PROGRESS_FIELD_IDS = [
     'f_nom', 'f_email', 'f_entreprise', 'f_telephone', 'f_ville', 'f_linkedin',
-    'f_prospecteur', 'f_offre', 'f_secteurs', 'f_effectif', 'f_zone',
+    'f_prospecteur', 'f_niveau', 'f_offre', 'f_secteurs', 'f_effectif', 'f_zone',
     'f_registre', 'f_vouv', 'f_exemple',
   ];
   function updateProgress() {

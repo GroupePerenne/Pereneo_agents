@@ -35,6 +35,7 @@ function buildConsultantMemory(brief) {
       : [],
     commercial_strategy: brief.offre,
     usable_anecdotes: brief.exemple_client ? [brief.exemple_client] : [],
+    autonomy_level: brief.niveau_autonomie || 'autonome',
   };
 }
 
@@ -143,6 +144,7 @@ function renderBriefEmail(brief, briefId) {
   ${row('Ville', brief.ville)}
   ${row('LinkedIn', brief.linkedin)}
   ${row('Prospecteur choisi', brief.prospecteur)}
+  ${row('Niveau d\'autonomie', brief.niveau_autonomie)}
   ${row('Offre', brief.offre)}
   ${row('Secteurs cibles', brief.secteurs)}
   ${row('Tranche effectif', brief.effectif)}
