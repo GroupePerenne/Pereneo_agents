@@ -12,6 +12,7 @@
     "test": "echo \"pas de tests pour l'instant\" && exit 0"
   },
   "dependencies": {
+    "@azure/data-tables": "^13.3.2",
     "@azure/functions": "^4.5.0",
     "@azure/storage-queue": "^12.17.0"
   }
