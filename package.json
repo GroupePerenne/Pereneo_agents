@@ -9,11 +9,12 @@
   },
   "scripts": {
     "start": "func start",
-    "test": "echo \"pas de tests pour l'instant\" && exit 0"
+    "test": "node --test 'tests/**/*.test.js'"
   },
   "dependencies": {
     "@azure/data-tables": "^13.3.2",
     "@azure/functions": "^4.5.0",
-    "@azure/storage-queue": "^12.17.0"
+    "@azure/storage-queue": "^12.17.0",
+    "mem0ai": "^3.0.1"
   }
 }

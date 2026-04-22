@@ -26,6 +26,7 @@ const { purgeByDealId } = require('../../shared/queue');
 const martin = require('../martin/worker');
 const mila = require('../mila/worker');
 const pipedrive = require('../../shared/pipedrive');
+const { getMem0 } = require('../../shared/adapters/memory/mem0');
 
 const SYSTEM_PROMPT = fs.readFileSync(path.join(__dirname, 'prompt.md'), 'utf8');
 const CONFIDENCE_THRESHOLD = 0.7;
@@ -65,14 +66,14 @@ function extractBouncedAddress(msg) {
 }
 
 // ─── Lecture et routage de l'inbox ─────────────────────────────────────────
-async function handleInboxPoll() {
+async function handleInboxPoll({ context } = {}) {
   const mailbox = process.env.DAVID_EMAIL;
   const unread = await listUnreadMessages({ mailbox, top: 20 });
 
   const results = [];
   for (const msg of unread) {
     try {
-      const decision = await routeMessage(msg);
+      const decision = await routeMessage(msg, { context });
       results.push({ id: msg.id, subject: msg.subject, ...decision });
       await markAsRead({ mailbox, messageId: msg.id });
     } catch (err) {
@@ -83,7 +84,7 @@ async function handleInboxPoll() {
 }
 
 // ─── Routage d'un message ──────────────────────────────────────────────────
-async function routeMessage(msg) {
+async function routeMessage(msg, { context } = {}) {
   // 1. Détection bounce (pré-Claude, patterns fiables)
   if (isBounce(msg)) {
     return handleBounceMessage(msg);
@@ -134,7 +135,7 @@ Règles :
 
   // 3. Dispatch selon sender_type
   if (decision.sender_type === 'prospect') {
-    return handleProspectReply(msg, decision);
+    return handleProspectReply(msg, decision, { context });
   }
 
   // Consultant / internal : exécute l'action si reply_draft fourni
@@ -150,7 +151,7 @@ Règles :
 }
 
 // ─── Réponses prospects — 6 classes + escalation ───────────────────────────
-async function handleProspectReply(msg, decision) {
+async function handleProspectReply(msg, decision, { context } = {}) {
   const fromAddress = (msg.from?.emailAddress?.address || '').toLowerCase();
   const { prospect_class, confidence } = decision;
   const ctx = await findDealContext(fromAddress);
@@ -170,6 +171,16 @@ async function handleProspectReply(msg, decision) {
       consultantEmail: ctx.consultantEmail,
     });
     return { classe: 'escalated', reason: 'low_confidence', prospect_class, confidence, dealId: ctx.dealId };
+  }
+
+  // Persistance Mem0 (best effort, n'interrompt jamais le routage).
+  // SIREN remonté via Pipedrive uniquement si Mem0 actif et classe exploitable.
+  const mem0 = getMem0(context);
+  if (mem0 && prospect_class !== 'bounce') {
+    const siren = await resolveSirenForOrg(ctx.orgId, { context });
+    await persistInboundProspect({
+      mem0, siren, prospectClass: prospect_class, fromAddress, confidence, decision, context,
+    });
   }
 
   switch (prospect_class) {
@@ -320,7 +331,7 @@ async function stopSequence(dealId) {
  * des champs vides si pas trouvé.
  */
 async function findDealContext(prospectEmail) {
-  const ctx = { personId: null, dealId: null, consultantEmail: null };
+  const ctx = { personId: null, dealId: null, orgId: null, consultantEmail: null };
   if (!prospectEmail) return ctx;
   try {
     const persons = await pipedrive.searchPerson(prospectEmail);
@@ -331,6 +342,7 @@ async function findDealContext(prospectEmail) {
     if (deals.length > 0) {
       const deal = deals[0];
       ctx.dealId = deal.id;
+      ctx.orgId = deal.org_id?.value || null;
       if (deal.user_id?.id) {
         ctx.consultantEmail = await pipedrive.getUserEmail(deal.user_id.id);
       }
@@ -400,7 +412,7 @@ function escapeHtml(s) {
  * @param {Object} consultant — { nom, email, offre, ton, tutoiement }
  * @param {Array} leads — [{ prenom, nom, entreprise, email, secteur, ville, contexte }, ...]
  */
-async function launchSequenceForConsultant({ consultant, brief, leads }) {
+async function launchSequenceForConsultant({ consultant, brief, leads, context }) {
   const assign = (i) => {
     if (brief.prospecteur === 'martin') return 'martin';
     if (brief.prospecteur === 'mila') return 'mila';
@@ -416,12 +428,32 @@ async function launchSequenceForConsultant({ consultant, brief, leads }) {
     try {
       const org = await ensureOrg(lead);
       const person = await ensurePerson(lead, org.id);
-      const deal = await pipedrive.createDeal({
-        title: `${consultant.nom} → ${lead.entreprise}`,
-        personId: person.id,
-        orgId: org.id,
-        agent: agentKey,
+
+      // Item 3 — Cooldown / opt-out : lecture des deals fermés pour vérifier
+      // si ce prospect est sous opt-out permanent ou en cooldown 180j.
+      const cooldown = await checkLeadCooldown(person.id, { context });
+      if (cooldown.skip) {
+        results.push({
+          lead: lead.email,
+          agent: agentKey,
+          skipped: true,
+          reason: cooldown.reason,
+          until: cooldown.until,
+        });
+        continue;
+      }
+
+      // Item 1 — Dédup intra-pipe : si un deal ouvert existe déjà pour cette
+      // personne dans le pipeline Prospérenne, on le réutilise plutôt que
+      // d'en créer un second. On ne relance PAS bootstrapSequence (qui
+      // générerait une nouvelle séquence = doublon d'envoi).
+      const { deal, reused } = await resolveOrCreateDeal({
+        consultant, lead, agentKey, person, org, context,
       });
+      if (reused) {
+        results.push({ lead: lead.email, agent: agentKey, dealId: deal.id, reused: true });
+        continue;
+      }
 
       const result = await agent.bootstrapSequence({
         consultant,
@@ -429,6 +461,7 @@ async function launchSequenceForConsultant({ consultant, brief, leads }) {
         dealId: deal.id,
         personId: person.id,
         orgId: org.id,
+        context,
       });
       results.push({ lead: lead.email, agent: agentKey, dealId: deal.id, ...result });
     } catch (err) {
@@ -436,6 +469,38 @@ async function launchSequenceForConsultant({ consultant, brief, leads }) {
     }
   }
   return results;
+}
+
+function pickMostRecent(deals) {
+  return deals.slice().sort((a, b) => {
+    const ta = a.update_time || a.add_time || '';
+    const tb = b.update_time || b.add_time || '';
+    return tb.localeCompare(ta);
+  })[0];
+}
+
+/**
+ * Item 1 — Dédup intra-pipe : réutilise un deal ouvert existant pour ce
+ * prospect dans le pipe Prospérenne, sinon en crée un nouveau. pipedriveMod
+ * injectable pour tests.
+ */
+async function resolveOrCreateDeal({ consultant, lead, agentKey, person, org, context, pipedriveMod = pipedrive }) {
+  const existing = await pipedriveMod.findOpenDealsForPersonInOurPipe(person.id);
+  if (existing && existing.length > 0) {
+    if (existing.length > 1) {
+      warnLog(context, `[dedup] ${existing.length} open deals for person ${person.id} — taking most recent`);
+    }
+    const reused = pickMostRecent(existing);
+    infoLog(context, `[dedup] skipping createDeal: existing open deal ${reused.id} for person ${person.id}`);
+    return { deal: reused, reused: true };
+  }
+  const deal = await pipedriveMod.createDeal({
+    title: `${consultant.nom} → ${lead.entreprise}`,
+    personId: person.id,
+    orgId: org.id,
+    agent: agentKey,
+  });
+  return { deal, reused: false };
 }
 
 async function ensureOrg(lead) {
@@ -459,10 +524,151 @@ async function ensurePerson(lead, orgId) {
   });
 }
 
+// ─── Mem0 — persistance signaux entrants prospects ──────────────────────────
+
+/**
+ * Écrit dans Mem0 la trace d'une réponse prospect classifiée. Best effort :
+ * toute erreur est swallowée (l'adapter dégrade déjà en null sur 429/timeout/5xx).
+ *
+ * Skip explicite :
+ *  - prospectClass === 'bounce' : rebond technique, adresse typiquement
+ *    invalide → SIREN associé potentiellement faux, pas de signal exploitable.
+ *  - siren absent : cohérent avec D2 (pas d'email-as-fallback). Warn log émis.
+ */
+async function persistInboundProspect({
+  mem0, siren, prospectClass, fromAddress, confidence, decision, context,
+}) {
+  if (!mem0) return { stored: false, reason: 'mem0_off' };
+  if (prospectClass === 'bounce') return { stored: false, reason: 'bounce_skipped' };
+  if (!siren) {
+    warnLog(context, `[mem0] prospect store skipped: no SIREN for inbound ${fromAddress || '(no from)'}`);
+    return { stored: false, reason: 'no_siren' };
+  }
+
+  const summary = (decision && (decision.resume_humain || decision.summary)) || '';
+  const memory = {
+    company_name: null,
+    interaction_history: [{
+      date: new Date().toISOString().slice(0, 10),
+      type: 'email_received',
+      class: prospectClass,
+      confidence,
+      summary,
+    }],
+  };
+
+  const res = await mem0.storeProspect(siren, memory);
+  return { stored: res !== null, siren };
+}
+
+/**
+ * Remonte un SIREN depuis une org Pipedrive via le custom field configuré
+ * (env PIPEDRIVE_ORG_FIELD_SIREN). Retourne null si :
+ *   - orgId absent
+ *   - env var non configurée
+ *   - le field est vide sur l'org
+ *   - Pipedrive échoue (log warn, best effort)
+ *
+ * pipedriveMod est exposé pour injection en tests.
+ */
+async function resolveSirenForOrg(orgId, { context, pipedriveMod = pipedrive } = {}) {
+  if (!orgId) return null;
+  const fieldKey = process.env.PIPEDRIVE_ORG_FIELD_SIREN;
+  if (!fieldKey) return null;
+  try {
+    const org = await pipedriveMod.getOrganization(orgId);
+    const val = org && org[fieldKey];
+    return val ? String(val) : null;
+  } catch (err) {
+    warnLog(context, `[mem0] siren lookup failed for org ${orgId}: ${err.message}`);
+    return null;
+  }
+}
+
+function warnLog(context, message) {
+  if (!context) return;
+  if (typeof context.warn === 'function') context.warn(message);
+  else if (typeof context.log === 'function') context.log(message);
+}
+
+function infoLog(context, message) {
+  if (!context) return;
+  if (typeof context.info === 'function') context.info(message);
+  else if (typeof context.log === 'function') context.log(message);
+}
+
+// ─── Item 3 — Cooldown / opt-out ────────────────────────────────────────────
+/**
+ * Lit les deals (ouverts ET fermés) du prospect dans le pipe Prospérenne
+ * pour vérifier s'il est sous opt-out permanent ou en cooldown 180j.
+ *
+ * Règles :
+ *   - opt_out_until > today sur N'IMPORTE QUEL deal → skip permanent
+ *     (prioritaire sur cooldown, d'où le scan de tous les deals).
+ *   - retry_available_after > today sur le deal le plus récent → cooldown.
+ *   - Env vars PIPEDRIVE_FIELD_OPT_OUT_UNTIL / PIPEDRIVE_FIELD_RETRY_AVAILABLE_AFTER
+ *     non configurées → pas de skip (feature off).
+ *
+ * Retourne { skip: false } ou { skip: true, reason, until, lastAgent? }.
+ */
+async function checkLeadCooldown(personId, { context, pipedriveMod = pipedrive } = {}) {
+  if (!personId) return { skip: false };
+  const optOutKey = process.env.PIPEDRIVE_FIELD_OPT_OUT_UNTIL;
+  const retryKey = process.env.PIPEDRIVE_FIELD_RETRY_AVAILABLE_AFTER;
+  const lastAgentKey = process.env.PIPEDRIVE_FIELD_LAST_AGENT_ATTEMPTED;
+  if (!optOutKey && !retryKey) return { skip: false };
+
+  let deals;
+  try {
+    deals = await pipedriveMod.findOpenDealsForPersonInOurPipe(personId, { includeClosed: true });
+  } catch (err) {
+    warnLog(context, `[dedup] cooldown check failed for person ${personId}: ${err.message}`);
+    return { skip: false };
+  }
+  if (!deals || deals.length === 0) return { skip: false };
+
+  const todayISO = new Date().toISOString().slice(0, 10);
+
+  // 1. Opt-out permanent : scan de tous les deals — l'opt-out est "sticky"
+  //    même s'il n'est porté que par un ancien deal.
+  if (optOutKey) {
+    for (const deal of deals) {
+      const v = deal[optOutKey];
+      if (!v) continue;
+      const optOutUntil = String(v).slice(0, 10);
+      if (optOutUntil > todayISO) {
+        infoLog(context, `[dedup] skipping permanent opt-out: person ${personId} until ${optOutUntil}`);
+        return { skip: true, reason: 'opt_out', until: optOutUntil };
+      }
+    }
+  }
+
+  // 2. Cooldown : lecture sur le deal le plus récent uniquement.
+  const mostRecent = pickMostRecent(deals);
+  if (retryKey && mostRecent && mostRecent[retryKey]) {
+    const retryUntil = String(mostRecent[retryKey]).slice(0, 10);
+    if (retryUntil > todayISO) {
+      const lastAgent = (lastAgentKey && mostRecent[lastAgentKey]) || 'unknown';
+      infoLog(context, `[dedup] skipping cooldown: person ${personId} until ${retryUntil}, last_agent=${lastAgent}`);
+      return { skip: true, reason: 'cooldown', until: retryUntil, lastAgent };
+    }
+  }
+
+  return { skip: false };
+}
+
 module.exports = {
   handleInboxPoll,
   launchSequenceForConsultant,
   routeMessage,
+  handleProspectReply,
   escalateToDirection,
   stopSequence,
+  // Exportés pour tests unitaires :
+  persistInboundProspect,
+  resolveSirenForOrg,
+  findDealContext,
+  checkLeadCooldown,
+  pickMostRecent,
+  resolveOrCreateDeal,
 };

@@ -34,14 +34,15 @@ const SCHEDULE = [
  * @param {Object} ctx.consultant  — { nom, offre, ton, tutoiement }
  * @param {Object} ctx.agent       — { prenom, mail, signature } (Martin ou Mila)
  * @param {Object} ctx.lead        — { prenom, nom, entreprise, secteur, ville, contexte }
+ * @param {Object} [ctx.enrichments] — { prospectMemories?, patternMemories? } (cf. Mem0 D2/D3)
  * @returns {Promise<Array>} tableau de 4 objets { jour, offsetDays, objet, corps }
  */
-async function generateSequence({ consultant, agent, lead }) {
+async function generateSequence({ consultant, agent, lead, enrichments }) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new Error('ANTHROPIC_API_KEY non défini');
 
   const systemPrompt = buildSystemPrompt({ consultant, agent });
-  const userPrompt = buildUserPrompt({ lead });
+  const userPrompt = buildUserPrompt({ lead, enrichments });
 
   const res = await fetch(ANTHROPIC_URL, {
     method: 'POST',
@@ -115,20 +116,74 @@ RÈGLES ABSOLUES :
 - Ne mets PAS de "Bonjour [Prénom]" générique — utilise vraiment le prénom du lead`;
 }
 
-function buildUserPrompt({ lead }) {
-  return `LEAD À PROSPECTER :
+function buildUserPrompt({ lead, enrichments }) {
+  const base = `LEAD À PROSPECTER :
 - Prénom : ${lead.prenom}
 - Nom : ${lead.nom || ''}
 - Entreprise : ${lead.entreprise}
 - Secteur : ${lead.secteur}
 - Ville : ${lead.ville || ''}
-- Contexte / signaux : ${lead.contexte || 'aucun signal particulier'}
+- Contexte / signaux : ${lead.contexte || 'aucun signal particulier'}`;
+
+  const prospect = enrichments && enrichments.prospectMemories && enrichments.prospectMemories.length
+    ? `\n\nHISTORIQUE MEM0 DU PROSPECT (contexte factuel — ne pas citer directement, utiliser pour calibrer le ton et éviter les angles déjà tentés) :\n${formatMemories(enrichments.prospectMemories, 'prospect')}`
+    : '';
+
+  const patterns = enrichments && enrichments.patternMemories && enrichments.patternMemories.length
+    ? `\n\nPATTERNS SECTORIELS OBSERVÉS (indicatif, statistiques passées — ne pas les mentionner au prospect) :\n${formatMemories(enrichments.patternMemories, 'pattern')}`
+    : '';
+
+  return `${base}${prospect}${patterns}
 
 Génère les 4 messages de la séquence. Sois naturel, pertinent, et accroche vraiment sur la réalité du métier et du contexte du lead.`;
+}
+
+// ─── formatMemories — anti-injection + wrapping Mem0 ────────────────────────
+// Neutralise les délimiteurs structurels qui pourraient amener le LLM à
+// confondre le contenu mémorisé avec une nouvelle instruction. Tronque à
+// MEM0_MAX_CHARS par entry pour borner le coût token et la surface de risque.
+
+const MEM0_MAX_CHARS = 500;
+
+function formatMemories(memories, type) {
+  if (!Array.isArray(memories) || memories.length === 0) return '';
+  const parts = [];
+  for (const entry of memories) {
+    const raw = entry && (entry.memory || (entry.data && entry.data.memory) || entry.text);
+    if (!raw) continue;
+    const sanitized = truncateMemory(sanitizeMemoryContent(String(raw)), MEM0_MAX_CHARS);
+    parts.push(`[MEM0_START type=${type}]\n${sanitized}\n[MEM0_END]\n`);
+  }
+  return parts.join('');
+}
+
+function sanitizeMemoryContent(s) {
+  return s
+    // Neutraliser nos propres marqueurs pour qu'une mémoire ne puisse pas
+    // en injecter de faux et faire croire au modèle qu'on sort de la zone.
+    .replace(/\[MEM0_START/gi, '[mem0_s')
+    .replace(/\[MEM0_END/gi, '[mem0_e')
+    // Patterns de templating et de balise susceptibles d'abus
+    .replace(/\{\{/g, '{ {')
+    .replace(/\}\}/g, '} }')
+    .replace(/<\//g, '< /')
+    .replace(/<script/gi, '<scr_ipt')
+    // Délimiteurs de blocs utilisés ailleurs dans les prompts du projet
+    .replace(/```/g, "'''")
+    .replace(/"""/g, "'''");
+}
+
+function truncateMemory(s, n) {
+  if (s.length <= n) return s;
+  return s.slice(0, n - 1) + '…';
 }
 
 /** Export du schedule pour que le scheduler puisse calculer les dates d'envoi */
 module.exports = {
   generateSequence,
   SCHEDULE,
+  // Exportés pour les tests unitaires (pas d'usage externe direct attendu)
+  buildUserPrompt,
+  buildSystemPrompt,
+  formatMemories,
 };
