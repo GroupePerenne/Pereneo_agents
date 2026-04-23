@@ -1,0 +1,4394 @@
+[
+  {
+    "code": "01.11Z",
+    "libelle": "Culture de céréales (à l'exception du riz), de légumineuses et de graines oléagineuses",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.12Z",
+    "libelle": "Culture du riz",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.13Z",
+    "libelle": "Culture de légumes, de melons, de racines et de tubercules",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.14Z",
+    "libelle": "Culture de la canne à sucre",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.15Z",
+    "libelle": "Culture du tabac",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.16Z",
+    "libelle": "Culture de plantes à fibres",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.19Z",
+    "libelle": "Autres cultures non permanentes",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.21Z",
+    "libelle": "Culture de la vigne",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.22Z",
+    "libelle": "Culture de fruits tropicaux et subtropicaux",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.23Z",
+    "libelle": "Culture d'agrumes",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.24Z",
+    "libelle": "Culture de fruits à pépins et à noyau",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.25Z",
+    "libelle": "Culture d'autres fruits d'arbres ou d'arbustes et de fruits à coque",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.26Z",
+    "libelle": "Culture de fruits oléagineux",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.27Z",
+    "libelle": "Culture de plantes à boissons",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.28Z",
+    "libelle": "Culture de plantes à épices, aromatiques, médicinales et pharmaceutiques",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.29Z",
+    "libelle": "Autres cultures permanentes",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.30Z",
+    "libelle": "Reproduction de plantes",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.41Z",
+    "libelle": "Élevage de vaches laitières",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.42Z",
+    "libelle": "Élevage d'autres bovins et de buffles",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.43Z",
+    "libelle": "Élevage de chevaux et d'autres équidés",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.44Z",
+    "libelle": "Élevage de chameaux et d'autres camélidés",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.45Z",
+    "libelle": "Élevage d'ovins et de caprins",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.46Z",
+    "libelle": "Élevage de porcins",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.47Z",
+    "libelle": "Élevage de volailles",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.49Z",
+    "libelle": "Élevage d'autres animaux",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.50Z",
+    "libelle": "Culture et élevage associés",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.61Z",
+    "libelle": "Activités de soutien aux cultures",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.62Z",
+    "libelle": "Activités de soutien à la production animale",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.63Z",
+    "libelle": "Traitement primaire des récoltes",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.64Z",
+    "libelle": "Traitement des semences",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "01.70Z",
+    "libelle": "Chasse, piégeage et services annexes",
+    "division": "01",
+    "divisionLibelle": "Culture et production animale, chasse et services annexes"
+  },
+  {
+    "code": "02.10Z",
+    "libelle": "Sylviculture et autres activités forestières",
+    "division": "02",
+    "divisionLibelle": "Sylviculture et exploitation forestière"
+  },
+  {
+    "code": "02.20Z",
+    "libelle": "Exploitation forestière",
+    "division": "02",
+    "divisionLibelle": "Sylviculture et exploitation forestière"
+  },
+  {
+    "code": "02.30Z",
+    "libelle": "Récolte de produits forestiers non ligneux poussant à l'état sauvage",
+    "division": "02",
+    "divisionLibelle": "Sylviculture et exploitation forestière"
+  },
+  {
+    "code": "02.40Z",
+    "libelle": "Services de soutien à l'exploitation forestière",
+    "division": "02",
+    "divisionLibelle": "Sylviculture et exploitation forestière"
+  },
+  {
+    "code": "03.11Z",
+    "libelle": "Pêche en mer",
+    "division": "03",
+    "divisionLibelle": "Pêche et aquaculture"
+  },
+  {
+    "code": "03.12Z",
+    "libelle": "Pêche en eau douce",
+    "division": "03",
+    "divisionLibelle": "Pêche et aquaculture"
+  },
+  {
+    "code": "03.21Z",
+    "libelle": "Aquaculture en mer",
+    "division": "03",
+    "divisionLibelle": "Pêche et aquaculture"
+  },
+  {
+    "code": "03.22Z",
+    "libelle": "Aquaculture en eau douce",
+    "division": "03",
+    "divisionLibelle": "Pêche et aquaculture"
+  },
+  {
+    "code": "05.10Z",
+    "libelle": "Extraction de houille",
+    "division": "05",
+    "divisionLibelle": "Extraction de houille et de lignite"
+  },
+  {
+    "code": "05.20Z",
+    "libelle": "Extraction de lignite",
+    "division": "05",
+    "divisionLibelle": "Extraction de houille et de lignite"
+  },
+  {
+    "code": "06.10Z",
+    "libelle": "Extraction de pétrole brut",
+    "division": "06",
+    "divisionLibelle": "Extraction d'hydrocarbures"
+  },
+  {
+    "code": "06.20Z",
+    "libelle": "Extraction de gaz naturel",
+    "division": "06",
+    "divisionLibelle": "Extraction d'hydrocarbures"
+  },
+  {
+    "code": "07.10Z",
+    "libelle": "Extraction de minerais de fer",
+    "division": "07",
+    "divisionLibelle": "Extraction de minerais métalliques"
+  },
+  {
+    "code": "07.21Z",
+    "libelle": "Extraction de minerais d'uranium et de thorium",
+    "division": "07",
+    "divisionLibelle": "Extraction de minerais métalliques"
+  },
+  {
+    "code": "07.29Z",
+    "libelle": "Extraction d'autres minerais de métaux non ferreux",
+    "division": "07",
+    "divisionLibelle": "Extraction de minerais métalliques"
+  },
+  {
+    "code": "08.11Z",
+    "libelle": "Extraction de pierres ornementales et de construction, de calcaire industriel, de gypse, de craie et d'ardoise",
+    "division": "08",
+    "divisionLibelle": "Autres industries extractives"
+  },
+  {
+    "code": "08.12Z",
+    "libelle": "Exploitation de gravières et sablières, extraction d’argiles et de kaolin",
+    "division": "08",
+    "divisionLibelle": "Autres industries extractives"
+  },
+  {
+    "code": "08.91Z",
+    "libelle": "Extraction des minéraux chimiques et d'engrais minéraux",
+    "division": "08",
+    "divisionLibelle": "Autres industries extractives"
+  },
+  {
+    "code": "08.92Z",
+    "libelle": "Extraction de tourbe",
+    "division": "08",
+    "divisionLibelle": "Autres industries extractives"
+  },
+  {
+    "code": "08.93Z",
+    "libelle": "Production de sel",
+    "division": "08",
+    "divisionLibelle": "Autres industries extractives"
+  },
+  {
+    "code": "08.99Z",
+    "libelle": "Autres activités extractives n.c.a.",
+    "division": "08",
+    "divisionLibelle": "Autres industries extractives"
+  },
+  {
+    "code": "09.10Z",
+    "libelle": "Activités de soutien à l'extraction d'hydrocarbures",
+    "division": "09",
+    "divisionLibelle": "Services de soutien aux industries extractives"
+  },
+  {
+    "code": "09.90Z",
+    "libelle": "Activités de soutien aux autres industries extractives",
+    "division": "09",
+    "divisionLibelle": "Services de soutien aux industries extractives"
+  },
+  {
+    "code": "10.11Z",
+    "libelle": "Transformation et conservation de la viande de boucherie",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.12Z",
+    "libelle": "Transformation et conservation de la viande de volaille",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.13A",
+    "libelle": "Préparation industrielle de produits à base de viande",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.13B",
+    "libelle": "Charcuterie",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.20Z",
+    "libelle": "Transformation et conservation de poisson, de crustacés et de mollusques",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.31Z",
+    "libelle": "Transformation et conservation de pommes de terre",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.32Z",
+    "libelle": "Préparation de jus de fruits et légumes",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.39A",
+    "libelle": "Autre transformation et conservation de légumes",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.39B",
+    "libelle": "Transformation et conservation de fruits",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.41A",
+    "libelle": "Fabrication d'huiles et graisses brutes",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.41B",
+    "libelle": "Fabrication d'huiles et graisses raffinées",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.42Z",
+    "libelle": "Fabrication de margarine et graisses comestibles similaires",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.51A",
+    "libelle": "Fabrication de lait liquide et de produits frais",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.51B",
+    "libelle": "Fabrication de beurre",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.51C",
+    "libelle": "Fabrication de fromage",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.51D",
+    "libelle": "Fabrication d'autres produits laitiers",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.52Z",
+    "libelle": "Fabrication de glaces et sorbets",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.61A",
+    "libelle": "Meunerie",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.61B",
+    "libelle": "Autres activités du travail des grains",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.62Z",
+    "libelle": "Fabrication de produits amylacés",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.71A",
+    "libelle": "Fabrication industrielle de pain et de pâtisserie fraîche",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.71B",
+    "libelle": "Cuisson de produits de boulangerie",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.71C",
+    "libelle": "Boulangerie et boulangerie-pâtisserie",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.71D",
+    "libelle": "Pâtisserie",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.72Z",
+    "libelle": "Fabrication de biscuits, biscottes et pâtisseries de conservation",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.73Z",
+    "libelle": "Fabrication de pâtes alimentaires",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.81Z",
+    "libelle": "Fabrication de sucre",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.82Z",
+    "libelle": "Fabrication de cacao, chocolat et de produits de confiserie",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.83Z",
+    "libelle": "Transformation du thé et du café",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.84Z",
+    "libelle": "Fabrication de condiments et assaisonnements",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.85Z",
+    "libelle": "Fabrication de plats préparés",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.86Z",
+    "libelle": "Fabrication d'aliments homogénéisés et diététiques",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.89Z",
+    "libelle": "Fabrication d'autres produits alimentaires n.c.a.",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.91Z",
+    "libelle": "Fabrication d'aliments pour animaux de ferme",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "10.92Z",
+    "libelle": "Fabrication d'aliments pour animaux de compagnie",
+    "division": "10",
+    "divisionLibelle": "Industries alimentaires"
+  },
+  {
+    "code": "11.01Z",
+    "libelle": "Production de boissons alcooliques distillées",
+    "division": "11",
+    "divisionLibelle": "Fabrication de boissons"
+  },
+  {
+    "code": "11.02A",
+    "libelle": "Fabrication de vins effervescents",
+    "division": "11",
+    "divisionLibelle": "Fabrication de boissons"
+  },
+  {
+    "code": "11.02B",
+    "libelle": "Vinification",
+    "division": "11",
+    "divisionLibelle": "Fabrication de boissons"
+  },
+  {
+    "code": "11.03Z",
+    "libelle": "Fabrication de cidre et de vins de fruits",
+    "division": "11",
+    "divisionLibelle": "Fabrication de boissons"
+  },
+  {
+    "code": "11.04Z",
+    "libelle": "Production d'autres boissons fermentées non distillées",
+    "division": "11",
+    "divisionLibelle": "Fabrication de boissons"
+  },
+  {
+    "code": "11.05Z",
+    "libelle": "Fabrication de bière",
+    "division": "11",
+    "divisionLibelle": "Fabrication de boissons"
+  },
+  {
+    "code": "11.06Z",
+    "libelle": "Fabrication de malt",
+    "division": "11",
+    "divisionLibelle": "Fabrication de boissons"
+  },
+  {
+    "code": "11.07A",
+    "libelle": "Industrie des eaux de table",
+    "division": "11",
+    "divisionLibelle": "Fabrication de boissons"
+  },
+  {
+    "code": "11.07B",
+    "libelle": "Production de boissons rafraîchissantes",
+    "division": "11",
+    "divisionLibelle": "Fabrication de boissons"
+  },
+  {
+    "code": "12.00Z",
+    "libelle": "Fabrication de produits à base de tabac",
+    "division": "12",
+    "divisionLibelle": "Fabrication de produits à base de tabac"
+  },
+  {
+    "code": "13.10Z",
+    "libelle": "Préparation de fibres textiles et filature",
+    "division": "13",
+    "divisionLibelle": "Fabrication de textiles"
+  },
+  {
+    "code": "13.20Z",
+    "libelle": "Tissage",
+    "division": "13",
+    "divisionLibelle": "Fabrication de textiles"
+  },
+  {
+    "code": "13.30Z",
+    "libelle": "Ennoblissement textile",
+    "division": "13",
+    "divisionLibelle": "Fabrication de textiles"
+  },
+  {
+    "code": "13.91Z",
+    "libelle": "Fabrication d'étoffes à mailles",
+    "division": "13",
+    "divisionLibelle": "Fabrication de textiles"
+  },
+  {
+    "code": "13.92Z",
+    "libelle": "Fabrication d'articles textiles, sauf habillement",
+    "division": "13",
+    "divisionLibelle": "Fabrication de textiles"
+  },
+  {
+    "code": "13.93Z",
+    "libelle": "Fabrication de tapis et moquettes",
+    "division": "13",
+    "divisionLibelle": "Fabrication de textiles"
+  },
+  {
+    "code": "13.94Z",
+    "libelle": "Fabrication de ficelles, cordes et filets",
+    "division": "13",
+    "divisionLibelle": "Fabrication de textiles"
+  },
+  {
+    "code": "13.95Z",
+    "libelle": "Fabrication de non-tissés, sauf habillement",
+    "division": "13",
+    "divisionLibelle": "Fabrication de textiles"
+  },
+  {
+    "code": "13.96Z",
+    "libelle": "Fabrication d'autres textiles techniques et industriels",
+    "division": "13",
+    "divisionLibelle": "Fabrication de textiles"
+  },
+  {
+    "code": "13.99Z",
+    "libelle": "Fabrication d'autres textiles n.c.a.",
+    "division": "13",
+    "divisionLibelle": "Fabrication de textiles"
+  },
+  {
+    "code": "14.11Z",
+    "libelle": "Fabrication de vêtements en cuir",
+    "division": "14",
+    "divisionLibelle": "Industrie de l'habillement"
+  },
+  {
+    "code": "14.12Z",
+    "libelle": "Fabrication de vêtements de travail",
+    "division": "14",
+    "divisionLibelle": "Industrie de l'habillement"
+  },
+  {
+    "code": "14.13Z",
+    "libelle": "Fabrication de vêtements de dessus",
+    "division": "14",
+    "divisionLibelle": "Industrie de l'habillement"
+  },
+  {
+    "code": "14.14Z",
+    "libelle": "Fabrication de vêtements de dessous",
+    "division": "14",
+    "divisionLibelle": "Industrie de l'habillement"
+  },
+  {
+    "code": "14.19Z",
+    "libelle": "Fabrication d'autres vêtements et accessoires",
+    "division": "14",
+    "divisionLibelle": "Industrie de l'habillement"
+  },
+  {
+    "code": "14.20Z",
+    "libelle": "Fabrication d'articles en fourrure",
+    "division": "14",
+    "divisionLibelle": "Industrie de l'habillement"
+  },
+  {
+    "code": "14.31Z",
+    "libelle": "Fabrication d'articles chaussants à mailles",
+    "division": "14",
+    "divisionLibelle": "Industrie de l'habillement"
+  },
+  {
+    "code": "14.39Z",
+    "libelle": "Fabrication d'autres articles à mailles",
+    "division": "14",
+    "divisionLibelle": "Industrie de l'habillement"
+  },
+  {
+    "code": "15.11Z",
+    "libelle": "Apprêt et tannage des cuirs ; préparation et teinture des fourrures",
+    "division": "15",
+    "divisionLibelle": "Industrie du cuir et de la chaussure"
+  },
+  {
+    "code": "15.12Z",
+    "libelle": "Fabrication d'articles de voyage, de maroquinerie et de sellerie",
+    "division": "15",
+    "divisionLibelle": "Industrie du cuir et de la chaussure"
+  },
+  {
+    "code": "15.20Z",
+    "libelle": "Fabrication de chaussures",
+    "division": "15",
+    "divisionLibelle": "Industrie du cuir et de la chaussure"
+  },
+  {
+    "code": "16.10A",
+    "libelle": "Sciage et rabotage du bois, hors imprégnation",
+    "division": "16",
+    "divisionLibelle": "Travail du bois et fabrication d'articles en bois et en liège, à l’exception des meubles ; fabrication d’articles en vannerie et sparterie"
+  },
+  {
+    "code": "16.10B",
+    "libelle": "Imprégnation du bois",
+    "division": "16",
+    "divisionLibelle": "Travail du bois et fabrication d'articles en bois et en liège, à l’exception des meubles ; fabrication d’articles en vannerie et sparterie"
+  },
+  {
+    "code": "16.21Z",
+    "libelle": "Fabrication de placage et de panneaux de bois",
+    "division": "16",
+    "divisionLibelle": "Travail du bois et fabrication d'articles en bois et en liège, à l’exception des meubles ; fabrication d’articles en vannerie et sparterie"
+  },
+  {
+    "code": "16.22Z",
+    "libelle": "Fabrication de parquets assemblés",
+    "division": "16",
+    "divisionLibelle": "Travail du bois et fabrication d'articles en bois et en liège, à l’exception des meubles ; fabrication d’articles en vannerie et sparterie"
+  },
+  {
+    "code": "16.23Z",
+    "libelle": "Fabrication de charpentes et d'autres menuiseries",
+    "division": "16",
+    "divisionLibelle": "Travail du bois et fabrication d'articles en bois et en liège, à l’exception des meubles ; fabrication d’articles en vannerie et sparterie"
+  },
+  {
+    "code": "16.24Z",
+    "libelle": "Fabrication d'emballages en bois",
+    "division": "16",
+    "divisionLibelle": "Travail du bois et fabrication d'articles en bois et en liège, à l’exception des meubles ; fabrication d’articles en vannerie et sparterie"
+  },
+  {
+    "code": "16.29Z",
+    "libelle": "Fabrication d'objets divers en bois ; fabrication d'objets en liège, vannerie et sparterie",
+    "division": "16",
+    "divisionLibelle": "Travail du bois et fabrication d'articles en bois et en liège, à l’exception des meubles ; fabrication d’articles en vannerie et sparterie"
+  },
+  {
+    "code": "17.11Z",
+    "libelle": "Fabrication de pâte à papier",
+    "division": "17",
+    "divisionLibelle": "Industrie du papier et du carton"
+  },
+  {
+    "code": "17.12Z",
+    "libelle": "Fabrication de papier et de carton",
+    "division": "17",
+    "divisionLibelle": "Industrie du papier et du carton"
+  },
+  {
+    "code": "17.21A",
+    "libelle": "Fabrication de carton ondulé",
+    "division": "17",
+    "divisionLibelle": "Industrie du papier et du carton"
+  },
+  {
+    "code": "17.21B",
+    "libelle": "Fabrication de cartonnages",
+    "division": "17",
+    "divisionLibelle": "Industrie du papier et du carton"
+  },
+  {
+    "code": "17.21C",
+    "libelle": "Fabrication d'emballages en papier",
+    "division": "17",
+    "divisionLibelle": "Industrie du papier et du carton"
+  },
+  {
+    "code": "17.22Z",
+    "libelle": "Fabrication d'articles en papier à usage sanitaire ou domestique",
+    "division": "17",
+    "divisionLibelle": "Industrie du papier et du carton"
+  },
+  {
+    "code": "17.23Z",
+    "libelle": "Fabrication d'articles de papeterie",
+    "division": "17",
+    "divisionLibelle": "Industrie du papier et du carton"
+  },
+  {
+    "code": "17.24Z",
+    "libelle": "Fabrication de papiers peints",
+    "division": "17",
+    "divisionLibelle": "Industrie du papier et du carton"
+  },
+  {
+    "code": "17.29Z",
+    "libelle": "Fabrication d'autres articles en papier ou en carton",
+    "division": "17",
+    "divisionLibelle": "Industrie du papier et du carton"
+  },
+  {
+    "code": "18.11Z",
+    "libelle": "Imprimerie de journaux",
+    "division": "18",
+    "divisionLibelle": "Imprimerie et reproduction d'enregistrements"
+  },
+  {
+    "code": "18.12Z",
+    "libelle": "Autre imprimerie (labeur)",
+    "division": "18",
+    "divisionLibelle": "Imprimerie et reproduction d'enregistrements"
+  },
+  {
+    "code": "18.13Z",
+    "libelle": "Activités de pré-presse",
+    "division": "18",
+    "divisionLibelle": "Imprimerie et reproduction d'enregistrements"
+  },
+  {
+    "code": "18.14Z",
+    "libelle": "Reliure et activités connexes",
+    "division": "18",
+    "divisionLibelle": "Imprimerie et reproduction d'enregistrements"
+  },
+  {
+    "code": "18.20Z",
+    "libelle": "Reproduction d'enregistrements",
+    "division": "18",
+    "divisionLibelle": "Imprimerie et reproduction d'enregistrements"
+  },
+  {
+    "code": "19.10Z",
+    "libelle": "Cokéfaction",
+    "division": "19",
+    "divisionLibelle": "Cokéfaction et raffinage"
+  },
+  {
+    "code": "19.20Z",
+    "libelle": "Raffinage du pétrole",
+    "division": "19",
+    "divisionLibelle": "Cokéfaction et raffinage"
+  },
+  {
+    "code": "20.11Z",
+    "libelle": "Fabrication de gaz industriels",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.12Z",
+    "libelle": "Fabrication de colorants et de pigments",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.13A",
+    "libelle": "Enrichissement et  retraitement de matières nucléaires",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.13B",
+    "libelle": "Fabrication d'autres produits chimiques inorganiques de base n.c.a.",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.14Z",
+    "libelle": "Fabrication d'autres produits chimiques organiques de base",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.15Z",
+    "libelle": "Fabrication de produits azotés et d'engrais",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.16Z",
+    "libelle": "Fabrication de matières plastiques de base",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.17Z",
+    "libelle": "Fabrication de caoutchouc synthétique",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.20Z",
+    "libelle": "Fabrication de pesticides et d’autres produits agrochimiques",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.30Z",
+    "libelle": "Fabrication de peintures, vernis, encres et mastics",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.41Z",
+    "libelle": "Fabrication de savons, détergents et produits d'entretien",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.42Z",
+    "libelle": "Fabrication de parfums et de produits pour la toilette",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.51Z",
+    "libelle": "Fabrication de produits explosifs",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.52Z",
+    "libelle": "Fabrication de colles",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.53Z",
+    "libelle": "Fabrication d'huiles essentielles",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.59Z",
+    "libelle": "Fabrication d'autres produits chimiques n.c.a.",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "20.60Z",
+    "libelle": "Fabrication de fibres artificielles ou synthétiques",
+    "division": "20",
+    "divisionLibelle": "Industrie chimique"
+  },
+  {
+    "code": "21.10Z",
+    "libelle": "Fabrication de produits pharmaceutiques de base",
+    "division": "21",
+    "divisionLibelle": "Industrie pharmaceutique"
+  },
+  {
+    "code": "21.20Z",
+    "libelle": "Fabrication de préparations pharmaceutiques",
+    "division": "21",
+    "divisionLibelle": "Industrie pharmaceutique"
+  },
+  {
+    "code": "22.11Z",
+    "libelle": "Fabrication et rechapage de pneumatiques",
+    "division": "22",
+    "divisionLibelle": "Fabrication de produits en caoutchouc et en plastique"
+  },
+  {
+    "code": "22.19Z",
+    "libelle": "Fabrication d'autres articles en caoutchouc",
+    "division": "22",
+    "divisionLibelle": "Fabrication de produits en caoutchouc et en plastique"
+  },
+  {
+    "code": "22.21Z",
+    "libelle": "Fabrication de plaques, feuilles, tubes et profilés en matières plastiques",
+    "division": "22",
+    "divisionLibelle": "Fabrication de produits en caoutchouc et en plastique"
+  },
+  {
+    "code": "22.22Z",
+    "libelle": "Fabrication d'emballages en matières plastiques",
+    "division": "22",
+    "divisionLibelle": "Fabrication de produits en caoutchouc et en plastique"
+  },
+  {
+    "code": "22.23Z",
+    "libelle": "Fabrication d'éléments en matières plastiques pour la construction",
+    "division": "22",
+    "divisionLibelle": "Fabrication de produits en caoutchouc et en plastique"
+  },
+  {
+    "code": "22.29A",
+    "libelle": "Fabrication de pièces techniques à base de matières plastiques",
+    "division": "22",
+    "divisionLibelle": "Fabrication de produits en caoutchouc et en plastique"
+  },
+  {
+    "code": "22.29B",
+    "libelle": "Fabrication de produits de consommation courante en matières plastiques",
+    "division": "22",
+    "divisionLibelle": "Fabrication de produits en caoutchouc et en plastique"
+  },
+  {
+    "code": "23.11Z",
+    "libelle": "Fabrication de verre plat",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.12Z",
+    "libelle": "Façonnage et transformation du verre plat",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.13Z",
+    "libelle": "Fabrication de verre creux",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.14Z",
+    "libelle": "Fabrication de fibres de verre",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.19Z",
+    "libelle": "Fabrication et façonnage d'autres articles en verre, y compris verre technique",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.20Z",
+    "libelle": "Fabrication de produits réfractaires",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.31Z",
+    "libelle": "Fabrication de carreaux en céramique",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.32Z",
+    "libelle": "Fabrication de briques, tuiles et produits de construction, en terre cuite",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.41Z",
+    "libelle": "Fabrication d'articles céramiques à usage domestique ou ornemental",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.42Z",
+    "libelle": "Fabrication d'appareils sanitaires en céramique",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.43Z",
+    "libelle": "Fabrication d'isolateurs et pièces isolantes en céramique",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.44Z",
+    "libelle": "Fabrication d'autres produits céramiques à usage technique",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.49Z",
+    "libelle": "Fabrication d'autres produits céramiques",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.51Z",
+    "libelle": "Fabrication de ciment",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.52Z",
+    "libelle": "Fabrication de chaux et plâtre",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.61Z",
+    "libelle": "Fabrication d'éléments en béton pour la construction",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.62Z",
+    "libelle": "Fabrication d'éléments en plâtre pour la construction",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.63Z",
+    "libelle": "Fabrication de béton prêt à l'emploi",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.64Z",
+    "libelle": "Fabrication de mortiers et bétons secs",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.65Z",
+    "libelle": "Fabrication d'ouvrages en fibre-ciment",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.69Z",
+    "libelle": "Fabrication d'autres ouvrages en béton, en ciment ou en plâtre",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.70Z",
+    "libelle": "Taille, façonnage et finissage de pierres",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.91Z",
+    "libelle": "Fabrication de produits abrasifs",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "23.99Z",
+    "libelle": "Fabrication d'autres produits minéraux non métalliques n.c.a.",
+    "division": "23",
+    "divisionLibelle": "Fabrication d'autres produits minéraux non métalliques"
+  },
+  {
+    "code": "24.10Z",
+    "libelle": "Sidérurgie",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.20Z",
+    "libelle": "Fabrication de tubes, tuyaux, profilés creux et accessoires correspondants en acier",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.31Z",
+    "libelle": "Étirage à froid de barres",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.32Z",
+    "libelle": "Laminage à froid de feuillards",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.33Z",
+    "libelle": "Profilage à froid par formage ou pliage",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.34Z",
+    "libelle": "Tréfilage à froid",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.41Z",
+    "libelle": "Production de métaux précieux",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.42Z",
+    "libelle": "Métallurgie de l'aluminium",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.43Z",
+    "libelle": "Métallurgie du plomb, du zinc ou de l'étain",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.44Z",
+    "libelle": "Métallurgie du cuivre",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.45Z",
+    "libelle": "Métallurgie des autres métaux non ferreux",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.46Z",
+    "libelle": "Élaboration et transformation de matières nucléaires",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.51Z",
+    "libelle": "Fonderie de fonte",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.52Z",
+    "libelle": "Fonderie d'acier",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.53Z",
+    "libelle": "Fonderie de métaux légers",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "24.54Z",
+    "libelle": "Fonderie d'autres métaux non ferreux",
+    "division": "24",
+    "divisionLibelle": "Métallurgie"
+  },
+  {
+    "code": "25.11Z",
+    "libelle": "Fabrication de structures métalliques et de parties de structures",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.12Z",
+    "libelle": "Fabrication de portes et fenêtres en métal",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.21Z",
+    "libelle": "Fabrication de radiateurs et de chaudières pour le chauffage central",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.29Z",
+    "libelle": "Fabrication d'autres réservoirs, citernes et conteneurs métalliques",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.30Z",
+    "libelle": "Fabrication de générateurs de vapeur, à l'exception des chaudières pour le chauffage central",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.40Z",
+    "libelle": "Fabrication d'armes et de munitions",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.50A",
+    "libelle": "Forge, estampage, matriçage ; métallurgie des poudres",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.50B",
+    "libelle": "Découpage, emboutissage",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.61Z",
+    "libelle": "Traitement et revêtement des métaux",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.62A",
+    "libelle": "Décolletage",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.62B",
+    "libelle": "Mécanique industrielle",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.71Z",
+    "libelle": "Fabrication de coutellerie",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.72Z",
+    "libelle": "Fabrication de serrures et de ferrures",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.73A",
+    "libelle": "Fabrication de moules et modèles",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.73B",
+    "libelle": "Fabrication d'autres outillages",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.91Z",
+    "libelle": "Fabrication de fûts et emballages métalliques similaires",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.92Z",
+    "libelle": "Fabrication d'emballages métalliques légers",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.93Z",
+    "libelle": "Fabrication d'articles en fils métalliques, de chaînes et de ressorts",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.94Z",
+    "libelle": "Fabrication de vis et de boulons",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.99A",
+    "libelle": "Fabrication d'articles métalliques ménagers",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "25.99B",
+    "libelle": "Fabrication d'autres articles métalliques",
+    "division": "25",
+    "divisionLibelle": "Fabrication de produits métalliques, à l’exception des machines et des équipements"
+  },
+  {
+    "code": "26.11Z",
+    "libelle": "Fabrication de composants électroniques",
+    "division": "26",
+    "divisionLibelle": "Fabrication de produits informatiques, électroniques et optiques"
+  },
+  {
+    "code": "26.12Z",
+    "libelle": "Fabrication de cartes électroniques assemblées",
+    "division": "26",
+    "divisionLibelle": "Fabrication de produits informatiques, électroniques et optiques"
+  },
+  {
+    "code": "26.20Z",
+    "libelle": "Fabrication d'ordinateurs et d'équipements périphériques",
+    "division": "26",
+    "divisionLibelle": "Fabrication de produits informatiques, électroniques et optiques"
+  },
+  {
+    "code": "26.30Z",
+    "libelle": "Fabrication d'équipements de communication",
+    "division": "26",
+    "divisionLibelle": "Fabrication de produits informatiques, électroniques et optiques"
+  },
+  {
+    "code": "26.40Z",
+    "libelle": "Fabrication de produits électroniques grand public",
+    "division": "26",
+    "divisionLibelle": "Fabrication de produits informatiques, électroniques et optiques"
+  },
+  {
+    "code": "26.51A",
+    "libelle": "Fabrication d'équipements d'aide à la navigation",
+    "division": "26",
+    "divisionLibelle": "Fabrication de produits informatiques, électroniques et optiques"
+  },
+  {
+    "code": "26.51B",
+    "libelle": "Fabrication d'instrumentation scientifique et technique",
+    "division": "26",
+    "divisionLibelle": "Fabrication de produits informatiques, électroniques et optiques"
+  },
+  {
+    "code": "26.52Z",
+    "libelle": "Horlogerie",
+    "division": "26",
+    "divisionLibelle": "Fabrication de produits informatiques, électroniques et optiques"
+  },
+  {
+    "code": "26.60Z",
+    "libelle": "Fabrication d'équipements d'irradiation médicale, d'équipements électromédicaux et électrothérapeutiques",
+    "division": "26",
+    "divisionLibelle": "Fabrication de produits informatiques, électroniques et optiques"
+  },
+  {
+    "code": "26.70Z",
+    "libelle": "Fabrication de matériels optique et photographique",
+    "division": "26",
+    "divisionLibelle": "Fabrication de produits informatiques, électroniques et optiques"
+  },
+  {
+    "code": "26.80Z",
+    "libelle": "Fabrication de supports magnétiques et optiques",
+    "division": "26",
+    "divisionLibelle": "Fabrication de produits informatiques, électroniques et optiques"
+  },
+  {
+    "code": "27.11Z",
+    "libelle": "Fabrication de moteurs, génératrices et transformateurs électriques",
+    "division": "27",
+    "divisionLibelle": "Fabrication d'équipements électriques"
+  },
+  {
+    "code": "27.12Z",
+    "libelle": "Fabrication de matériel de distribution et de commande électrique",
+    "division": "27",
+    "divisionLibelle": "Fabrication d'équipements électriques"
+  },
+  {
+    "code": "27.20Z",
+    "libelle": "Fabrication de piles et d'accumulateurs électriques",
+    "division": "27",
+    "divisionLibelle": "Fabrication d'équipements électriques"
+  },
+  {
+    "code": "27.31Z",
+    "libelle": "Fabrication de câbles de fibres optiques",
+    "division": "27",
+    "divisionLibelle": "Fabrication d'équipements électriques"
+  },
+  {
+    "code": "27.32Z",
+    "libelle": "Fabrication d'autres fils et câbles électroniques ou électriques",
+    "division": "27",
+    "divisionLibelle": "Fabrication d'équipements électriques"
+  },
+  {
+    "code": "27.33Z",
+    "libelle": "Fabrication de matériel d'installation électrique",
+    "division": "27",
+    "divisionLibelle": "Fabrication d'équipements électriques"
+  },
+  {
+    "code": "27.40Z",
+    "libelle": "Fabrication d'appareils d'éclairage électrique",
+    "division": "27",
+    "divisionLibelle": "Fabrication d'équipements électriques"
+  },
+  {
+    "code": "27.51Z",
+    "libelle": "Fabrication d'appareils électroménagers",
+    "division": "27",
+    "divisionLibelle": "Fabrication d'équipements électriques"
+  },
+  {
+    "code": "27.52Z",
+    "libelle": "Fabrication d'appareils ménagers non électriques",
+    "division": "27",
+    "divisionLibelle": "Fabrication d'équipements électriques"
+  },
+  {
+    "code": "27.90Z",
+    "libelle": "Fabrication d'autres matériels électriques",
+    "division": "27",
+    "divisionLibelle": "Fabrication d'équipements électriques"
+  },
+  {
+    "code": "28.11Z",
+    "libelle": "Fabrication de moteurs et turbines, à l'exception des moteurs d’avions et de véhicules",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.12Z",
+    "libelle": "Fabrication d'équipements hydrauliques et pneumatiques",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.13Z",
+    "libelle": "Fabrication d'autres pompes et compresseurs",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.14Z",
+    "libelle": "Fabrication d'autres articles de robinetterie",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.15Z",
+    "libelle": "Fabrication d'engrenages et d'organes mécaniques de transmission",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.21Z",
+    "libelle": "Fabrication de fours et brûleurs",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.22Z",
+    "libelle": "Fabrication de matériel de levage et de manutention",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.23Z",
+    "libelle": "Fabrication de machines et d'équipements de bureau (à l'exception des ordinateurs et équipements périphériques)",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.24Z",
+    "libelle": "Fabrication d'outillage portatif à moteur incorporé",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.25Z",
+    "libelle": "Fabrication d'équipements aérauliques et frigorifiques industriels",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.29A",
+    "libelle": "Fabrication d'équipements d'emballage, de conditionnement et de pesage",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.29B",
+    "libelle": "Fabrication d'autres machines d'usage général",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.30Z",
+    "libelle": "Fabrication de machines agricoles et forestières",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.41Z",
+    "libelle": "Fabrication de machines-outils pour le travail des métaux",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.49Z",
+    "libelle": "Fabrication d'autres machines-outils",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.91Z",
+    "libelle": "Fabrication de machines pour la métallurgie",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.92Z",
+    "libelle": "Fabrication de machines pour l'extraction ou la construction",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.93Z",
+    "libelle": "Fabrication de machines pour l'industrie agro-alimentaire",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.94Z",
+    "libelle": "Fabrication de machines pour les industries textiles",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.95Z",
+    "libelle": "Fabrication de machines pour les industries du papier et du carton",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.96Z",
+    "libelle": "Fabrication de machines pour le travail du caoutchouc ou des plastiques",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.99A",
+    "libelle": "Fabrication de machines d'imprimerie",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "28.99B",
+    "libelle": "Fabrication d'autres machines spécialisées",
+    "division": "28",
+    "divisionLibelle": "Fabrication de machines et équipements n.c.a."
+  },
+  {
+    "code": "29.10Z",
+    "libelle": "Construction de véhicules automobiles",
+    "division": "29",
+    "divisionLibelle": "Industrie automobile"
+  },
+  {
+    "code": "29.20Z",
+    "libelle": "Fabrication de carrosseries et remorques",
+    "division": "29",
+    "divisionLibelle": "Industrie automobile"
+  },
+  {
+    "code": "29.31Z",
+    "libelle": "Fabrication d'équipements électriques et électroniques automobiles",
+    "division": "29",
+    "divisionLibelle": "Industrie automobile"
+  },
+  {
+    "code": "29.32Z",
+    "libelle": "Fabrication d'autres équipements automobiles",
+    "division": "29",
+    "divisionLibelle": "Industrie automobile"
+  },
+  {
+    "code": "30.11Z",
+    "libelle": "Construction de navires et de structures flottantes",
+    "division": "30",
+    "divisionLibelle": "Fabrication d'autres matériels de transport"
+  },
+  {
+    "code": "30.12Z",
+    "libelle": "Construction de bateaux de plaisance",
+    "division": "30",
+    "divisionLibelle": "Fabrication d'autres matériels de transport"
+  },
+  {
+    "code": "30.20Z",
+    "libelle": "Construction de locomotives et d'autre matériel ferroviaire roulant",
+    "division": "30",
+    "divisionLibelle": "Fabrication d'autres matériels de transport"
+  },
+  {
+    "code": "30.30Z",
+    "libelle": "Construction aéronautique et spatiale",
+    "division": "30",
+    "divisionLibelle": "Fabrication d'autres matériels de transport"
+  },
+  {
+    "code": "30.40Z",
+    "libelle": "Construction de véhicules militaires de combat",
+    "division": "30",
+    "divisionLibelle": "Fabrication d'autres matériels de transport"
+  },
+  {
+    "code": "30.91Z",
+    "libelle": "Fabrication de motocycles",
+    "division": "30",
+    "divisionLibelle": "Fabrication d'autres matériels de transport"
+  },
+  {
+    "code": "30.92Z",
+    "libelle": "Fabrication de bicyclettes et de véhicules pour invalides",
+    "division": "30",
+    "divisionLibelle": "Fabrication d'autres matériels de transport"
+  },
+  {
+    "code": "30.99Z",
+    "libelle": "Fabrication d’autres équipements de transport n.c.a.",
+    "division": "30",
+    "divisionLibelle": "Fabrication d'autres matériels de transport"
+  },
+  {
+    "code": "31.01Z",
+    "libelle": "Fabrication de meubles de bureau et de magasin",
+    "division": "31",
+    "divisionLibelle": "Fabrication de meubles"
+  },
+  {
+    "code": "31.02Z",
+    "libelle": "Fabrication de meubles de cuisine",
+    "division": "31",
+    "divisionLibelle": "Fabrication de meubles"
+  },
+  {
+    "code": "31.03Z",
+    "libelle": "Fabrication de matelas",
+    "division": "31",
+    "divisionLibelle": "Fabrication de meubles"
+  },
+  {
+    "code": "31.09A",
+    "libelle": "Fabrication de sièges d'ameublement d'intérieur",
+    "division": "31",
+    "divisionLibelle": "Fabrication de meubles"
+  },
+  {
+    "code": "31.09B",
+    "libelle": "Fabrication d’autres meubles et industries connexes de l’ameublement",
+    "division": "31",
+    "divisionLibelle": "Fabrication de meubles"
+  },
+  {
+    "code": "32.11Z",
+    "libelle": "Frappe de monnaie",
+    "division": "32",
+    "divisionLibelle": "Autres industries manufacturières"
+  },
+  {
+    "code": "32.12Z",
+    "libelle": "Fabrication d’articles de joaillerie et bijouterie",
+    "division": "32",
+    "divisionLibelle": "Autres industries manufacturières"
+  },
+  {
+    "code": "32.13Z",
+    "libelle": "Fabrication d’articles de bijouterie fantaisie et articles similaires",
+    "division": "32",
+    "divisionLibelle": "Autres industries manufacturières"
+  },
+  {
+    "code": "32.20Z",
+    "libelle": "Fabrication d'instruments de musique",
+    "division": "32",
+    "divisionLibelle": "Autres industries manufacturières"
+  },
+  {
+    "code": "32.30Z",
+    "libelle": "Fabrication d'articles de sport",
+    "division": "32",
+    "divisionLibelle": "Autres industries manufacturières"
+  },
+  {
+    "code": "32.40Z",
+    "libelle": "Fabrication de jeux et jouets",
+    "division": "32",
+    "divisionLibelle": "Autres industries manufacturières"
+  },
+  {
+    "code": "32.50A",
+    "libelle": "Fabrication de matériel médico-chirurgical et dentaire",
+    "division": "32",
+    "divisionLibelle": "Autres industries manufacturières"
+  },
+  {
+    "code": "32.50B",
+    "libelle": "Fabrication de lunettes",
+    "division": "32",
+    "divisionLibelle": "Autres industries manufacturières"
+  },
+  {
+    "code": "32.91Z",
+    "libelle": "Fabrication d’articles de brosserie",
+    "division": "32",
+    "divisionLibelle": "Autres industries manufacturières"
+  },
+  {
+    "code": "32.99Z",
+    "libelle": "Autres activités manufacturières n.c.a.",
+    "division": "32",
+    "divisionLibelle": "Autres industries manufacturières"
+  },
+  {
+    "code": "33.11Z",
+    "libelle": "Réparation d'ouvrages en métaux",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "33.12Z",
+    "libelle": "Réparation de machines et équipements mécaniques",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "33.13Z",
+    "libelle": "Réparation de matériels électroniques et optiques",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "33.14Z",
+    "libelle": "Réparation d'équipements électriques",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "33.15Z",
+    "libelle": "Réparation et maintenance navale",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "33.16Z",
+    "libelle": "Réparation et maintenance d'aéronefs et d'engins spatiaux",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "33.17Z",
+    "libelle": "Réparation et maintenance d'autres équipements de transport",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "33.19Z",
+    "libelle": "Réparation d'autres équipements",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "33.20A",
+    "libelle": "Installation de structures métalliques, chaudronnées et de tuyauterie",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "33.20B",
+    "libelle": "Installation de machines et équipements mécaniques",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "33.20C",
+    "libelle": "Conception d'ensemble et assemblage sur site industriel d'équipements de contrôle des processus industriels",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "33.20D",
+    "libelle": "Installation d'équipements électriques, de matériels électroniques et optiques ou d'autres matériels",
+    "division": "33",
+    "divisionLibelle": "Réparation et installation de machines et d'équipements"
+  },
+  {
+    "code": "35.11Z",
+    "libelle": "Production d'électricité",
+    "division": "35",
+    "divisionLibelle": "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+  },
+  {
+    "code": "35.12Z",
+    "libelle": "Transport d'électricité",
+    "division": "35",
+    "divisionLibelle": "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+  },
+  {
+    "code": "35.13Z",
+    "libelle": "Distribution d'électricité",
+    "division": "35",
+    "divisionLibelle": "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+  },
+  {
+    "code": "35.14Z",
+    "libelle": "Commerce d'électricité",
+    "division": "35",
+    "divisionLibelle": "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+  },
+  {
+    "code": "35.21Z",
+    "libelle": "Production de combustibles gazeux",
+    "division": "35",
+    "divisionLibelle": "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+  },
+  {
+    "code": "35.22Z",
+    "libelle": "Distribution de combustibles gazeux par conduites",
+    "division": "35",
+    "divisionLibelle": "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+  },
+  {
+    "code": "35.23Z",
+    "libelle": "Commerce de combustibles gazeux par conduites",
+    "division": "35",
+    "divisionLibelle": "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+  },
+  {
+    "code": "35.30Z",
+    "libelle": "Production et distribution de vapeur et d'air conditionné",
+    "division": "35",
+    "divisionLibelle": "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné"
+  },
+  {
+    "code": "36.00Z",
+    "libelle": "Captage, traitement et distribution d'eau",
+    "division": "36",
+    "divisionLibelle": "Captage, traitement et distribution d'eau"
+  },
+  {
+    "code": "37.00Z",
+    "libelle": "Collecte et traitement des eaux usées",
+    "division": "37",
+    "divisionLibelle": "Collecte et traitement des eaux usées"
+  },
+  {
+    "code": "38.11Z",
+    "libelle": "Collecte des déchets non dangereux",
+    "division": "38",
+    "divisionLibelle": "Collecte, traitement et élimination des déchets ; récupération"
+  },
+  {
+    "code": "38.12Z",
+    "libelle": "Collecte des déchets dangereux",
+    "division": "38",
+    "divisionLibelle": "Collecte, traitement et élimination des déchets ; récupération"
+  },
+  {
+    "code": "38.21Z",
+    "libelle": "Traitement et élimination des déchets non dangereux",
+    "division": "38",
+    "divisionLibelle": "Collecte, traitement et élimination des déchets ; récupération"
+  },
+  {
+    "code": "38.22Z",
+    "libelle": "Traitement et élimination des déchets dangereux",
+    "division": "38",
+    "divisionLibelle": "Collecte, traitement et élimination des déchets ; récupération"
+  },
+  {
+    "code": "38.31Z",
+    "libelle": "Démantèlement d'épaves",
+    "division": "38",
+    "divisionLibelle": "Collecte, traitement et élimination des déchets ; récupération"
+  },
+  {
+    "code": "38.32Z",
+    "libelle": "Récupération de déchets triés",
+    "division": "38",
+    "divisionLibelle": "Collecte, traitement et élimination des déchets ; récupération"
+  },
+  {
+    "code": "39.00Z",
+    "libelle": "Dépollution et autres services de gestion des déchets",
+    "division": "39",
+    "divisionLibelle": "Dépollution et autres services de gestion des déchets"
+  },
+  {
+    "code": "41.10A",
+    "libelle": "Promotion immobilière de logements",
+    "division": "41",
+    "divisionLibelle": "Construction de bâtiments"
+  },
+  {
+    "code": "41.10B",
+    "libelle": "Promotion immobilière de bureaux",
+    "division": "41",
+    "divisionLibelle": "Construction de bâtiments"
+  },
+  {
+    "code": "41.10C",
+    "libelle": "Promotion immobilière d'autres bâtiments",
+    "division": "41",
+    "divisionLibelle": "Construction de bâtiments"
+  },
+  {
+    "code": "41.10D",
+    "libelle": "Supports juridiques de programmes",
+    "division": "41",
+    "divisionLibelle": "Construction de bâtiments"
+  },
+  {
+    "code": "41.20A",
+    "libelle": "Construction de maisons individuelles",
+    "division": "41",
+    "divisionLibelle": "Construction de bâtiments"
+  },
+  {
+    "code": "41.20B",
+    "libelle": "Construction d'autres bâtiments",
+    "division": "41",
+    "divisionLibelle": "Construction de bâtiments"
+  },
+  {
+    "code": "42.11Z",
+    "libelle": "Construction de routes et autoroutes",
+    "division": "42",
+    "divisionLibelle": "Génie civil"
+  },
+  {
+    "code": "42.12Z",
+    "libelle": "Construction de voies ferrées de surface et souterraines",
+    "division": "42",
+    "divisionLibelle": "Génie civil"
+  },
+  {
+    "code": "42.13A",
+    "libelle": "Construction d'ouvrages d'art",
+    "division": "42",
+    "divisionLibelle": "Génie civil"
+  },
+  {
+    "code": "42.13B",
+    "libelle": "Construction et entretien de tunnels",
+    "division": "42",
+    "divisionLibelle": "Génie civil"
+  },
+  {
+    "code": "42.21Z",
+    "libelle": "Construction de réseaux pour fluides",
+    "division": "42",
+    "divisionLibelle": "Génie civil"
+  },
+  {
+    "code": "42.22Z",
+    "libelle": "Construction de réseaux électriques et de télécommunications",
+    "division": "42",
+    "divisionLibelle": "Génie civil"
+  },
+  {
+    "code": "42.91Z",
+    "libelle": "Construction d'ouvrages maritimes et fluviaux",
+    "division": "42",
+    "divisionLibelle": "Génie civil"
+  },
+  {
+    "code": "42.99Z",
+    "libelle": "Construction d'autres ouvrages de génie civil n.c.a.",
+    "division": "42",
+    "divisionLibelle": "Génie civil"
+  },
+  {
+    "code": "43.11Z",
+    "libelle": "Travaux de démolition",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.12A",
+    "libelle": "Travaux de terrassement courants et travaux préparatoires",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.12B",
+    "libelle": "Travaux de terrassement spécialisés ou de grande masse",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.13Z",
+    "libelle": "Forages et sondages",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.21A",
+    "libelle": "Travaux d'installation électrique dans tous locaux",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.21B",
+    "libelle": "Travaux d'installation électrique sur la voie publique",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.22A",
+    "libelle": "Travaux d'installation d'eau et de gaz en tous locaux",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.22B",
+    "libelle": "Travaux d'installation d'équipements thermiques et de climatisation",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.29A",
+    "libelle": "Travaux d'isolation",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.29B",
+    "libelle": "Autres travaux d'installation n.c.a.",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.31Z",
+    "libelle": "Travaux de plâtrerie",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.32A",
+    "libelle": "Travaux de menuiserie bois et PVC",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.32B",
+    "libelle": "Travaux de menuiserie métallique et serrurerie",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.32C",
+    "libelle": "Agencement de lieux de vente",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.33Z",
+    "libelle": "Travaux de revêtement des sols et des murs",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.34Z",
+    "libelle": "Travaux de peinture et vitrerie",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.39Z",
+    "libelle": "Autres travaux de finition",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.91A",
+    "libelle": "Travaux de charpente",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.91B",
+    "libelle": "Travaux de couverture par éléments",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.99A",
+    "libelle": "Travaux d'étanchéification",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.99B",
+    "libelle": "Travaux de montage de structures métalliques",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.99C",
+    "libelle": "Travaux de maçonnerie générale et gros œuvre de bâtiment",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.99D",
+    "libelle": "Autres travaux spécialisés de construction",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "43.99E",
+    "libelle": "Location avec opérateur de matériel de construction",
+    "division": "43",
+    "divisionLibelle": "Travaux de construction spécialisés"
+  },
+  {
+    "code": "45.11Z",
+    "libelle": "Commerce de voitures et de véhicules automobiles légers",
+    "division": "45",
+    "divisionLibelle": "Commerce et réparation d'automobiles et de motocycles"
+  },
+  {
+    "code": "45.19Z",
+    "libelle": "Commerce d'autres véhicules automobiles",
+    "division": "45",
+    "divisionLibelle": "Commerce et réparation d'automobiles et de motocycles"
+  },
+  {
+    "code": "45.20A",
+    "libelle": "Entretien et réparation de véhicules automobiles légers",
+    "division": "45",
+    "divisionLibelle": "Commerce et réparation d'automobiles et de motocycles"
+  },
+  {
+    "code": "45.20B",
+    "libelle": "Entretien et réparation d'autres véhicules automobiles",
+    "division": "45",
+    "divisionLibelle": "Commerce et réparation d'automobiles et de motocycles"
+  },
+  {
+    "code": "45.31Z",
+    "libelle": "Commerce de gros d'équipements automobiles",
+    "division": "45",
+    "divisionLibelle": "Commerce et réparation d'automobiles et de motocycles"
+  },
+  {
+    "code": "45.32Z",
+    "libelle": "Commerce de détail d'équipements automobiles",
+    "division": "45",
+    "divisionLibelle": "Commerce et réparation d'automobiles et de motocycles"
+  },
+  {
+    "code": "45.40Z",
+    "libelle": "Commerce et réparation de motocycles",
+    "division": "45",
+    "divisionLibelle": "Commerce et réparation d'automobiles et de motocycles"
+  },
+  {
+    "code": "46.11Z",
+    "libelle": "Intermédiaires du commerce en matières premières agricoles, animaux vivants, matières premières textiles et produits semi-finis",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.12A",
+    "libelle": "Centrales d'achat de carburant",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.12B",
+    "libelle": "Autres intermédiaires du commerce en combustibles, métaux, minéraux et produits chimiques",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.13Z",
+    "libelle": "Intermédiaires du commerce en bois et matériaux de construction",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.14Z",
+    "libelle": "Intermédiaires du commerce en machines, équipements industriels, navires et avions",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.15Z",
+    "libelle": "Intermédiaires du commerce en meubles, articles de ménage et quincaillerie",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.16Z",
+    "libelle": "Intermédiaires du commerce en textiles, habillement, fourrures, chaussures et articles en cuir",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.17A",
+    "libelle": "Centrales d'achat alimentaires",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.17B",
+    "libelle": "Autres intermédiaires du commerce en denrées, boissons et tabac",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.18Z",
+    "libelle": "Intermédiaires spécialisés dans le commerce d'autres produits spécifiques",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.19A",
+    "libelle": "Centrales d'achat non alimentaires",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.19B",
+    "libelle": "Autres intermédiaires du commerce en produits divers",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.21Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de céréales, de tabac non manufacturé, de semences et d'aliments pour le bétail",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.22Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de fleurs et plantes",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.23Z",
+    "libelle": "Commerce de gros (commerce interentreprises) d'animaux vivants",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.24Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de cuirs et peaux",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.31Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de fruits et légumes",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.32A",
+    "libelle": "Commerce de gros (commerce interentreprises) de viandes de boucherie",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.32B",
+    "libelle": "Commerce de gros (commerce interentreprises) de produits à base de viande",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.32C",
+    "libelle": "Commerce de gros (commerce interentreprises) de volailles et gibier",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.33Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de produits laitiers, œufs, huiles et matières grasses comestibles",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.34Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de boissons",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.35Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de produits à base de tabac",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.36Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de sucre, chocolat et confiserie",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.37Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de café, thé, cacao et épices",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.38A",
+    "libelle": "Commerce de gros (commerce interentreprises) de poissons, crustacés et mollusques",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.38B",
+    "libelle": "Commerce de gros (commerce interentreprises) alimentaire spécialisé divers",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.39A",
+    "libelle": "Commerce de gros (commerce interentreprises) de produits surgelés",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.39B",
+    "libelle": "Commerce de gros (commerce interentreprises) alimentaire non spécialisé",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.41Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de textiles",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.42Z",
+    "libelle": "Commerce de gros (commerce interentreprises) d'habillement et de chaussures",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.43Z",
+    "libelle": "Commerce de gros (commerce interentreprises) d'appareils électroménagers",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.44Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de vaisselle, verrerie et produits d'entretien",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.45Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de parfumerie et de produits de beauté",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.46Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de produits pharmaceutiques",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.47Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de meubles, de tapis et d'appareils d'éclairage",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.48Z",
+    "libelle": "Commerce de gros (commerce interentreprises) d'articles d'horlogerie et de bijouterie",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.49Z",
+    "libelle": "Commerce de gros (commerce interentreprises) d'autres biens domestiques",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.51Z",
+    "libelle": "Commerce de gros (commerce interentreprises) d'ordinateurs, d'équipements informatiques périphériques et de logiciels",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.52Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de composants et d'équipements électroniques et de télécommunication",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.61Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de matériel agricole",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.62Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de machines-outils",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.63Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de machines pour l'extraction, la construction et le génie civil",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.64Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de machines pour l'industrie textile et l'habillement",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.65Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de mobilier de bureau",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.66Z",
+    "libelle": "Commerce de gros (commerce interentreprises) d'autres machines et équipements de bureau",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.69A",
+    "libelle": "Commerce de gros (commerce interentreprises) de matériel électrique",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.69B",
+    "libelle": "Commerce de gros (commerce interentreprises) de fournitures et équipements industriels divers",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.69C",
+    "libelle": "Commerce de gros (commerce interentreprises) de fournitures et équipements divers pour le commerce et les services",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.71Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de combustibles et de produits annexes",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.72Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de minerais et métaux",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.73A",
+    "libelle": "Commerce de gros (commerce interentreprises) de bois et de matériaux de construction",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.73B",
+    "libelle": "Commerce de gros (commerce interentreprises) d'appareils sanitaires et de produits de décoration",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.74A",
+    "libelle": "Commerce de gros (commerce interentreprises) de quincaillerie",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.74B",
+    "libelle": "Commerce de gros (commerce interentreprises) de fournitures pour la plomberie et le chauffage",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.75Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de produits chimiques",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.76Z",
+    "libelle": "Commerce de gros (commerce interentreprises) d'autres produits intermédiaires",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.77Z",
+    "libelle": "Commerce de gros (commerce interentreprises) de déchets et débris",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "46.90Z",
+    "libelle": "Commerce de gros (commerce interentreprises) non spécialisé",
+    "division": "46",
+    "divisionLibelle": "Commerce de gros, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.11A",
+    "libelle": "Commerce de détail de produits surgelés",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.11B",
+    "libelle": "Commerce d'alimentation générale",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.11C",
+    "libelle": "Supérettes",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.11D",
+    "libelle": "Supermarchés",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.11E",
+    "libelle": "Magasins multi-commerces",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.11F",
+    "libelle": "Hypermarchés",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.19A",
+    "libelle": "Grands magasins",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.19B",
+    "libelle": "Autres commerces de détail en magasin non spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.21Z",
+    "libelle": "Commerce de détail de fruits et légumes en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.22Z",
+    "libelle": "Commerce de détail de viandes et de produits à base de viande en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.23Z",
+    "libelle": "Commerce de détail de poissons, crustacés et mollusques en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.24Z",
+    "libelle": "Commerce de détail de pain, pâtisserie et confiserie en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.25Z",
+    "libelle": "Commerce de détail de boissons en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.26Z",
+    "libelle": "Commerce de détail de produits à base de tabac en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.29Z",
+    "libelle": "Autres commerces de détail alimentaires en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.30Z",
+    "libelle": "Commerce de détail de carburants en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.41Z",
+    "libelle": "Commerce de détail d'ordinateurs, d'unités périphériques et de logiciels en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.42Z",
+    "libelle": "Commerce de détail de matériels de télécommunication en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.43Z",
+    "libelle": "Commerce de détail de matériels audio et vidéo en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.51Z",
+    "libelle": "Commerce de détail de textiles en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.52A",
+    "libelle": "Commerce de détail de quincaillerie, peintures et verres en petites surfaces (moins de 400 m2)",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.52B",
+    "libelle": "Commerce de détail de quincaillerie, peintures et verres en grandes surfaces (400 m2et plus)",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.53Z",
+    "libelle": "Commerce de détail de tapis, moquettes et revêtements de murs et de sols en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.54Z",
+    "libelle": "Commerce de détail d'appareils électroménagers en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.59A",
+    "libelle": "Commerce de détail de meubles",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.59B",
+    "libelle": "Commerce de détail d'autres équipements du foyer",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.61Z",
+    "libelle": "Commerce de détail de livres en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.62Z",
+    "libelle": "Commerce de détail de journaux et papeterie en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.63Z",
+    "libelle": "Commerce de détail d'enregistrements musicaux et vidéo en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.64Z",
+    "libelle": "Commerce de détail d'articles de sport en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.65Z",
+    "libelle": "Commerce de détail de jeux et jouets en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.71Z",
+    "libelle": "Commerce de détail d'habillement en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.72A",
+    "libelle": "Commerce de détail de la chaussure",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.72B",
+    "libelle": "Commerce de détail de maroquinerie et d'articles de voyage",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.73Z",
+    "libelle": "Commerce de détail de produits pharmaceutiques en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.74Z",
+    "libelle": "Commerce de détail d'articles médicaux et orthopédiques en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.75Z",
+    "libelle": "Commerce de détail de parfumerie et de produits de beauté en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.76Z",
+    "libelle": "Commerce de détail de fleurs, plantes, graines, engrais, animaux de compagnie et aliments pour ces animaux en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.77Z",
+    "libelle": "Commerce de détail d'articles d'horlogerie et de bijouterie en magasin spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.78A",
+    "libelle": "Commerces de détail d'optique",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.78B",
+    "libelle": "Commerces de détail de charbons et combustibles",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.78C",
+    "libelle": "Autres commerces de détail spécialisés divers",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.79Z",
+    "libelle": "Commerce de détail de biens d'occasion en magasin",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.81Z",
+    "libelle": "Commerce de détail alimentaire sur éventaires et marchés",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.82Z",
+    "libelle": "Commerce de détail de textiles, d'habillement et de chaussures sur éventaires et marchés",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.89Z",
+    "libelle": "Autres commerces de détail sur éventaires et marchés",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.91A",
+    "libelle": "Vente à distance sur catalogue général",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.91B",
+    "libelle": "Vente à distance sur catalogue spécialisé",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.99A",
+    "libelle": "Vente à domicile",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "47.99B",
+    "libelle": "Vente par automates et autres commerces de détail hors magasin, éventaires ou marchés n.c.a.",
+    "division": "47",
+    "divisionLibelle": "Commerce de détail, à l’exception des automobiles et des motocycles"
+  },
+  {
+    "code": "49.10Z",
+    "libelle": "Transport ferroviaire interurbain de voyageurs",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "49.20Z",
+    "libelle": "Transports ferroviaires de fret",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "49.31Z",
+    "libelle": "Transports urbains et suburbains de voyageurs",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "49.32Z",
+    "libelle": "Transports de voyageurs par taxis",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "49.39A",
+    "libelle": "Transports routiers réguliers de voyageurs",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "49.39B",
+    "libelle": "Autres transports routiers de voyageurs",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "49.39C",
+    "libelle": "Téléphériques et remontées mécaniques",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "49.41A",
+    "libelle": "Transports routiers de fret interurbains",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "49.41B",
+    "libelle": "Transports routiers de fret de proximité",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "49.41C",
+    "libelle": "Location de camions avec chauffeur",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "49.42Z",
+    "libelle": "Services de déménagement",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "49.50Z",
+    "libelle": "Transports par conduites",
+    "division": "49",
+    "divisionLibelle": "Transports terrestres et transport par conduites"
+  },
+  {
+    "code": "50.10Z",
+    "libelle": "Transports maritimes et côtiers de passagers",
+    "division": "50",
+    "divisionLibelle": "Transports par eau"
+  },
+  {
+    "code": "50.20Z",
+    "libelle": "Transports maritimes et côtiers de fret",
+    "division": "50",
+    "divisionLibelle": "Transports par eau"
+  },
+  {
+    "code": "50.30Z",
+    "libelle": "Transports fluviaux de passagers",
+    "division": "50",
+    "divisionLibelle": "Transports par eau"
+  },
+  {
+    "code": "50.40Z",
+    "libelle": "Transports fluviaux de fret",
+    "division": "50",
+    "divisionLibelle": "Transports par eau"
+  },
+  {
+    "code": "51.10Z",
+    "libelle": "Transports aériens de passagers",
+    "division": "51",
+    "divisionLibelle": "Transports aériens"
+  },
+  {
+    "code": "51.21Z",
+    "libelle": "Transports aériens de fret",
+    "division": "51",
+    "divisionLibelle": "Transports aériens"
+  },
+  {
+    "code": "51.22Z",
+    "libelle": "Transports spatiaux",
+    "division": "51",
+    "divisionLibelle": "Transports aériens"
+  },
+  {
+    "code": "52.10A",
+    "libelle": "Entreposage et stockage frigorifique",
+    "division": "52",
+    "divisionLibelle": "Entreposage et services auxiliaires des transports"
+  },
+  {
+    "code": "52.10B",
+    "libelle": "Entreposage et stockage non frigorifique",
+    "division": "52",
+    "divisionLibelle": "Entreposage et services auxiliaires des transports"
+  },
+  {
+    "code": "52.21Z",
+    "libelle": "Services auxiliaires des transports terrestres",
+    "division": "52",
+    "divisionLibelle": "Entreposage et services auxiliaires des transports"
+  },
+  {
+    "code": "52.22Z",
+    "libelle": "Services auxiliaires des transports par eau",
+    "division": "52",
+    "divisionLibelle": "Entreposage et services auxiliaires des transports"
+  },
+  {
+    "code": "52.23Z",
+    "libelle": "Services auxiliaires des transports aériens",
+    "division": "52",
+    "divisionLibelle": "Entreposage et services auxiliaires des transports"
+  },
+  {
+    "code": "52.24A",
+    "libelle": "Manutention portuaire",
+    "division": "52",
+    "divisionLibelle": "Entreposage et services auxiliaires des transports"
+  },
+  {
+    "code": "52.24B",
+    "libelle": "Manutention non portuaire",
+    "division": "52",
+    "divisionLibelle": "Entreposage et services auxiliaires des transports"
+  },
+  {
+    "code": "52.29A",
+    "libelle": "Messagerie, fret express",
+    "division": "52",
+    "divisionLibelle": "Entreposage et services auxiliaires des transports"
+  },
+  {
+    "code": "52.29B",
+    "libelle": "Affrètement et organisation des transports",
+    "division": "52",
+    "divisionLibelle": "Entreposage et services auxiliaires des transports"
+  },
+  {
+    "code": "53.10Z",
+    "libelle": "Activités de poste dans le cadre d'une obligation de service universel",
+    "division": "53",
+    "divisionLibelle": "Activités de poste et de courrier"
+  },
+  {
+    "code": "53.20Z",
+    "libelle": "Autres activités de poste et de courrier",
+    "division": "53",
+    "divisionLibelle": "Activités de poste et de courrier"
+  },
+  {
+    "code": "55.10Z",
+    "libelle": "Hôtels et hébergement similaire",
+    "division": "55",
+    "divisionLibelle": "Hébergement"
+  },
+  {
+    "code": "55.20Z",
+    "libelle": "Hébergement touristique et autre hébergement de courte durée",
+    "division": "55",
+    "divisionLibelle": "Hébergement"
+  },
+  {
+    "code": "55.30Z",
+    "libelle": "Terrains de camping et parcs pour caravanes ou véhicules de loisirs",
+    "division": "55",
+    "divisionLibelle": "Hébergement"
+  },
+  {
+    "code": "55.90Z",
+    "libelle": "Autres hébergements",
+    "division": "55",
+    "divisionLibelle": "Hébergement"
+  },
+  {
+    "code": "56.10A",
+    "libelle": "Restauration traditionnelle",
+    "division": "56",
+    "divisionLibelle": "Restauration"
+  },
+  {
+    "code": "56.10B",
+    "libelle": "Cafétérias et autres libres-services",
+    "division": "56",
+    "divisionLibelle": "Restauration"
+  },
+  {
+    "code": "56.10C",
+    "libelle": "Restauration de type rapide",
+    "division": "56",
+    "divisionLibelle": "Restauration"
+  },
+  {
+    "code": "56.21Z",
+    "libelle": "Services des traiteurs",
+    "division": "56",
+    "divisionLibelle": "Restauration"
+  },
+  {
+    "code": "56.29A",
+    "libelle": "Restauration collective sous contrat",
+    "division": "56",
+    "divisionLibelle": "Restauration"
+  },
+  {
+    "code": "56.29B",
+    "libelle": "Autres services de restauration n.c.a.",
+    "division": "56",
+    "divisionLibelle": "Restauration"
+  },
+  {
+    "code": "56.30Z",
+    "libelle": "Débits de boissons",
+    "division": "56",
+    "divisionLibelle": "Restauration"
+  },
+  {
+    "code": "58.11Z",
+    "libelle": "Édition de livres",
+    "division": "58",
+    "divisionLibelle": "Édition"
+  },
+  {
+    "code": "58.12Z",
+    "libelle": "Édition de répertoires et de fichiers d'adresses",
+    "division": "58",
+    "divisionLibelle": "Édition"
+  },
+  {
+    "code": "58.13Z",
+    "libelle": "Édition de journaux",
+    "division": "58",
+    "divisionLibelle": "Édition"
+  },
+  {
+    "code": "58.14Z",
+    "libelle": "Édition de revues et périodiques",
+    "division": "58",
+    "divisionLibelle": "Édition"
+  },
+  {
+    "code": "58.19Z",
+    "libelle": "Autres activités d'édition",
+    "division": "58",
+    "divisionLibelle": "Édition"
+  },
+  {
+    "code": "58.21Z",
+    "libelle": "Édition de jeux électroniques",
+    "division": "58",
+    "divisionLibelle": "Édition"
+  },
+  {
+    "code": "58.29A",
+    "libelle": "Édition de logiciels système et de réseau",
+    "division": "58",
+    "divisionLibelle": "Édition"
+  },
+  {
+    "code": "58.29B",
+    "libelle": "Edition de logiciels outils de développement et de langages",
+    "division": "58",
+    "divisionLibelle": "Édition"
+  },
+  {
+    "code": "58.29C",
+    "libelle": "Edition de logiciels applicatifs",
+    "division": "58",
+    "divisionLibelle": "Édition"
+  },
+  {
+    "code": "59.11A",
+    "libelle": "Production de films et de programmes pour la télévision",
+    "division": "59",
+    "divisionLibelle": "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
+  },
+  {
+    "code": "59.11B",
+    "libelle": "Production de films institutionnels et publicitaires",
+    "division": "59",
+    "divisionLibelle": "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
+  },
+  {
+    "code": "59.11C",
+    "libelle": "Production de films pour le cinéma",
+    "division": "59",
+    "divisionLibelle": "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
+  },
+  {
+    "code": "59.12Z",
+    "libelle": "Post-production de films cinématographiques, de vidéo et de programmes de télévision",
+    "division": "59",
+    "divisionLibelle": "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
+  },
+  {
+    "code": "59.13A",
+    "libelle": "Distribution de films cinématographiques",
+    "division": "59",
+    "divisionLibelle": "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
+  },
+  {
+    "code": "59.13B",
+    "libelle": "Edition et distribution vidéo",
+    "division": "59",
+    "divisionLibelle": "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
+  },
+  {
+    "code": "59.14Z",
+    "libelle": "Projection de films cinématographiques",
+    "division": "59",
+    "divisionLibelle": "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
+  },
+  {
+    "code": "59.20Z",
+    "libelle": "Enregistrement sonore et édition musicale",
+    "division": "59",
+    "divisionLibelle": "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
+  },
+  {
+    "code": "60.10Z",
+    "libelle": "Édition et diffusion de programmes radio",
+    "division": "60",
+    "divisionLibelle": "Programmation et diffusion"
+  },
+  {
+    "code": "60.20A",
+    "libelle": "Edition de chaînes généralistes",
+    "division": "60",
+    "divisionLibelle": "Programmation et diffusion"
+  },
+  {
+    "code": "60.20B",
+    "libelle": "Edition de chaînes thématiques",
+    "division": "60",
+    "divisionLibelle": "Programmation et diffusion"
+  },
+  {
+    "code": "61.10Z",
+    "libelle": "Télécommunications filaires",
+    "division": "61",
+    "divisionLibelle": "Télécommunications"
+  },
+  {
+    "code": "61.20Z",
+    "libelle": "Télécommunications sans fil",
+    "division": "61",
+    "divisionLibelle": "Télécommunications"
+  },
+  {
+    "code": "61.30Z",
+    "libelle": "Télécommunications par satellite",
+    "division": "61",
+    "divisionLibelle": "Télécommunications"
+  },
+  {
+    "code": "61.90Z",
+    "libelle": "Autres activités de télécommunication",
+    "division": "61",
+    "divisionLibelle": "Télécommunications"
+  },
+  {
+    "code": "62.01Z",
+    "libelle": "Programmation informatique",
+    "division": "62",
+    "divisionLibelle": "Programmation, conseil et autres activités informatiques"
+  },
+  {
+    "code": "62.02A",
+    "libelle": "Conseil en systèmes et logiciels informatiques",
+    "division": "62",
+    "divisionLibelle": "Programmation, conseil et autres activités informatiques"
+  },
+  {
+    "code": "62.02B",
+    "libelle": "Tierce maintenance de systèmes et d’applications informatiques",
+    "division": "62",
+    "divisionLibelle": "Programmation, conseil et autres activités informatiques"
+  },
+  {
+    "code": "62.03Z",
+    "libelle": "Gestion d'installations informatiques",
+    "division": "62",
+    "divisionLibelle": "Programmation, conseil et autres activités informatiques"
+  },
+  {
+    "code": "62.09Z",
+    "libelle": "Autres activités informatiques",
+    "division": "62",
+    "divisionLibelle": "Programmation, conseil et autres activités informatiques"
+  },
+  {
+    "code": "63.11Z",
+    "libelle": "Traitement de données, hébergement et activités connexes",
+    "division": "63",
+    "divisionLibelle": "Services d'information"
+  },
+  {
+    "code": "63.12Z",
+    "libelle": "Portails Internet",
+    "division": "63",
+    "divisionLibelle": "Services d'information"
+  },
+  {
+    "code": "63.91Z",
+    "libelle": "Activités des agences de presse",
+    "division": "63",
+    "divisionLibelle": "Services d'information"
+  },
+  {
+    "code": "63.99Z",
+    "libelle": "Autres services d'information n.c.a.",
+    "division": "63",
+    "divisionLibelle": "Services d'information"
+  },
+  {
+    "code": "64.11Z",
+    "libelle": "Activités de banque centrale",
+    "division": "64",
+    "divisionLibelle": "Activités des services financiers, hors assurance et caisses de retraite"
+  },
+  {
+    "code": "64.19Z",
+    "libelle": "Autres intermédiations monétaires",
+    "division": "64",
+    "divisionLibelle": "Activités des services financiers, hors assurance et caisses de retraite"
+  },
+  {
+    "code": "64.20Z",
+    "libelle": "Activités des sociétés holding",
+    "division": "64",
+    "divisionLibelle": "Activités des services financiers, hors assurance et caisses de retraite"
+  },
+  {
+    "code": "64.30Z",
+    "libelle": "Fonds de placement et entités financières similaires",
+    "division": "64",
+    "divisionLibelle": "Activités des services financiers, hors assurance et caisses de retraite"
+  },
+  {
+    "code": "64.91Z",
+    "libelle": "Crédit-bail",
+    "division": "64",
+    "divisionLibelle": "Activités des services financiers, hors assurance et caisses de retraite"
+  },
+  {
+    "code": "64.92Z",
+    "libelle": "Autre distribution de crédit",
+    "division": "64",
+    "divisionLibelle": "Activités des services financiers, hors assurance et caisses de retraite"
+  },
+  {
+    "code": "64.99Z",
+    "libelle": "Autres activités des services financiers, hors assurance et caisses de retraite, n.c.a.",
+    "division": "64",
+    "divisionLibelle": "Activités des services financiers, hors assurance et caisses de retraite"
+  },
+  {
+    "code": "65.11Z",
+    "libelle": "Assurance vie",
+    "division": "65",
+    "divisionLibelle": "Assurance"
+  },
+  {
+    "code": "65.12Z",
+    "libelle": "Autres assurances",
+    "division": "65",
+    "divisionLibelle": "Assurance"
+  },
+  {
+    "code": "65.20Z",
+    "libelle": "Réassurance",
+    "division": "65",
+    "divisionLibelle": "Assurance"
+  },
+  {
+    "code": "65.30Z",
+    "libelle": "Caisses de retraite",
+    "division": "65",
+    "divisionLibelle": "Assurance"
+  },
+  {
+    "code": "66.11Z",
+    "libelle": "Administration de marchés financiers",
+    "division": "66",
+    "divisionLibelle": "Activités auxiliaires de services financiers et d'assurance"
+  },
+  {
+    "code": "66.12Z",
+    "libelle": "Courtage de valeurs mobilières et de marchandises",
+    "division": "66",
+    "divisionLibelle": "Activités auxiliaires de services financiers et d'assurance"
+  },
+  {
+    "code": "66.19A",
+    "libelle": "Supports juridiques de gestion de patrimoine mobilier",
+    "division": "66",
+    "divisionLibelle": "Activités auxiliaires de services financiers et d'assurance"
+  },
+  {
+    "code": "66.19B",
+    "libelle": "Autres activités auxiliaires de services financiers, hors assurance et caisses de retraite, n.c.a.",
+    "division": "66",
+    "divisionLibelle": "Activités auxiliaires de services financiers et d'assurance"
+  },
+  {
+    "code": "66.21Z",
+    "libelle": "Évaluation des risques et dommages",
+    "division": "66",
+    "divisionLibelle": "Activités auxiliaires de services financiers et d'assurance"
+  },
+  {
+    "code": "66.22Z",
+    "libelle": "Activités des agents et courtiers d'assurances",
+    "division": "66",
+    "divisionLibelle": "Activités auxiliaires de services financiers et d'assurance"
+  },
+  {
+    "code": "66.29Z",
+    "libelle": "Autres activités auxiliaires d'assurance et de caisses de retraite",
+    "division": "66",
+    "divisionLibelle": "Activités auxiliaires de services financiers et d'assurance"
+  },
+  {
+    "code": "66.30Z",
+    "libelle": "Gestion de fonds",
+    "division": "66",
+    "divisionLibelle": "Activités auxiliaires de services financiers et d'assurance"
+  },
+  {
+    "code": "68.10Z",
+    "libelle": "Activités des marchands de biens immobiliers",
+    "division": "68",
+    "divisionLibelle": "Activités immobilières"
+  },
+  {
+    "code": "68.20A",
+    "libelle": "Location de logements",
+    "division": "68",
+    "divisionLibelle": "Activités immobilières"
+  },
+  {
+    "code": "68.20B",
+    "libelle": "Location de terrains et d'autres biens immobiliers",
+    "division": "68",
+    "divisionLibelle": "Activités immobilières"
+  },
+  {
+    "code": "68.31Z",
+    "libelle": "Agences immobilières",
+    "division": "68",
+    "divisionLibelle": "Activités immobilières"
+  },
+  {
+    "code": "68.32A",
+    "libelle": "Administration d'immeubles et autres biens immobiliers",
+    "division": "68",
+    "divisionLibelle": "Activités immobilières"
+  },
+  {
+    "code": "68.32B",
+    "libelle": "Supports juridiques de gestion de patrimoine immobilier",
+    "division": "68",
+    "divisionLibelle": "Activités immobilières"
+  },
+  {
+    "code": "69.10Z",
+    "libelle": "Activités juridiques",
+    "division": "69",
+    "divisionLibelle": "Activités juridiques et comptables"
+  },
+  {
+    "code": "69.20Z",
+    "libelle": "Activités comptables",
+    "division": "69",
+    "divisionLibelle": "Activités juridiques et comptables"
+  },
+  {
+    "code": "70.10Z",
+    "libelle": "Activités des sièges sociaux",
+    "division": "70",
+    "divisionLibelle": "Activités des sièges sociaux ; conseil de gestion"
+  },
+  {
+    "code": "70.21Z",
+    "libelle": "Conseil en relations publiques et communication",
+    "division": "70",
+    "divisionLibelle": "Activités des sièges sociaux ; conseil de gestion"
+  },
+  {
+    "code": "70.22Z",
+    "libelle": "Conseil pour les affaires et autres conseils de gestion",
+    "division": "70",
+    "divisionLibelle": "Activités des sièges sociaux ; conseil de gestion"
+  },
+  {
+    "code": "71.11Z",
+    "libelle": "Activités d'architecture",
+    "division": "71",
+    "divisionLibelle": "Activités d'architecture et d'ingénierie ; activités de contrôle et analyses techniques"
+  },
+  {
+    "code": "71.12A",
+    "libelle": "Activité des géomètres",
+    "division": "71",
+    "divisionLibelle": "Activités d'architecture et d'ingénierie ; activités de contrôle et analyses techniques"
+  },
+  {
+    "code": "71.12B",
+    "libelle": "Ingénierie, études techniques",
+    "division": "71",
+    "divisionLibelle": "Activités d'architecture et d'ingénierie ; activités de contrôle et analyses techniques"
+  },
+  {
+    "code": "71.20A",
+    "libelle": "Contrôle technique automobile",
+    "division": "71",
+    "divisionLibelle": "Activités d'architecture et d'ingénierie ; activités de contrôle et analyses techniques"
+  },
+  {
+    "code": "71.20B",
+    "libelle": "Analyses, essais et inspections techniques",
+    "division": "71",
+    "divisionLibelle": "Activités d'architecture et d'ingénierie ; activités de contrôle et analyses techniques"
+  },
+  {
+    "code": "72.11Z",
+    "libelle": "Recherche-développement en biotechnologie",
+    "division": "72",
+    "divisionLibelle": "Recherche-développement scientifique"
+  },
+  {
+    "code": "72.19Z",
+    "libelle": "Recherche-développement en autres sciences physiques et naturelles",
+    "division": "72",
+    "divisionLibelle": "Recherche-développement scientifique"
+  },
+  {
+    "code": "72.20Z",
+    "libelle": "Recherche-développement en sciences humaines et sociales",
+    "division": "72",
+    "divisionLibelle": "Recherche-développement scientifique"
+  },
+  {
+    "code": "73.11Z",
+    "libelle": "Activités des agences de publicité",
+    "division": "73",
+    "divisionLibelle": "Publicité et études de marché"
+  },
+  {
+    "code": "73.12Z",
+    "libelle": "Régie publicitaire de médias",
+    "division": "73",
+    "divisionLibelle": "Publicité et études de marché"
+  },
+  {
+    "code": "73.20Z",
+    "libelle": "Études de marché et sondages",
+    "division": "73",
+    "divisionLibelle": "Publicité et études de marché"
+  },
+  {
+    "code": "74.10Z",
+    "libelle": "Activités spécialisées de design",
+    "division": "74",
+    "divisionLibelle": "Autres activités spécialisées, scientifiques et techniques"
+  },
+  {
+    "code": "74.20Z",
+    "libelle": "Activités photographiques",
+    "division": "74",
+    "divisionLibelle": "Autres activités spécialisées, scientifiques et techniques"
+  },
+  {
+    "code": "74.30Z",
+    "libelle": "Traduction et interprétation",
+    "division": "74",
+    "divisionLibelle": "Autres activités spécialisées, scientifiques et techniques"
+  },
+  {
+    "code": "74.90A",
+    "libelle": "Activité des économistes de la construction",
+    "division": "74",
+    "divisionLibelle": "Autres activités spécialisées, scientifiques et techniques"
+  },
+  {
+    "code": "74.90B",
+    "libelle": "Activités spécialisées, scientifiques et techniques diverses",
+    "division": "74",
+    "divisionLibelle": "Autres activités spécialisées, scientifiques et techniques"
+  },
+  {
+    "code": "75.00Z",
+    "libelle": "Activités vétérinaires",
+    "division": "75",
+    "divisionLibelle": "Activités vétérinaires"
+  },
+  {
+    "code": "77.11A",
+    "libelle": "Location de courte durée de voitures et de véhicules automobiles légers",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.11B",
+    "libelle": "Location de longue durée de voitures et de véhicules automobiles légers",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.12Z",
+    "libelle": "Location et location-bail de camions",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.21Z",
+    "libelle": "Location et location-bail d'articles de loisirs et de sport",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.22Z",
+    "libelle": "Location de vidéocassettes et disques vidéo",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.29Z",
+    "libelle": "Location et location-bail d'autres biens personnels et domestiques",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.31Z",
+    "libelle": "Location et location-bail de machines et équipements agricoles",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.32Z",
+    "libelle": "Location et location-bail de machines et équipements pour la construction",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.33Z",
+    "libelle": "Location et location-bail de machines de bureau et de matériel informatique",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.34Z",
+    "libelle": "Location et location-bail de matériels de transport par eau",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.35Z",
+    "libelle": "Location et location-bail de matériels de transport aérien",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.39Z",
+    "libelle": "Location et location-bail d'autres machines, équipements et biens matériels n.c.a.",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "77.40Z",
+    "libelle": "Location-bail de propriété intellectuelle et de produits similaires, à l'exception des œuvres soumises à copyright",
+    "division": "77",
+    "divisionLibelle": "Activités de location et location-bail"
+  },
+  {
+    "code": "78.10Z",
+    "libelle": "Activités des agences de placement de main-d'œuvre",
+    "division": "78",
+    "divisionLibelle": "Activités liées à l'emploi"
+  },
+  {
+    "code": "78.20Z",
+    "libelle": "Activités des agences de travail temporaire",
+    "division": "78",
+    "divisionLibelle": "Activités liées à l'emploi"
+  },
+  {
+    "code": "78.30Z",
+    "libelle": "Autre mise à disposition de ressources humaines",
+    "division": "78",
+    "divisionLibelle": "Activités liées à l'emploi"
+  },
+  {
+    "code": "79.11Z",
+    "libelle": "Activités des agences de voyage",
+    "division": "79",
+    "divisionLibelle": "Activités des agences de voyage, voyagistes, services de réservation et activités connexes"
+  },
+  {
+    "code": "79.12Z",
+    "libelle": "Activités des voyagistes",
+    "division": "79",
+    "divisionLibelle": "Activités des agences de voyage, voyagistes, services de réservation et activités connexes"
+  },
+  {
+    "code": "79.90Z",
+    "libelle": "Autres services de réservation et activités connexes",
+    "division": "79",
+    "divisionLibelle": "Activités des agences de voyage, voyagistes, services de réservation et activités connexes"
+  },
+  {
+    "code": "80.10Z",
+    "libelle": "Activités de sécurité privée",
+    "division": "80",
+    "divisionLibelle": "Enquêtes et sécurité"
+  },
+  {
+    "code": "80.20Z",
+    "libelle": "Activités liées aux systèmes de sécurité",
+    "division": "80",
+    "divisionLibelle": "Enquêtes et sécurité"
+  },
+  {
+    "code": "80.30Z",
+    "libelle": "Activités d'enquête",
+    "division": "80",
+    "divisionLibelle": "Enquêtes et sécurité"
+  },
+  {
+    "code": "81.10Z",
+    "libelle": "Activités combinées de soutien lié aux bâtiments",
+    "division": "81",
+    "divisionLibelle": "Services relatifs aux bâtiments et aménagement paysager"
+  },
+  {
+    "code": "81.21Z",
+    "libelle": "Nettoyage courant des bâtiments",
+    "division": "81",
+    "divisionLibelle": "Services relatifs aux bâtiments et aménagement paysager"
+  },
+  {
+    "code": "81.22Z",
+    "libelle": "Autres activités de nettoyage des bâtiments et nettoyage industriel",
+    "division": "81",
+    "divisionLibelle": "Services relatifs aux bâtiments et aménagement paysager"
+  },
+  {
+    "code": "81.29A",
+    "libelle": "Désinfection, désinsectisation, dératisation",
+    "division": "81",
+    "divisionLibelle": "Services relatifs aux bâtiments et aménagement paysager"
+  },
+  {
+    "code": "81.29B",
+    "libelle": "Autres activités de nettoyage n.c.a.",
+    "division": "81",
+    "divisionLibelle": "Services relatifs aux bâtiments et aménagement paysager"
+  },
+  {
+    "code": "81.30Z",
+    "libelle": "Services d'aménagement paysager",
+    "division": "81",
+    "divisionLibelle": "Services relatifs aux bâtiments et aménagement paysager"
+  },
+  {
+    "code": "82.11Z",
+    "libelle": "Services administratifs combinés de bureau",
+    "division": "82",
+    "divisionLibelle": "Activités administratives et autres activités de soutien aux entreprises"
+  },
+  {
+    "code": "82.19Z",
+    "libelle": "Photocopie, préparation de documents et autres activités spécialisées de soutien de bureau",
+    "division": "82",
+    "divisionLibelle": "Activités administratives et autres activités de soutien aux entreprises"
+  },
+  {
+    "code": "82.20Z",
+    "libelle": "Activités de centres d'appels",
+    "division": "82",
+    "divisionLibelle": "Activités administratives et autres activités de soutien aux entreprises"
+  },
+  {
+    "code": "82.30Z",
+    "libelle": "Organisation de foires, salons professionnels et congrès",
+    "division": "82",
+    "divisionLibelle": "Activités administratives et autres activités de soutien aux entreprises"
+  },
+  {
+    "code": "82.91Z",
+    "libelle": "Activités des agences de recouvrement de factures et des sociétés d'information financière sur la clientèle",
+    "division": "82",
+    "divisionLibelle": "Activités administratives et autres activités de soutien aux entreprises"
+  },
+  {
+    "code": "82.92Z",
+    "libelle": "Activités de conditionnement",
+    "division": "82",
+    "divisionLibelle": "Activités administratives et autres activités de soutien aux entreprises"
+  },
+  {
+    "code": "82.99Z",
+    "libelle": "Autres activités de soutien aux entreprises n.c.a.",
+    "division": "82",
+    "divisionLibelle": "Activités administratives et autres activités de soutien aux entreprises"
+  },
+  {
+    "code": "84.11Z",
+    "libelle": "Administration publique générale",
+    "division": "84",
+    "divisionLibelle": "Administration publique et défense ; sécurité sociale obligatoire"
+  },
+  {
+    "code": "84.12Z",
+    "libelle": "Administration publique (tutelle) de la santé, de la formation, de la culture et des services sociaux, autre que sécurité sociale",
+    "division": "84",
+    "divisionLibelle": "Administration publique et défense ; sécurité sociale obligatoire"
+  },
+  {
+    "code": "84.13Z",
+    "libelle": "Administration publique (tutelle) des activités économiques",
+    "division": "84",
+    "divisionLibelle": "Administration publique et défense ; sécurité sociale obligatoire"
+  },
+  {
+    "code": "84.21Z",
+    "libelle": "Affaires étrangères",
+    "division": "84",
+    "divisionLibelle": "Administration publique et défense ; sécurité sociale obligatoire"
+  },
+  {
+    "code": "84.22Z",
+    "libelle": "Défense",
+    "division": "84",
+    "divisionLibelle": "Administration publique et défense ; sécurité sociale obligatoire"
+  },
+  {
+    "code": "84.23Z",
+    "libelle": "Justice",
+    "division": "84",
+    "divisionLibelle": "Administration publique et défense ; sécurité sociale obligatoire"
+  },
+  {
+    "code": "84.24Z",
+    "libelle": "Activités d’ordre public et de sécurité",
+    "division": "84",
+    "divisionLibelle": "Administration publique et défense ; sécurité sociale obligatoire"
+  },
+  {
+    "code": "84.25Z",
+    "libelle": "Services du feu et de secours",
+    "division": "84",
+    "divisionLibelle": "Administration publique et défense ; sécurité sociale obligatoire"
+  },
+  {
+    "code": "84.30A",
+    "libelle": "Activités générales de sécurité sociale",
+    "division": "84",
+    "divisionLibelle": "Administration publique et défense ; sécurité sociale obligatoire"
+  },
+  {
+    "code": "84.30B",
+    "libelle": "Gestion des retraites complémentaires",
+    "division": "84",
+    "divisionLibelle": "Administration publique et défense ; sécurité sociale obligatoire"
+  },
+  {
+    "code": "84.30C",
+    "libelle": "Distribution sociale de revenus",
+    "division": "84",
+    "divisionLibelle": "Administration publique et défense ; sécurité sociale obligatoire"
+  },
+  {
+    "code": "85.10Z",
+    "libelle": "Enseignement pré-primaire",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "85.20Z",
+    "libelle": "Enseignement primaire",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "85.31Z",
+    "libelle": "Enseignement secondaire général",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "85.32Z",
+    "libelle": "Enseignement secondaire technique ou professionnel",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "85.41Z",
+    "libelle": "Enseignement post-secondaire non supérieur",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "85.42Z",
+    "libelle": "Enseignement supérieur",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "85.51Z",
+    "libelle": "Enseignement de disciplines sportives et d'activités de loisirs",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "85.52Z",
+    "libelle": "Enseignement culturel",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "85.53Z",
+    "libelle": "Enseignement de la conduite",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "85.59A",
+    "libelle": "Formation continue d'adultes",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "85.59B",
+    "libelle": "Autres enseignements",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "85.60Z",
+    "libelle": "Activités de soutien à l'enseignement",
+    "division": "85",
+    "divisionLibelle": "Enseignement"
+  },
+  {
+    "code": "86.10Z",
+    "libelle": "Activités hospitalières",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "86.21Z",
+    "libelle": "Activité des médecins généralistes",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "86.22A",
+    "libelle": "Activités de radiodiagnostic et de radiothérapie",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "86.22B",
+    "libelle": "Activités chirurgicales",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "86.22C",
+    "libelle": "Autres activités des médecins spécialistes",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "86.23Z",
+    "libelle": "Pratique dentaire",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "86.90A",
+    "libelle": "Ambulances",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "86.90B",
+    "libelle": "Laboratoires d'analyses médicales",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "86.90C",
+    "libelle": "Centres de collecte et banques d'organes",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "86.90D",
+    "libelle": "Activités des infirmiers et des sages-femmes",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "86.90E",
+    "libelle": "Activités des professionnels de la rééducation, de l’appareillage et des pédicures-podologues",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "86.90F",
+    "libelle": "Activités de santé humaine non classées ailleurs",
+    "division": "86",
+    "divisionLibelle": "Activités pour la santé humaine"
+  },
+  {
+    "code": "87.10A",
+    "libelle": "Hébergement médicalisé pour personnes âgées",
+    "division": "87",
+    "divisionLibelle": "Hébergement médico-social et social"
+  },
+  {
+    "code": "87.10B",
+    "libelle": "Hébergement médicalisé pour enfants handicapés",
+    "division": "87",
+    "divisionLibelle": "Hébergement médico-social et social"
+  },
+  {
+    "code": "87.10C",
+    "libelle": "Hébergement médicalisé pour adultes handicapés et autre hébergement médicalisé",
+    "division": "87",
+    "divisionLibelle": "Hébergement médico-social et social"
+  },
+  {
+    "code": "87.20A",
+    "libelle": "Hébergement social pour handicapés mentaux et malades mentaux",
+    "division": "87",
+    "divisionLibelle": "Hébergement médico-social et social"
+  },
+  {
+    "code": "87.20B",
+    "libelle": "Hébergement social pour toxicomanes",
+    "division": "87",
+    "divisionLibelle": "Hébergement médico-social et social"
+  },
+  {
+    "code": "87.30A",
+    "libelle": "Hébergement social pour personnes âgées",
+    "division": "87",
+    "divisionLibelle": "Hébergement médico-social et social"
+  },
+  {
+    "code": "87.30B",
+    "libelle": "Hébergement social pour handicapés  physiques",
+    "division": "87",
+    "divisionLibelle": "Hébergement médico-social et social"
+  },
+  {
+    "code": "87.90A",
+    "libelle": "Hébergement social pour enfants en difficultés",
+    "division": "87",
+    "divisionLibelle": "Hébergement médico-social et social"
+  },
+  {
+    "code": "87.90B",
+    "libelle": "Hébergement social pour adultes et familles en difficultés et autre hébergement social",
+    "division": "87",
+    "divisionLibelle": "Hébergement médico-social et social"
+  },
+  {
+    "code": "88.10A",
+    "libelle": "Aide à domicile",
+    "division": "88",
+    "divisionLibelle": "Action sociale sans hébergement"
+  },
+  {
+    "code": "88.10B",
+    "libelle": "Accueil ou accompagnement sans hébergement d’adultes handicapés ou de  personnes âgées",
+    "division": "88",
+    "divisionLibelle": "Action sociale sans hébergement"
+  },
+  {
+    "code": "88.10C",
+    "libelle": "Aide par le travail",
+    "division": "88",
+    "divisionLibelle": "Action sociale sans hébergement"
+  },
+  {
+    "code": "88.91A",
+    "libelle": "Accueil de jeunes enfants",
+    "division": "88",
+    "divisionLibelle": "Action sociale sans hébergement"
+  },
+  {
+    "code": "88.91B",
+    "libelle": "Accueil ou accompagnement sans hébergement d’enfants handicapés",
+    "division": "88",
+    "divisionLibelle": "Action sociale sans hébergement"
+  },
+  {
+    "code": "88.99A",
+    "libelle": "Autre accueil ou accompagnement sans hébergement d’enfants et d’adolescents",
+    "division": "88",
+    "divisionLibelle": "Action sociale sans hébergement"
+  },
+  {
+    "code": "88.99B",
+    "libelle": "Action sociale sans hébergement n.c.a.",
+    "division": "88",
+    "divisionLibelle": "Action sociale sans hébergement"
+  },
+  {
+    "code": "90.01Z",
+    "libelle": "Arts du spectacle vivant",
+    "division": "90",
+    "divisionLibelle": "Activités créatives, artistiques et de spectacle"
+  },
+  {
+    "code": "90.02Z",
+    "libelle": "Activités de soutien au spectacle vivant",
+    "division": "90",
+    "divisionLibelle": "Activités créatives, artistiques et de spectacle"
+  },
+  {
+    "code": "90.03A",
+    "libelle": "Création artistique relevant des arts plastiques",
+    "division": "90",
+    "divisionLibelle": "Activités créatives, artistiques et de spectacle"
+  },
+  {
+    "code": "90.03B",
+    "libelle": "Autre création artistique",
+    "division": "90",
+    "divisionLibelle": "Activités créatives, artistiques et de spectacle"
+  },
+  {
+    "code": "90.04Z",
+    "libelle": "Gestion de salles de spectacles",
+    "division": "90",
+    "divisionLibelle": "Activités créatives, artistiques et de spectacle"
+  },
+  {
+    "code": "91.01Z",
+    "libelle": "Gestion des bibliothèques et des archives",
+    "division": "91",
+    "divisionLibelle": "Bibliothèques, archives, musées et autres activités culturelles"
+  },
+  {
+    "code": "91.02Z",
+    "libelle": "Gestion des musées",
+    "division": "91",
+    "divisionLibelle": "Bibliothèques, archives, musées et autres activités culturelles"
+  },
+  {
+    "code": "91.03Z",
+    "libelle": "Gestion des sites et monuments historiques et des attractions touristiques similaires",
+    "division": "91",
+    "divisionLibelle": "Bibliothèques, archives, musées et autres activités culturelles"
+  },
+  {
+    "code": "91.04Z",
+    "libelle": "Gestion des jardins botaniques et zoologiques et des réserves naturelles",
+    "division": "91",
+    "divisionLibelle": "Bibliothèques, archives, musées et autres activités culturelles"
+  },
+  {
+    "code": "92.00Z",
+    "libelle": "Organisation de jeux de hasard et d'argent",
+    "division": "92",
+    "divisionLibelle": "Organisation de jeux de hasard et d'argent"
+  },
+  {
+    "code": "93.11Z",
+    "libelle": "Gestion d'installations sportives",
+    "division": "93",
+    "divisionLibelle": "Activités sportives, récréatives et de loisirs"
+  },
+  {
+    "code": "93.12Z",
+    "libelle": "Activités de clubs de sports",
+    "division": "93",
+    "divisionLibelle": "Activités sportives, récréatives et de loisirs"
+  },
+  {
+    "code": "93.13Z",
+    "libelle": "Activités des centres de culture physique",
+    "division": "93",
+    "divisionLibelle": "Activités sportives, récréatives et de loisirs"
+  },
+  {
+    "code": "93.19Z",
+    "libelle": "Autres activités liées au sport",
+    "division": "93",
+    "divisionLibelle": "Activités sportives, récréatives et de loisirs"
+  },
+  {
+    "code": "93.21Z",
+    "libelle": "Activités des parcs d'attractions et parcs à thèmes",
+    "division": "93",
+    "divisionLibelle": "Activités sportives, récréatives et de loisirs"
+  },
+  {
+    "code": "93.29Z",
+    "libelle": "Autres activités récréatives et de loisirs",
+    "division": "93",
+    "divisionLibelle": "Activités sportives, récréatives et de loisirs"
+  },
+  {
+    "code": "94.11Z",
+    "libelle": "Activités des organisations patronales et consulaires",
+    "division": "94",
+    "divisionLibelle": "Activités des organisations associatives"
+  },
+  {
+    "code": "94.12Z",
+    "libelle": "Activités des organisations professionnelles",
+    "division": "94",
+    "divisionLibelle": "Activités des organisations associatives"
+  },
+  {
+    "code": "94.20Z",
+    "libelle": "Activités des syndicats de salariés",
+    "division": "94",
+    "divisionLibelle": "Activités des organisations associatives"
+  },
+  {
+    "code": "94.91Z",
+    "libelle": "Activités des organisations religieuses",
+    "division": "94",
+    "divisionLibelle": "Activités des organisations associatives"
+  },
+  {
+    "code": "94.92Z",
+    "libelle": "Activités des organisations politiques",
+    "division": "94",
+    "divisionLibelle": "Activités des organisations associatives"
+  },
+  {
+    "code": "94.99Z",
+    "libelle": "Autres organisations fonctionnant par adhésion volontaire",
+    "division": "94",
+    "divisionLibelle": "Activités des organisations associatives"
+  },
+  {
+    "code": "95.11Z",
+    "libelle": "Réparation d'ordinateurs et d'équipements périphériques",
+    "division": "95",
+    "divisionLibelle": "Réparation d'ordinateurs et de biens personnels et domestiques"
+  },
+  {
+    "code": "95.12Z",
+    "libelle": "Réparation d'équipements de communication",
+    "division": "95",
+    "divisionLibelle": "Réparation d'ordinateurs et de biens personnels et domestiques"
+  },
+  {
+    "code": "95.21Z",
+    "libelle": "Réparation de produits électroniques grand public",
+    "division": "95",
+    "divisionLibelle": "Réparation d'ordinateurs et de biens personnels et domestiques"
+  },
+  {
+    "code": "95.22Z",
+    "libelle": "Réparation d'appareils électroménagers et d'équipements pour la maison et le jardin",
+    "division": "95",
+    "divisionLibelle": "Réparation d'ordinateurs et de biens personnels et domestiques"
+  },
+  {
+    "code": "95.23Z",
+    "libelle": "Réparation de chaussures et d'articles en cuir",
+    "division": "95",
+    "divisionLibelle": "Réparation d'ordinateurs et de biens personnels et domestiques"
+  },
+  {
+    "code": "95.24Z",
+    "libelle": "Réparation de meubles et d'équipements du foyer",
+    "division": "95",
+    "divisionLibelle": "Réparation d'ordinateurs et de biens personnels et domestiques"
+  },
+  {
+    "code": "95.25Z",
+    "libelle": "Réparation d'articles d'horlogerie et de bijouterie",
+    "division": "95",
+    "divisionLibelle": "Réparation d'ordinateurs et de biens personnels et domestiques"
+  },
+  {
+    "code": "95.29Z",
+    "libelle": "Réparation d'autres biens personnels et domestiques",
+    "division": "95",
+    "divisionLibelle": "Réparation d'ordinateurs et de biens personnels et domestiques"
+  },
+  {
+    "code": "96.01A",
+    "libelle": "Blanchisserie-teinturerie de gros",
+    "division": "96",
+    "divisionLibelle": "Autres services personnels"
+  },
+  {
+    "code": "96.01B",
+    "libelle": "Blanchisserie-teinturerie de détail",
+    "division": "96",
+    "divisionLibelle": "Autres services personnels"
+  },
+  {
+    "code": "96.02A",
+    "libelle": "Coiffure",
+    "division": "96",
+    "divisionLibelle": "Autres services personnels"
+  },
+  {
+    "code": "96.02B",
+    "libelle": "Soins de beauté",
+    "division": "96",
+    "divisionLibelle": "Autres services personnels"
+  },
+  {
+    "code": "96.03Z",
+    "libelle": "Services funéraires",
+    "division": "96",
+    "divisionLibelle": "Autres services personnels"
+  },
+  {
+    "code": "96.04Z",
+    "libelle": "Entretien corporel",
+    "division": "96",
+    "divisionLibelle": "Autres services personnels"
+  },
+  {
+    "code": "96.09Z",
+    "libelle": "Autres services personnels n.c.a.",
+    "division": "96",
+    "divisionLibelle": "Autres services personnels"
+  },
+  {
+    "code": "97.00Z",
+    "libelle": "Activités des ménages en tant qu'employeurs de personnel domestique",
+    "division": "97",
+    "divisionLibelle": "Activités des ménages en tant qu'employeurs de personnel domestique"
+  },
+  {
+    "code": "98.10Z",
+    "libelle": "Activités indifférenciées des ménages en tant que producteurs de biens pour usage propre",
+    "division": "98",
+    "divisionLibelle": "Activités indifférenciées des ménages en tant que producteurs de biens et services pour usage propre"
+  },
+  {
+    "code": "98.20Z",
+    "libelle": "Activités indifférenciées des ménages en tant que producteurs de services pour usage propre",
+    "division": "98",
+    "divisionLibelle": "Activités indifférenciées des ménages en tant que producteurs de biens et services pour usage propre"
+  },
+  {
+    "code": "99.00Z",
+    "libelle": "Activités des organisations et organismes extraterritoriaux",
+    "division": "99",
+    "divisionLibelle": "Activités des organisations et organismes extraterritoriaux"
+  }
+]

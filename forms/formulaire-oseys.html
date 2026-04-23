@@ -174,6 +174,17 @@
   }
   .zone-radios input[type="radio"] { accent-color: var(--oseys-orange); cursor: pointer; }
   #f_zone_custom { margin-top: 10px; }
+  .zone-rayon-wrap {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--oseys-border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .zone-rayon-wrap label { margin-bottom: 0; flex-shrink: 0; font-size: 13px; }
+  .zone-rayon-wrap input[type="range"] { flex: 1; accent-color: var(--oseys-orange); }
+  .zone-rayon-wrap #f_zone_rayon_display { font-weight: 600; color: var(--oseys-orange-dark); font-size: 13px; white-space: nowrap; flex-shrink: 0; }
 
   /* Niveau d'autonomie : cards single-select, 3 colonnes de taille uniforme */
   .tags[data-tags="niveau"] {
@@ -199,6 +210,56 @@
   .level-option.selected { background: var(--oseys-tint); border-color: var(--oseys-orange); }
   .level-option .level-name { font-weight: 600; font-size: 14px; color: var(--oseys-ink); margin-bottom: 4px; }
   .level-option .level-desc { font-size: 12px; color: var(--oseys-muted); line-height: 1.5; font-weight: 300; flex: 1; }
+
+  /* Autocomplete NAF — secteurs libres en codes structurés */
+  .naf-search-wrap { position: relative; }
+  .naf-suggestions {
+    position: absolute;
+    top: 100%; left: 0; right: 0; z-index: 20;
+    background: white;
+    border: 1px solid var(--oseys-border);
+    border-radius: 8px;
+    max-height: 280px;
+    overflow-y: auto;
+    margin-top: 4px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+  .naf-suggestion {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    border-bottom: 1px solid var(--oseys-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .naf-suggestion:last-child { border-bottom: none; }
+  .naf-suggestion:hover { background: var(--oseys-tint); }
+  .naf-suggestion-code {
+    flex-shrink: 0;
+    background: var(--oseys-ink);
+    color: white;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .naf-suggestion-lib { flex: 1; color: var(--oseys-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .naf-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+  }
+  .naf-tag-code {
+    background: rgba(255,255,255,0.25);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  .naf-tag-x { font-size: 11px; opacity: 0.6; margin-left: 2px; cursor: pointer; }
+  .naf-tag:hover .naf-tag-x { opacity: 1; }
 </style>
 </head>
 <body>
@@ -246,8 +307,8 @@
       </div>
       <div class="grid-2">
         <div class="field">
-          <label for="f_ville">Ville / zone principale</label>
-          <input type="text" id="f_ville" name="ville" placeholder="Paris, Lyon, PACA...">
+          <label for="f_ville">Adresse principale</label>
+          <input type="text" id="f_ville" name="ville" placeholder="12 rue de la République, 06000 Nice">
         </div>
         <div class="field">
           <label for="f_linkedin">LinkedIn</label>
@@ -323,7 +384,7 @@
         </div>
       </div>
       <div class="field">
-        <textarea id="f_offre" name="offre" required placeholder="Ex : j'accompagne les dirigeants d'entreprises de service à structurer leur démarche commerciale pour sortir du bouche-à-oreille et retrouver de la marge."></textarea>
+        <textarea id="f_offre" name="offre" required data-example="J'accompagne les dirigeants de TPE et PME à reprendre la main sur le pilotage commercial et la rentabilité de leur activité, avec la méthode OSEYS et l'outil PilotagePro."></textarea>
       </div>
     </div>
 
@@ -374,9 +435,14 @@
       <input type="hidden" id="f_secteurs" name="secteurs" value="">
 
       <div class="field" style="margin-top: 1.25rem">
-        <label for="f_secteurs_autres">Autres secteurs ou codes NAF</label>
-        <input type="text" id="f_secteurs_autres" name="secteurs_autres" placeholder="Ex : boulangerie artisanale, 43.21Z, ateliers de réparation...">
-        <p class="hint">Tout ce qui n'est pas dans les tags ci-dessus. Sépare par des virgules.</p>
+        <label for="f_naf_search">Autres secteurs ou codes NAF</label>
+        <div class="naf-search-wrap">
+          <input type="text" id="f_naf_search" placeholder="Tape un libellé (ex : boulangerie) ou un code NAF (ex : 43.21)…" autocomplete="off">
+          <div id="naf-suggestions" class="naf-suggestions" hidden></div>
+        </div>
+        <div id="naf-selected" class="tags" style="margin-top: 10px"></div>
+        <input type="hidden" id="f_secteurs_autres" name="secteurs_autres" value="">
+        <p class="hint">Recherche basée sur la nomenclature officielle INSEE (NAF rév. 2). Tu peux en sélectionner plusieurs.</p>
       </div>
 
       <div class="grid-2" style="margin-top: 1.5rem;">
@@ -394,11 +460,7 @@
         </div>
         <div class="field">
           <label>Zone géographique de prospection</label>
-          <div id="zone-collapsed">
-            <p class="hint">Par défaut, on cible autour de ton adresse professionnelle.</p>
-            <button type="button" id="zone-edit-btn" class="zone-link">Modifier la zone</button>
-          </div>
-          <div id="zone-expanded" hidden>
+          <div id="zone-expanded">
             <div class="zone-radios">
               <label><input type="radio" name="zone_choice" value="adresse" checked> Autour de mon adresse professionnelle</label>
               <label><input type="radio" name="zone_choice" value="region"> Ma région entière</label>
@@ -406,45 +468,22 @@
               <label><input type="radio" name="zone_choice" value="custom"> Zone spécifique</label>
             </div>
             <input type="text" id="f_zone_custom" placeholder="Ex : Nord, Sud-Est, département 13, 100km autour de Lyon..." hidden>
+            <div class="zone-rayon-wrap" id="zone-rayon-wrap">
+              <label for="f_zone_rayon_input">Rayon de prospection</label>
+              <input type="range" id="f_zone_rayon_input" min="0" max="100" step="5" value="25">
+              <span id="f_zone_rayon_display">25 km</span>
+              <input type="hidden" id="f_zone_rayon" name="zone_rayon" value="25">
+            </div>
           </div>
           <input type="hidden" id="f_zone" name="zone" value="default">
         </div>
       </div>
     </div>
 
-    <!-- ─── Section 6 : Ton et voix ─── -->
+    <!-- ─── Section 6 : Référence ─── -->
     <div class="section" data-section>
       <div class="section-head">
         <div class="section-num">6</div>
-        <div>
-          <div class="section-title">Ton registre</div>
-          <div class="section-desc">Comment tu t'adresses à un dirigeant. Martin/Mila vont caler leur ton sur le tien.</div>
-        </div>
-      </div>
-      <div class="field">
-        <label>Registre</label>
-        <div class="tags" data-tags="registre" data-single="true">
-          <span class="tag selected" data-value="direct_cordial">Direct et cordial</span>
-          <span class="tag" data-value="chaleureux">Chaleureux et conversationnel</span>
-          <span class="tag" data-value="executif">Exécutif et concis</span>
-          <span class="tag" data-value="expert">Expert et pédagogue</span>
-        </div>
-        <input type="hidden" id="f_registre" name="registre" value="direct_cordial">
-      </div>
-      <div class="field">
-        <label>Tutoiement / vouvoiement</label>
-        <div class="tags" data-tags="vouv" data-single="true">
-          <span class="tag" data-value="tu">Tutoiement</span>
-          <span class="tag selected" data-value="vous">Vouvoiement</span>
-        </div>
-        <input type="hidden" id="f_vouv" name="vouvoiement" value="vous">
-      </div>
-    </div>
-
-    <!-- ─── Section 7 : Référence ─── -->
-    <div class="section" data-section>
-      <div class="section-head">
-        <div class="section-num">7</div>
         <div>
           <div class="section-title">Un exemple de client idéal</div>
           <div class="section-desc">Un cas concret que tu as accompagné et que tu voudrais dupliquer. Ça aide à calibrer le ciblage.</div>
@@ -544,15 +583,21 @@
     // Zone : accepte adresse/region/france ou une chaîne libre (= custom)
     const zone = params.get('zone');
     if (zone) restoreZoneFromValue(zone);
+
+    // Rayon de prospection (km)
+    const rayon = params.get('rayon');
+    if (rayon) restoreRayonFromValue(rayon);
+
+    // NAF pré-remplis via URL (CSV de codes)
+    const naf = params.get('naf');
+    if (naf) restoreNafFromValue(naf);
   }
 
   // Restaure l'état du composant zone depuis une valeur sérialisée
-  // ('default' → replié ; 'adresse'/'region'/'france' → expand + radio ; autre → custom text)
+  // ('adresse'/'region'/'france' → radio preset ; autre → custom text)
   function restoreZoneFromValue(val) {
     if (!val || val === 'default') return;
     const preset = ['adresse', 'region', 'france'].includes(val);
-    document.getElementById('zone-collapsed').hidden = true;
-    document.getElementById('zone-expanded').hidden = false;
     const radioVal = preset ? val : 'custom';
     const radio = document.querySelector(`input[name="zone_choice"][value="${radioVal}"]`);
     if (radio) radio.checked = true;
@@ -562,6 +607,16 @@
       customInput.value = val;
     }
     document.getElementById('f_zone').value = val;
+    syncZone();
+  }
+
+  function restoreRayonFromValue(val) {
+    const n = parseInt(val, 10);
+    if (!Number.isFinite(n)) return;
+    const clamped = Math.max(0, Math.min(100, n));
+    document.getElementById('f_zone_rayon_input').value = clamped;
+    document.getElementById('f_zone_rayon_display').textContent = clamped + ' km';
+    document.getElementById('f_zone_rayon').value = String(clamped);
   }
 
   function applyTagParam(val, group, inputId) {
@@ -603,20 +658,17 @@
     });
   });
 
-  // ─── Zone géographique (override optionnel, replié par défaut) ──────────
-  const zoneEditBtn = document.getElementById('zone-edit-btn');
-  const zoneCollapsed = document.getElementById('zone-collapsed');
-  const zoneExpanded = document.getElementById('zone-expanded');
+  // ─── Zone géographique (4 radios + rayon conditionnel) ──────────────────
   const zoneCustomInput = document.getElementById('f_zone_custom');
   const zoneHidden = document.getElementById('f_zone');
+  const zoneRayonWrap = document.getElementById('zone-rayon-wrap');
+  const zoneRayonInput = document.getElementById('f_zone_rayon_input');
+  const zoneRayonDisplay = document.getElementById('f_zone_rayon_display');
+  const zoneRayonHidden = document.getElementById('f_zone_rayon');
 
-  function expandZone() {
-    zoneCollapsed.hidden = true;
-    zoneExpanded.hidden = false;
-  }
   function syncZone() {
     const checked = document.querySelector('input[name="zone_choice"]:checked');
-    if (!checked) { zoneHidden.value = 'default'; return; }
+    if (!checked) { zoneHidden.value = 'default'; zoneRayonWrap.hidden = true; return; }
     if (checked.value === 'custom') {
       zoneCustomInput.hidden = false;
       zoneHidden.value = zoneCustomInput.value.trim();
@@ -624,9 +676,9 @@
       zoneCustomInput.hidden = true;
       zoneHidden.value = checked.value;
     }
+    zoneRayonWrap.hidden = !(checked.value === 'adresse' || checked.value === 'custom');
     zoneHidden.dispatchEvent(new Event('input', { bubbles: true }));
   }
-  zoneEditBtn.addEventListener('click', expandZone);
   document.querySelectorAll('input[name="zone_choice"]').forEach(r =>
     r.addEventListener('change', syncZone)
   );
@@ -636,6 +688,12 @@
       zoneHidden.value = zoneCustomInput.value.trim();
       zoneHidden.dispatchEvent(new Event('input', { bubbles: true }));
     }
+  });
+  zoneRayonInput.addEventListener('input', () => {
+    const v = zoneRayonInput.value;
+    zoneRayonDisplay.textContent = v + ' km';
+    zoneRayonHidden.value = v;
+    zoneRayonHidden.dispatchEvent(new Event('input', { bubbles: true }));
   });
 
   // ─── Tag groups ──────────────────────────────────────────────────────────
@@ -667,16 +725,43 @@
   const PROGRESS_FIELD_IDS = [
     'f_nom', 'f_email', 'f_entreprise', 'f_telephone', 'f_ville', 'f_linkedin',
     'f_prospecteur', 'f_niveau', 'f_offre', 'f_secteurs', 'f_effectif', 'f_zone',
-    'f_registre', 'f_vouv', 'f_exemple',
+    'f_zone_rayon', 'f_exemple',
   ];
   function updateProgress() {
     let filled = 0;
     for (const id of PROGRESS_FIELD_IDS) {
       const el = document.getElementById(id);
-      if (el && String(el.value || '').trim().length > 0) filled++;
+      if (!el) continue;
+      const val = String(el.value || '').trim();
+      if (val.length === 0) continue;
+      // f_offre ne compte pas s'il contient encore le texte d'exemple
+      if (id === 'f_offre' && el.classList.contains('prefilled') && val === (el.dataset.example || '')) continue;
+      filled++;
     }
     const pct = Math.round((filled / PROGRESS_FIELD_IDS.length) * 100);
     document.getElementById('progress').style.width = pct + '%';
+  }
+
+  // Pré-remplit le textarea f_offre avec un exemple, qu'on efface au 1er focus.
+  function initOffreExample() {
+    const ta = document.getElementById('f_offre');
+    if (!ta) return;
+    const example = ta.dataset.example || '';
+    if (!example) return;
+    if (ta.value.trim().length === 0) {
+      ta.value = example;
+      ta.classList.add('prefilled');
+    }
+    ta.addEventListener('focus', () => {
+      if (ta.classList.contains('prefilled') && ta.value === example) {
+        ta.value = '';
+        ta.classList.remove('prefilled');
+        updateProgress();
+      }
+    }, { once: true });
+    ta.addEventListener('input', () => {
+      if (ta.value !== example) ta.classList.remove('prefilled');
+    });
   }
   document.querySelectorAll('input, textarea, select').forEach(el => el.addEventListener('input', updateProgress));
 
@@ -695,15 +780,144 @@
         const el = document.querySelector(`[name="${key}"]`);
         if (el && el.type !== 'hidden') el.value = val;
       }
+      // Si le draft a restauré une vraie valeur dans f_offre, ce n'est plus le placeholder d'exemple
+      const offreEl = document.getElementById('f_offre');
+      if (offreEl && data.offre && data.offre !== (offreEl.dataset.example || '')) {
+        offreEl.classList.remove('prefilled');
+      }
       if (data.secteurs) {
         data.secteurs.split(',').forEach(v => {
           document.querySelector(`[data-tags="secteurs"] .tag[data-value="${v}"]`)?.classList.add('selected');
         });
         syncSecteurs();
       }
+      if (data.secteurs_autres) restoreNafFromValue(data.secteurs_autres);
       if (data.zone) restoreZoneFromValue(data.zone);
+      if (data.zone_rayon) restoreRayonFromValue(data.zone_rayon);
       updateProgress();
     } catch (e) { console.warn('Draft load failed', e); }
+  }
+
+  // ─── Autocomplete NAF (chantier 1a — secteurs libres en codes structurés) ──
+  const NAF_DATA_URL = 'data/naf-rev2.json';
+  let nafData = [];
+  let selectedNafCodes = [];
+  let nafReadyPromise = Promise.resolve();
+
+  function initNafAutocomplete() {
+    nafReadyPromise = fetch(NAF_DATA_URL)
+      .then((r) => (r.ok ? r.json() : []))
+      .then((data) => { nafData = Array.isArray(data) ? data : []; })
+      .catch((e) => { console.warn('[naf] load failed', e); nafData = []; });
+    return nafReadyPromise;
+  }
+
+  function nafNormalize(s) {
+    return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function nafSearch(q, limit = 8) {
+    if (!q || q.trim().length < 2) return [];
+    const qRaw = q.trim();
+    const qn = nafNormalize(qRaw);
+    const codeMode = /^\d{2}(\.\d{0,2}[A-Z]?)?$/i.test(qRaw);
+    const results = [];
+    for (const e of nafData) {
+      let score = 0;
+      if (codeMode) {
+        if (e.code.toLowerCase().startsWith(qRaw.toLowerCase())) score = 100;
+      } else {
+        const libn = nafNormalize(e.libelle);
+        if (libn.startsWith(qn)) score = 80;
+        else if (libn.includes(' ' + qn)) score = 60;
+        else if (libn.includes(qn)) score = 40;
+        else if (nafNormalize(e.divisionLibelle || '').includes(qn)) score = 10;
+      }
+      if (score > 0) results.push({ e, score });
+    }
+    results.sort((a, b) => b.score - a.score || a.e.code.localeCompare(b.e.code));
+    return results.slice(0, limit).map((r) => r.e);
+  }
+
+  function renderNafTag(code, libelle) {
+    const tag = document.createElement('span');
+    tag.className = 'tag selected naf-tag';
+    tag.dataset.code = code;
+    const codeSpan = document.createElement('span');
+    codeSpan.className = 'naf-tag-code';
+    codeSpan.textContent = code;
+    const libSpan = document.createElement('span');
+    const displayLib = libelle.length > 48 ? libelle.slice(0, 48) + '…' : libelle;
+    libSpan.textContent = displayLib;
+    const xSpan = document.createElement('span');
+    xSpan.className = 'naf-tag-x';
+    xSpan.setAttribute('aria-label', 'Retirer');
+    xSpan.textContent = '✕';
+    tag.appendChild(codeSpan);
+    tag.appendChild(libSpan);
+    tag.appendChild(xSpan);
+    tag.addEventListener('click', () => removeNaf(code));
+    return tag;
+  }
+
+  function addNaf(code, libelle) {
+    if (selectedNafCodes.includes(code)) return;
+    selectedNafCodes.push(code);
+    document.getElementById('naf-selected').appendChild(renderNafTag(code, libelle));
+    document.getElementById('f_secteurs_autres').value = selectedNafCodes.join(',');
+    const search = document.getElementById('f_naf_search');
+    if (search) search.value = '';
+    document.getElementById('naf-suggestions').hidden = true;
+    updateProgress();
+  }
+
+  function removeNaf(code) {
+    selectedNafCodes = selectedNafCodes.filter((c) => c !== code);
+    const el = document.querySelector(`#naf-selected .naf-tag[data-code="${code}"]`);
+    if (el) el.remove();
+    document.getElementById('f_secteurs_autres').value = selectedNafCodes.join(',');
+    updateProgress();
+  }
+
+  function wireNafAutocomplete() {
+    const search = document.getElementById('f_naf_search');
+    const sugg = document.getElementById('naf-suggestions');
+    if (!search || !sugg) return;
+    search.addEventListener('input', () => {
+      const q = search.value.trim();
+      const results = nafSearch(q);
+      sugg.innerHTML = '';
+      if (results.length === 0) { sugg.hidden = true; return; }
+      for (const e of results) {
+        const item = document.createElement('div');
+        item.className = 'naf-suggestion';
+        const codeEl = document.createElement('span');
+        codeEl.className = 'naf-suggestion-code';
+        codeEl.textContent = e.code;
+        const libEl = document.createElement('span');
+        libEl.className = 'naf-suggestion-lib';
+        libEl.textContent = e.libelle;
+        item.appendChild(codeEl);
+        item.appendChild(libEl);
+        item.addEventListener('mousedown', (ev) => { ev.preventDefault(); addNaf(e.code, e.libelle); });
+        sugg.appendChild(item);
+      }
+      sugg.hidden = false;
+    });
+    search.addEventListener('blur', () => { setTimeout(() => { sugg.hidden = true; }, 150); });
+    search.addEventListener('focus', () => {
+      if (search.value.trim().length >= 2) search.dispatchEvent(new Event('input'));
+    });
+  }
+
+  async function restoreNafFromValue(csv) {
+    if (!csv) return;
+    await nafReadyPromise;
+    const codes = csv.split(',').map((s) => s.trim()).filter(Boolean);
+    for (const code of codes) {
+      const entry = nafData.find((n) => n.code === code);
+      if (entry) addNaf(code, entry.libelle);
+    }
   }
 
   function collectFormData() {
@@ -743,8 +957,11 @@
   });
 
   // ─── Init ────────────────────────────────────────────────────────────────
-  loadDraft();        // d'abord le brouillon local
-  applyUrlParams();   // puis les params URL (qui prennent le dessus)
+  initNafAutocomplete();  // lance le fetch NAF en parallèle (non bloquant)
+  wireNafAutocomplete();  // branche le handler sur l'input de recherche
+  initOffreExample();     // pré-remplit f_offre avec un exemple effaçable
+  loadDraft();            // puis le brouillon local (prime sur l'exemple)
+  applyUrlParams();       // puis les params URL (qui prennent le dessus)
   updateProgress();
 </script>
 </body>
