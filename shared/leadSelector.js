@@ -24,6 +24,7 @@ const {
   CENTRE_FRANCE_METROPOLITAINE,
 } = require('./geocoding');
 const { getMem0 } = require('./adapters/memory/mem0');
+const { recordLeadSelectorEvent } = require('./leadSelectorTrace');
 
 const SECTORS_TO_NAF = require('./mappings/secteurs-to-naf.json');
 const EFFECTIF_TO_TRANCHE = require('./mappings/effectif-to-tranche-insee.json');
@@ -296,15 +297,18 @@ async function selectLeadsForConsultant(params = {}) {
     batchSize = DEFAULT_BATCH_SIZE,
     adapters = {},
     context,
+    briefId,
+    consultantId,
   } = params;
 
   const leadBase = adapters.leadBase || new LeadBaseAdapter({ logger: context && context.log });
+  const trace = adapters.trace || recordLeadSelectorEvent;
 
   try {
     const filters = mapBriefToFilters(brief, { context });
 
     if (filters.nafCodes.length === 0) {
-      return {
+      const empty = {
         status: 'empty',
         leads: [],
         meta: {
@@ -321,6 +325,8 @@ async function selectLeadsForConsultant(params = {}) {
           elapsedMs: Date.now() - started,
         },
       };
+      Promise.resolve(trace({ status: empty.status, meta: empty.meta, briefId, consultantId })).catch(() => {});
+      return empty;
     }
 
     const candidates = await leadBase.queryLeads({
@@ -391,10 +397,11 @@ async function selectLeadsForConsultant(params = {}) {
       ms: result.meta.elapsedMs,
     });
 
+    Promise.resolve(trace({ status: result.status, meta: result.meta, briefId, consultantId })).catch(() => {});
     return result;
   } catch (err) {
     if (context && typeof context.error === 'function') context.error('[leadSelector] failed', err);
-    return {
+    const errResult = {
       status: 'error',
       leads: [],
       meta: {
@@ -403,6 +410,8 @@ async function selectLeadsForConsultant(params = {}) {
         elapsedMs: Date.now() - started,
       },
     };
+    Promise.resolve(trace({ status: errResult.status, meta: errResult.meta, briefId, consultantId })).catch(() => {});
+    return errResult;
   }
 }
 
