@@ -112,11 +112,16 @@ const DOMAIN_SOURCES = Object.freeze({
  *     signals (string JSON),        cost_cents (number),
  *     firstName, lastName, role, roleSource, roleConfidence (number),
  *     domain, domainSource,
+ *     naf (ex. "70.22Z"), tranche (code INSEE effectif),
  *     resolvedAt (ISO), lastVerifiedAt (ISO),
  *     feedbackStatus (null|'delivered'|'bounced'|'replied'|'spam_flagged'),
  *     feedbackAt (ISO),
  *     experimentsApplied (string JSON),
  *     beneficiaryId
+ *
+ *   Les champs `naf` et `tranche` sont dupliqués depuis LeadBase/candidate
+ *   pour permettre à `patternsLearner` (Jalon 4) d'agréger par
+ *   (nafDivision, tranche, patternId) sans re-lookup LeadBase ligne par ligne.
  *
  *   TTL logique : 90 jours après lastVerifiedAt. Au-delà, re-résolution.
  *   Purge RGPD : endpoint admin qui scan PartitionKey=siren et delete.
@@ -135,6 +140,8 @@ const DOMAIN_SOURCES = Object.freeze({
  * @property {number} [roleConfidence]
  * @property {string|null} domain
  * @property {string} [domainSource]
+ * @property {string} [naf]             Code NAF complet (ex. "70.22Z")
+ * @property {string} [tranche]         Code tranche effectif INSEE (ex. "11")
  * @property {string} resolvedAt        ISO
  * @property {string} lastVerifiedAt    ISO
  * @property {string|null} [feedbackStatus]
@@ -189,6 +196,25 @@ const DOMAIN_SOURCES = Object.freeze({
  * @property {string} firstName
  * @property {string} lastName
  * @property {string} companyName
+ */
+
+/**
+ * @typedef {Object} EnrichBatchResult
+ * @property {'ok'|'insufficient'|'empty'|'error'} status
+ * @property {Array<Object>} leads             Leads enrichis prêts pour runSequence
+ * @property {number} unresolvableCount        Prospects filés en EmailUnresolvable
+ * @property {Object} selectorMeta             Meta retournée par selectCandidatesForConsultant
+ * @property {Object} meta                     Meta enrichissement
+ * @property {number} meta.requested
+ * @property {number} meta.returned
+ * @property {number} meta.candidatesConsidered
+ * @property {number} meta.resolutionAttempts
+ * @property {number} meta.resolutionOk
+ * @property {number} meta.resolutionUnresolvable
+ * @property {number} meta.costCentsTotal
+ * @property {boolean} meta.dryRun
+ * @property {number} meta.elapsedMs
+ * @property {string} [meta.reason]
  */
 
 /**

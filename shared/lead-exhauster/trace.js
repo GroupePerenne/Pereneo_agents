@@ -84,6 +84,8 @@ function buildRowKey(firstName, lastName) {
  * @param {number} [row.roleConfidence]
  * @param {string|null} [row.domain]
  * @param {string} [row.domainSource]
+ * @param {string} [row.naf]                 Code NAF complet, ex. "70.22Z"
+ * @param {string} [row.tranche]             Code tranche effectif INSEE
  * @param {string[]} [row.experimentsApplied] Array de {experiment_id, variant}
  * @param {string} [row.beneficiaryId]
  * @returns {Promise<boolean>}
@@ -111,6 +113,8 @@ async function upsertLeadContact(row = {}) {
       roleConfidence: typeof row.roleConfidence === 'number' ? row.roleConfidence : 0,
       domain: row.domain || null,
       domainSource: String(row.domainSource || ''),
+      naf: String(row.naf || ''),
+      tranche: String(row.tranche || ''),
       resolvedAt: now,
       lastVerifiedAt: now,
       experimentsApplied: JSON.stringify(

@@ -315,6 +315,8 @@ async function leadExhauster(input = {}, opts = {}) {
       roleConfidence: (decisionMaker && decisionMaker.confidence) || 0,
       domain: domainResult.domain,
       domainSource: domainResult.source,
+      naf: input.naf || '',
+      tranche: input.trancheEffectif || '',
       experimentsApplied,
       beneficiaryId: input.beneficiaryId,
     }),
