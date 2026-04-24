@@ -173,7 +173,12 @@ test('resolve — budget exceeded → skip sans call réseau', async () => {
 test('resolve — POST /batch OK → polling retourne data → email nominative', async () => {
   const calls = [];
   const fetchImpl = async (url, opts) => {
-    calls.push({ url, method: opts.method });
+    calls.push({
+      url: String(url),
+      method: opts.method,
+      headers: { ...(opts.headers || {}) },
+      body: opts.body || null,
+    });
     if (opts.method === 'POST') {
       return {
         ok: true, status: 200,
@@ -209,6 +214,16 @@ test('resolve — POST /batch OK → polling retourne data → email nominative'
   assert.ok(calls[1].url.includes('req-123'));
   assert.equal(tracked.spendCalls.length, 1);
   assert.equal(tracked.spendCalls[0].cost, 3);
+
+  // Auth : clé dans header X-Access-Token, PAS dans le body ni dans
+  // l'URL du polling (Dropcontact V1 API contract, validé terrain
+  // 2026-04-24 : sans X-Access-Token → 403 "No api key received").
+  assert.equal(calls[0].headers['X-Access-Token'], 'test-key');
+  const postBody = JSON.parse(calls[0].body);
+  assert.equal(postBody.apiKey, undefined, 'body POST ne doit PAS contenir apiKey');
+  assert.ok(Array.isArray(postBody.data));
+  assert.equal(calls[1].headers['X-Access-Token'], 'test-key');
+  assert.ok(!calls[1].url.includes('apiKey'), 'URL polling ne doit PAS contenir apiKey= en query');
 });
 
 test('resolve — polling wait puis succès', async () => {

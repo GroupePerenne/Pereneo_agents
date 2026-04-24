@@ -246,11 +246,18 @@ class DropcontactAdapter {
     const submissionStart = Date.now();
 
     // Étape 1 : POST /batch
+    // Dropcontact API V1 : l'authentification se fait via header
+    // `X-Access-Token`, pas via clé dans le body. Validation terrain
+    // 2026-04-24 : body.apiKey → 403 avec message "No api key received.
+    // Please set 'X-Access-Token' header with your api key as value."
     const submitRes = await this._fetchWithTimeout(this.apiUrl, {
       method: 'POST',
-      headers: { 'content-type': 'application/json', accept: 'application/json' },
+      headers: {
+        'content-type': 'application/json',
+        accept: 'application/json',
+        'X-Access-Token': this.apiKey,
+      },
       body: JSON.stringify({
-        apiKey: this.apiKey,
         data: [{
           first_name: input.firstName,
           last_name: input.lastName,
@@ -281,10 +288,13 @@ class DropcontactAdapter {
         throw new Error('dropcontact poll timeout');
       }
       await this._sleep(this.pollDelays[i]);
-      const pollUrl = `${this.apiUrl.replace(/\/+$/, '')}/${encodeURIComponent(requestId)}?apiKey=${encodeURIComponent(this.apiKey)}`;
+      const pollUrl = `${this.apiUrl.replace(/\/+$/, '')}/${encodeURIComponent(requestId)}`;
       const pollRes = await this._fetchWithTimeout(pollUrl, {
         method: 'GET',
-        headers: { accept: 'application/json' },
+        headers: {
+          accept: 'application/json',
+          'X-Access-Token': this.apiKey,
+        },
       }, this.timeoutMs);
       if (!pollRes.ok) {
         throw new Error(`dropcontact poll http_${pollRes.status}`);
