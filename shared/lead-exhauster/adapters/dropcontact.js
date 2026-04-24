@@ -43,8 +43,12 @@ const QUALIFICATION_MAP = Object.freeze({
 
 // ─── Constantes réseau / coût / circuit breaker ───────────────────────────
 const DEFAULT_API_URL = 'https://api.dropcontact.io/batch';
-const DEFAULT_TIMEOUT_MS = 15_000;
-const DEFAULT_POLL_DELAYS_MS = [1000, 2000, 4000, 7000]; // ~14s cumulés
+// Dropcontact API V1 : "Request not ready yet, try again in 30 seconds"
+// Validation terrain 2026-04-24 : batch processing ~30-60s réel.
+// Poll initial à 30s (consigne provider), puis 15s pour capter le
+// résultat dès disponibilité (meilleur behavior moyen que 30/30/15).
+const DEFAULT_TIMEOUT_MS = 90_000;
+const DEFAULT_POLL_DELAYS_MS = [30_000, 15_000, 15_000, 15_000]; // 75s cumulés
 const DEFAULT_COST_PER_LOOKUP_CENTS = 3; // Starter plan ~2.4c/lookup, arrondi 3
 const CIRCUIT_BREAKER_THRESHOLD = 3;
 const CIRCUIT_BREAKER_OPEN_MS = 10 * 60 * 1000; // 10 min
