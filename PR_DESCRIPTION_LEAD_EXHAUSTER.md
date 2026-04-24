@@ -273,4 +273,98 @@ DROPCONTACT_ENABLED=true \
 
 ---
 
+## Findings terrain smoke réel 2026-04-24
+
+Smoke réel exécuté sur les 5 SIRENs LeadBase curés (`scripts/smoke-sirens-sample.json`) avec Dropcontact en production. Deux bugs d'implémentation corrigés avant PR (commits `ea36668` + `5a63a5b`), trois findings identifiés pour roadmap post-merge.
+
+**Sortie brute smoke** :
+
+```
+🔎 Lead Exhauster Smoke — mode: real
+   Source : file:scripts/smoke-sirens-sample.json
+   Cas: 5
+
+   [COMPAGNIE PHOCEENNE D EQUIPEMENTS MULTISITES (62.02A)] ... ✓ status=unresolvable email=- 30600ms
+   [INFORSUD TECHNOLOGIES (62.02A)] ... ✓ status=unresolvable email=- 30554ms
+   [COMPUTER ASSOCIES (62.02A)] ... ✓ status=unresolvable email=- 30377ms
+   [ART INFORMATIQUE (62.02A)] ... ✓ status=unresolvable email=- 75906ms
+   [ANALYSE DU RISQUE MEDICAL (70.22Z)] ... ✓ status=unresolvable email=- 30556ms
+
+   Résumé : 5 OK / 0 KO / 5 total
+   Coût Dropcontact total : 0 cents (0.00 €)
+```
+
+**Métriques**
+
+| Métrique | Valeur | Commentaire |
+|---|---|---|
+| Résolutions OK (email nominative/verified) | **0 / 5** | Voir F3 |
+| Résolutions miss | **5 / 5** | Tous Dropcontact-miss, crédits remboursés |
+| Taux de match Dropcontact observé | **0 %** | Sample longue traîne |
+| Coût total crédits consommés | **0** | Pay-on-success confirmé |
+| Solde Dropcontact (post-run) | **550 / 550** | Inchangé (vs 550 pré-run) |
+| Circuit breaker | **resté fermé** | 5 POST + 8 GET sans throw |
+| Latence moyenne par SIREN | ~40s | 30s pour 4, 75s pour ART INFORMATIQUE |
+
+**Classification findings**
+
+| ID | Sévérité | Finding | Impact merge | Roadmap |
+|---|---|---|---|---|
+| **F1** | **P2** | Latence Dropcontact 30-75s/SIREN incompatible avec Azure Functions Consumption timeout 5 min pour batchs ≥ 8-10 SIRENs en séquentiel | Non bloquant | Parallélisation `Promise.allSettled` — scope post-merge, avant activation commerciale |
+| **F2** | **P3** | Pay-on-success confirmé : Dropcontact rembourse automatiquement le crédit en cas de miss (`credits_left: 549` au POST → `550` au GET final) | Aucun (positif) | Déjà anticipé côté costing, aucune action |
+| **F3** | **P1** | Taux de match Dropcontact 0% sur ces 5 SIRENs PME FR (62.02A ESN + 70.22Z conseil, Sud France, pas de site web résolvable). Longue traîne marché | Non bloquant produit | Pilote Morgane/Johnny doit démarrer sur SIRENs avec `site_web` populé pour produire de la résolution. Lien direct avec dette #1 (API gouv `site_web` absent) |
+
+**Bugs d'implémentation corrigés pendant le smoke** (commits inclus dans cette PR)
+
+- `ea36668` : clé Dropcontact envoyée dans le body JSON au lieu du header `X-Access-Token`. 403 au premier smoke (22 avril), résolu après lecture doc Dropcontact. Tests unitaires ajustés (4 assertions auth).
+- `5a63a5b` : polling 14s cumulés (backoff agressif exponentiel) incompatible avec batch processing Dropcontact 30-60s. API répondait littéralement "try again in 30 seconds", ignoré par notre client. Nouveaux délais `[30, 15, 15, 15]` validés terrain (4/5 SIRENs résolus au 1er poll, 1/5 au 4e).
+
+## App Settings Azure requis au déploiement
+
+Variables à provisionner dans Function App avant le merge en staging/prod :
+
+```
+# Secrets (Azure Key Vault)
+DROPCONTACT_API_KEY=@Microsoft.KeyVault(SecretUri=...)
+
+# Configuration
+DROPCONTACT_ENABLED=true
+DROPCONTACT_API_URL=https://api.dropcontact.io/batch
+DROPCONTACT_MONTHLY_BUDGET_CENTS=2400
+DROPCONTACT_COST_PER_LOOKUP_CENTS=3
+
+LEAD_EXHAUSTER_CONFIDENCE_THRESHOLD=0.80
+LEAD_SELECTOR_CANDIDATE_MULTIPLIER=3
+
+# Tables Azure Storage (créées à la volée par les writers)
+LEADCONTACTS_TABLE=LeadContacts
+EMAIL_PATTERNS_TABLE=EmailPatterns
+EMAIL_UNRESOLVABLE_TABLE=EmailUnresolvable
+BUDGETS_TABLE=Budgets
+EXPERIMENTS_TABLE=Experiments
+
+# API gouv (pas d'auth)
+RECHERCHE_ENTREPRISES_API_URL=https://recherche-entreprises.api.gouv.fr
+```
+
+## Sortie brute `npm test` post-commits finaux
+
+```
+1..410
+# tests 410
+# suites 0
+# pass 410
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 552.171083
+```
+
+Mergeable after review — reco claude.ai : GO
+
+Reviewed by claude.ai — GO merge recommandé sur base smoke terrain + analyse code Jalon 1-4.
+
+---
+
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
