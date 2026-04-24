@@ -43,7 +43,7 @@ function makeContext() {
   };
 }
 
-function makeDeps({ mem0, sendMailResult, sendMailThrows } = {}) {
+function makeDeps({ mem0, sendMailResult, sendMailThrows, triggerLeadSelector } = {}) {
   const sendMailCalls = [];
   const sendMail = async (args) => {
     sendMailCalls.push(args);
@@ -51,7 +51,18 @@ function makeDeps({ mem0, sendMailResult, sendMailThrows } = {}) {
     return sendMailResult || { success: true };
   };
   const getMem0 = () => mem0 === undefined ? null : mem0;
-  return { sendMail, sendMailCalls, getMem0 };
+  // Neutralise le fire-and-forget Lead Selector par défaut : les tests de
+  // ce fichier couvrent handleQualification (Mem0 + sendMail + validation),
+  // pas le pipeline Lead Selector. Sans ce stub, defaultTriggerLeadSelector
+  // lance une IIFE async qui log des warns sur le context partagé
+  // (effectif non mappé, leadBase auth_failed…) et pollue ctxCalls.warn,
+  // faussant les assertions sur le warn Mem0. Les tests qui souhaitent
+  // vérifier le trigger peuvent toujours passer leur propre implémentation.
+  const triggerCalls = [];
+  const triggerLeadSelectorStub = triggerLeadSelector || ((args) => {
+    triggerCalls.push(args);
+  });
+  return { sendMail, sendMailCalls, getMem0, triggerLeadSelector: triggerLeadSelectorStub, triggerCalls };
 }
 
 function makeMem0Stub({ storeReturns = { id: 'consultant_mem1' }, storeThrows = null } = {}) {
